@@ -1,0 +1,17 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1><%= it.specificTopic.name %></h1>
+<h3><u>Question</u>: <%= it.specificQuestion.question_text %></h3>
+
+<% if (it.availableAnswers && it.availableAnswers.length > 0) { %>
+  <ul style="list-style-type:disc;">
+    <% it.availableAnswers.forEach(i => { %>
+        <li>                                     
+            <%= i.option_text %> <form method="POST" action="/quiz/<%= it.specificTopic.id %>/questions/<%= i.question_id %>/options/<%= i.id %>"> <input type="submit" value="Choose"/></form>
+        </li> 
+       <% }); 
+    %>
+  </ul> 
+<% }
+%>
+

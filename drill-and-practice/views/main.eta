@@ -1,0 +1,14 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Drill and practice</h1>
+
+<p>This is an application where you can create topics and option answers for quizes. Anyone using the application possibly also take quizes, viewing the available topics and option answers for both wrongness and correctness.</p>
+<p>If you haven't used the application before, you can start by <a href="/auth/register" style="color: blue">registering</a>. If you have been here before, just <a href="/auth/login" style="color: blue">log in</a>!</p>
+<p>If you wish to see how such an application could be built, visit the free online <a href="https://wsd.cs.aalto.fi" target="_blank">Web Software Development Course</a> offered by <a href="https://www.aalto.fi/en" target="_blank">Aalto University</a>.</p>
+<p>Statistics</p>
+<ul style="list-style-type:disc">
+    <li>Topics: <%= it.topics ? it.topics : "0" %></li>
+    <li>Questions: <%= it.questions ? it.questions : "0" %></li>
+    <li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
+</ul>
+

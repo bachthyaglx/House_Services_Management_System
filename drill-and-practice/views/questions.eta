@@ -1,0 +1,39 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1><%= it.specificTopic.name %></h1>
+
+<% if (it.availableQuestions && it.availableQuestions.length > 0) { %>
+<h4>
+  <ol type="1">
+    <% it.availableQuestions.forEach(i => { 
+      %>
+        <li>
+          <a href="/topics/<%= i.topic_id %>/questions/<%= i.id %>"><%= i.question_text %></a>
+        </li>
+      <% }); 
+    %>
+  </ol>
+</h4><% } 
+%>
+
+<% if (it.validateQuestion) { %>
+<ul>
+    <% Object.keys(it.validateQuestion).forEach((attribute) => { %>
+        <% Object.values(it.validateQuestion[attribute]).forEach((err) => { %>
+            <li style="color: red"><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } 
+%>
+
+<% if (it.user) { 
+%> <label>
+      <h4><b>Add a question!</b></h4>
+      <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions">
+        <textarea name="question_text"></textarea><br/>
+        <input type="submit" value="Add"/>
+      </form>
+   </label>
+  <% };
+%>

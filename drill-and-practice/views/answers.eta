@@ -1,0 +1,50 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1><%= it.specificTopic.name %></h1>
+<h3><u>Question</u>: <%= it.specificQuestion.question_text %></h3>
+
+<% if (it.availableAnswers && it.availableAnswers.length > 0) { %>
+  <ul style="list-style-type:disc;">
+    <% it.availableAnswers.forEach(i => { 
+      %>
+        <% if (i.is_correct == true) { %> 
+          <li style="color: green"> 
+            <%= i.option_text %> (TRUE) <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions/<%= i.question_id %>/options/<%= i.id %>/delete"> <input type="submit" value="Delete option"/></form>
+          </li> 
+          <% } else { %> 
+            <li style="color: red">
+              <%= i.option_text %> (FALSE) <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions/<%= i.question_id %>/options/<%= i.id %>/delete"> <input type="submit" value="Delete option"/></form>
+            </li> 
+          <%}
+        %>
+      <% }); 
+    %>
+  </ul> 
+<% } else { %> <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions/<%= it.specificQuestion.id %>/delete"> <input type="submit" value="Delete question"/></form> <%}
+%>
+
+<% if (it.validateAnswer && it.user) { %>
+<ul style="list-style-type: none">
+    <% Object.keys(it.validateAnswer).forEach((attribute) => { %>
+        <% Object.values(it.validateAnswer[attribute]).forEach((err) => { %>
+            <li style="color: red"><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } 
+%>
+
+<% if (it.user) { 
+  %> 
+    <label>
+      <h4><b>Add an answer!</b></h4>
+      <form method="POST" action="/topics/<%= it.specificQuestion.topic_id %>/questions/<%= it.specificQuestion.id %>/options">
+        <textarea name="option_text"/></textarea><br/>
+        <div>
+          <label><input type="checkbox" name="is_correct"/>Check correctness</label>
+        </div>
+        <input type="submit" value="Add"/>
+      </form>
+    </label>
+  <% };
+%>
