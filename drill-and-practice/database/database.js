@@ -10,10 +10,10 @@ if (Deno.env.get("DATABASE_URL")) {
   );
 } else {
   connectionPool = new Pool({
-    user: "zavcdtgy",
-    password: "aKQ70MrydUP9rnQIjtmTC2RsReRrYR2N",
-    hostname: "mouse.db.elephantsql.com",
-    database: "thesis",
+    user: "owpceiol",
+    password: "iSviFqLc7AL_T_HJbFKuyNStlH7W2p3s",
+    hostname: "manny.db.elephantsql.com",
+    database: "owpceiol",
     port: 5432,
   }, CONCURRENT_CONNECTIONS);
 }

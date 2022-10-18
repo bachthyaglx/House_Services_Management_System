@@ -1,6 +1,6 @@
 <% layout("./layouts/layout.eta") %>
 
-<h1>Drill and practice</h1>
+<% /* <h1>Drill and practice</h1>
 
 <p>This is an application where you can create topics and option answers for quizes. Anyone using the application possibly also take quizes, viewing the available topics and option answers for both wrongness and correctness.</p>
 <p>If you haven't used the application before, you can start by <a href="/auth/register" style="color: blue">registering</a>. If you have been here before, just <a href="/auth/login" style="color: blue">log in</a>!</p>
@@ -8,7 +8,37 @@
 <p>Statistics</p>
 <ul style="list-style-type:disc">
     <li>Topics: <%= it.topics ? it.topics : "0" %></li>
-    <li>Questions: <%= it.questions ? it.questions : "0" %></li>
-    <li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
-</ul>
+<li>Questions: <%= it.questions ? it.questions : "0" %></li>
+<li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
+</ul> */ %>
 
+<div>
+  Do you know which type of houses for rent in Vietnam are right for you? If you are new to Vietnam, this article will be very helpful for you to choose a safe place to stay in our country. Take a look at the directory to see what types of rentals are available in general!
+  </br></br>
+  <h2>1. Shared hostel- a common type of houses for rent in Vietnam</h2>
+  <center><img src="/static/p4.jpg"></center>
+  </br>
+  <p>A type of motel room where the landlord and the tenant will live in the same building with the same path and the same living place. Because of the same owner, you will be living in a very disciplined environment, with regulations on hours and styles of living. Not only that, there are some landlords who also cook for the residents. Here you will not have to worry about many issues such as theft, security and tenants are often carefully selected.</p>
+  <p>However, this type of houses for rent in Vietnam also comes with many inconveniences. First of all, there is the inconvenience of living with the landlord as there will be a curfew and closing time.</p>
+  <p>Next is the common area. If you live with a roommate, not washing the dishes may be okay. But if you live with the owner, if you don’t wash the dishes, you will definitely be reminded. In addition, if the owner is difficult, you will easily encounter problems and difficulties when staying there.
+  <h2>2. Apartment</h2>
+  <center><img src="/static/p5.jpg"></center>
+  </br>
+  <p>This is a type of houses for rent in Vietnam where the landlord sublets a room in an apartment or the whole apartment for rent. This type is often sought by young people with high incomes because the apartment room for rent is usually the room with the most furniture and the most spacious living space.</p>
+  <p>Here you will not have to worry about safety because the apartment is always guaranteed about security. In addition, the living space will often be at a higher standard than other models. Usually, the apartment will have its kitchen, bedroom and living room built separately.</p>
+  <p>Accompanying these facilities is a rather expensive price tag. This is the biggest reason many of you don’t come to this model. Along with the high price, here the tenants will have to take care of all other accommodation costs such as parking, management costs, etc. In addition, you will have to take care of all the furniture in the room. If there is damage and loss, the tenants are the ones responsible.</p>
+  <h2>3. Mini apartment</h2>
+  <center><img src="/static/p6.jpg"></center>
+  </br>
+  <p>Mini apartment is a type of apartment with a small area from 24m2 – 40m2. A mini apartment is like an apartment room where all the utilities of an apartment such as kitchen, bedroom, and office are packed together in one room with a reasonable and compact design. This is the type of houses for rent in Vietnam that many tenants are in favor of. For renters, this is a model for those who want to find an apartment but don’t have much money.</p>
+  <h2>4. Homestays</h2>
+  <center><img src="/static/p7.jpg" style="width:700px;height:525px;"></center>
+  </br>
+  <p>Homestay is a form of accommodation that combines a serviced apartment and a dormitory. This model uses bunk beds and shared living spaces to make the most of the living space. This is the most prominent model today, favored by both landlords and tenants.</p>
+  <p>The tenants will have full use of services from refrigerators, air conditioners, kitchens, cleaning to birth, … but only at a cheap price of 1 million – 2 million / month.</p>
+  <h2>5. Self-managed hostel</h2>
+  <center><img src="/static/p8.jpg"></center>
+  </br>
+  <p>This type of houses for rent in Vietnam has rooms that are separate from each other. All the rooms are fully equipped with living space, and the tenants live separately from the owner. Since there are not too many rules to follow, you will have more freedom when staying here.</p>
+  <p>However, there will also be many problems with this type of housing. The model of self-managed motels is the model with the lowest security among the motel models. Because it is self-managed, everybody has access to the same gate. If someone forgets to close the gate or let strangers in, it can easily lead to the occurrence of theft.</p>
+</div>

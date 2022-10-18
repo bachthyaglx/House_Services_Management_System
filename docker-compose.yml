@@ -1,13 +1,12 @@
 version: "3.4"
 
 services:
-  app:
+  drill-and-practice:
     build: drill-and-practice
     image: drill-and-practice
     restart: "no"
     volumes:
       - ./drill-and-practice/:/app
-      - ./app-cache/:/app-cache
     ports:
       - 7777:7777
     depends_on:
@@ -17,7 +16,7 @@ services:
       - project.env
 
   database:
-    container_name: database-server
+    container_name: database-p2-a8f6f73b-318f-400f-94e2-2c913505c827
     image: postgres:14.1
     restart: "no"
     env_file:
