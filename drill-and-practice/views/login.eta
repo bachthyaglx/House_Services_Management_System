@@ -1,4 +1,4 @@
-<% layout("./layouts/layout.eta") %>
+<% layout("./layouts/layout1.eta") %>
 
 <h1>Login form</h1>
 
@@ -6,10 +6,12 @@
 
 <form method="POST" action="/auth/login">
   Email:<br/>
-  <input type="email" name="email" /><br/>
+  <input type="email" name="email"/><br/>
   Password:<br/>
   <input type="password" name="password" /><br/><br/>
   <input type="submit" value="Login" />
 </form>
+
+<% /* <a href="/auth/register">Not yet registered? Register here.</a> */ %>
 
 <a href="/auth/register">Not yet registered? Register here.</a>

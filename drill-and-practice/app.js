@@ -4,6 +4,7 @@ import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import { renderMiddleware } from "./middlewares/renderMiddleware.js";
 import { userMiddleware } from "./middlewares/userMiddleware.js";
 import { serveStaticMiddleware } from "./middlewares/serveStaticMiddleware.js";
+
 import { router } from "./routes/routes.js";
 
 const app = new Application();

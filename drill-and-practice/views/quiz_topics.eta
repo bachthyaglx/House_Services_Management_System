@@ -1,4 +1,4 @@
-<% layout('./layouts/layout.eta') %>
+<% /* <% layout('./layouts/layout.eta') %>
 
 <h1>Topics</h1>
 
@@ -15,4 +15,4 @@
   </ul>
 </h4><% } 
 %>
-
+ */ %>

@@ -1,5 +1,8 @@
 # Project 2: Quiz Challenge
 
+# The name of the application
+Drill and practice
+
 # A brief description of the application
 - The "Drill and practice" is the second project during the course Web Software Development organized by Aalto University. 
 - The application provides a list of topics and allows creating multiple-choice questions into those topics that are then answered by self and others. 

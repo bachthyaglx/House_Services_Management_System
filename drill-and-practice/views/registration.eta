@@ -1,4 +1,4 @@
-<% layout("./layouts/layout.eta") %>
+<% /* <% layout("./layouts/layout.eta") %>
 
 <h1>Registration form</h1>
 
@@ -20,4 +20,4 @@
   <input type="submit" value="Register" />
 </form>
 
-<a href="/auth/login">Already registered? Login here.</a>
+<a href="/auth/login">Already registered? Login here.</a> */ %>

@@ -1,4 +1,4 @@
-<% layout('./layouts/layout.eta') %>
+<% /* <% layout('./layouts/layout.eta') %>
 
 <h1><%= it.specificTopic.name %></h1>
 <h3><u>Question</u>: <%= it.specificQuestion.question_text %></h3>
@@ -14,4 +14,4 @@
   </ul> 
 <% }
 %>
-
+ */ %>

@@ -1,0 +1,17 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (!it.user) { 
+    %><a class="nav-link" href="" target="_blank">Login</a><% } else 
+    { %><a class="nav-link" href="" target="_blank">Logout</a><% } 
+%>
+
+<% if (it.user) { 
+%> <label>
+      <h4><b>Add a question!</b></h4>
+      <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions">
+        <textarea name="question_text"></textarea><br/>
+        <input type="submit" value="Add"/>
+      </form>
+   </label>
+  <% };
+%> */ %>

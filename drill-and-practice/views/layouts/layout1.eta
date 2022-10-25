@@ -62,21 +62,21 @@
     }
 
     .carousel-item:nth-child(1) {
-      background-image: url('./static/p1.jpg');
+      background-image: url('https://wallpaperaccess.com/full/38191.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
     }
 
     .carousel-item:nth-child(2) {
-      background-image: url('./static/p2.jpg');
+      background-image: url('https://wallpapershome.com/images/wallpapers/road-5120x2880-5k-4k-wallpaper-8k-clouds-sunset-12465.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
     }
 
     .carousel-item:nth-child(3) {
-      background-image: url('./static/p3.jpg');
+      background-image: url('https://images.nvidia.com/geforce-com/international/images/geforce-rtx-3090-8k-hdr-gaming/watch-dogs-legion-geforce-rtx-comparison-screenshot-001-4k.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
