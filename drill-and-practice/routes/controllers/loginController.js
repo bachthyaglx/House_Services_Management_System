@@ -1,4 +1,5 @@
 import * as userService from "../../services/userService.js";
+import * as cookie from "../../middlewares/authMiddleware.js";
 import { bcrypt } from "../../deps.js";
 
 const processLogin = async ({ request, response, state, render}) => {
@@ -20,11 +21,20 @@ const processLogin = async ({ request, response, state, render}) => {
 
   if (!passwordMatches) {
     render("login.eta", error_mess);
-    return 
+    return; 
   }
 
   await state.session.set("user", user);
-  // response.redirect("/${await cookies.get('path')}");
+  
+  console.log(cookie.path);
+  
+  if(!cookie.path) {
+    response.redirect("/home");
+    return;
+  } else {
+    response.redirect(cookie.path);
+    return;
+  }
 };
 
 const showLoginForm = ({ render }) => {

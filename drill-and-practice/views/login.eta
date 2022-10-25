@@ -10,8 +10,6 @@
   Password:<br/>
   <input type="password" name="password" /><br/><br/>
   <input type="submit" value="Login" />
-</form>
-
-<% /* <a href="/auth/register">Not yet registered? Register here.</a> */ %>
+</form><br/>
 
 <a href="/auth/register">Not yet registered? Register here.</a>

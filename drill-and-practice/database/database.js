@@ -1,29 +1,21 @@
 import { Pool } from "../deps.js";
 
 const CONCURRENT_CONNECTIONS = 2;
-let connectionPool;
-if (Deno.env.get("DATABASE_URL")) {
-  connectionPool = new Pool(
-    Deno.env.get("DATABASE_URL"),
-    CONCURRENT_CONNECTIONS,
-  );
-} else {
-  connectionPool = new Pool({
-    user: "vwfmimwp",
-    password: "0kIchLEqAb7OF-9rfPF2fH-r7erjtpWJ",
-    hostname: "lucky.db.elephantsql.com",
-    database: "vwfmimwp",
-    port: 5432,
-  }, CONCURRENT_CONNECTIONS);
-}
+const connectionPool = new Pool({
+  user: "gwgvqikm",
+  password: "saOvCr5kRjjhHSTDxbjugpeO7LGdDglN",
+  hostname: "mouse.db.elephantsql.com",
+  database: "gwgvqikm",
+  port: 5432,
+}, CONCURRENT_CONNECTIONS);
 
-const executeQuery = async (query, ...args) => {
+const executeQuery = async (query, params) => {
   const response = {};
   let client;
 
   try {
     client = await connectionPool.connect();
-    const result = await client.queryObject(query, ...args);
+    const result = await client.queryObject(query, params);
     if (result.rows) {
       response.rows = result.rows;
     }

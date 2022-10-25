@@ -1,17 +1,29 @@
-<% layout("./layouts/layout.eta") %>
+<% layout("./layouts/layout1.eta") %>
 
-<% if (!it.user) { 
-    %><a class="nav-link" href="" target="_blank">Login</a><% } else 
-    { %><a class="nav-link" href="" target="_blank">Logout</a><% } 
-%>
+<div>
+  <h1>Registration form</h1>
 
-<% if (it.user) { 
-%> <label>
-      <h4><b>Add a question!</b></h4>
-      <form method="POST" action="/topics/<%= it.specificTopic.id %>/questions">
-        <textarea name="question_text"></textarea><br/>
-        <input type="submit" value="Add"/>
-      </form>
-   </label>
-  <% };
-%> */ %>
+  <% if (it.regErrors) { %>
+  <ul>
+    <% Object.keys(it.regErrors).forEach((attribute) => { %>
+    <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
+    <li style="color: red"><%= err %></li>
+    <% }); %>
+    <% }); %>
+  </ul>
+  <% } %>
+
+  <form method="POST" action="/application">
+    Type of apartment<br />
+    <select type="text" name="type_apartment">
+      <option value="2h-shared">2h-shared apartment</option>
+      <option value="3h-shared">3h-shared apartment</option>
+      <option value="1h-single">1h-single apartment</option>
+      <option value="2h-family">2h-family apartment</option>
+    </select><br />
+    Date need apartment<br />
+    <input type="date" name="date_rent" /><br />
+    <input type="submit" value="Register" />
+  </form><br />
+
+</div>

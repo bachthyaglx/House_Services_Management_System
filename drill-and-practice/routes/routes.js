@@ -16,16 +16,22 @@ import * as questionAnswerAPI from "./apis/questionAnswerAPI.js";
 const router = new Router();
 
 // Handle mainpage
-router.get("/", mainController.showMain);
-router.get("/apartments", apartmentsController.showApartments);
-// router.get("/application", applicationController.showApplication);
+router.get("/home", mainController.showMain);
 
+// Handle apartments
+router.get("/apartments", apartmentsController.showApartments);
+
+// Handle register
 router.get("/auth/register", registerController.showRegistrationForm);
 router.post("/auth/register", registerController.registerUser);
 
 // Handle login form
 router.get("/auth/login", loginController.showLoginForm);
 router.post("/auth/login", loginController.processLogin);
+
+// Handle application
+router.get("/application", applicationController.showApplication);
+router.post("/application", applicationController.submitApplication);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

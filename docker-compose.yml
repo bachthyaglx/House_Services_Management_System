@@ -16,14 +16,14 @@ services:
       - project.env
 
   database:
-    container_name: database-p2-a8f6f73b-318f-400f-94e2-2c913505c827
+    container_name: database-server
     image: postgres:14.1
     restart: "no"
     env_file:
         - project.env
 
   flyway:
-    image: flyway/flyway:8.4.0-alpine
+    image: flyway/flyway:9.5.1-alpine
     depends_on:
       - database
     volumes:

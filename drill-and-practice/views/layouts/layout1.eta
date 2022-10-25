@@ -20,12 +20,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
     <div class="container-fluid" style="font-weight: bold; font-size: x-large; background: black; position: fixed; top: 0; right: 0;">
       <!-- Navbar brand -->
-      <a class="navbar-brand nav-link" target="_blank" href="">
-        <strong>Source</strong>
+      <a class="navbar-brand nav-link" target="_blank">
+        <strong><% if (it.user) { %><h3>Hello <b style="color: blue"><i><%= it.user.email %></i></b></h3><% } %></strong>
       </a>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item active">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" aria-current="page" href="/apartments">Apartments</a>
@@ -163,27 +163,6 @@
 </header>
 
 <body>
-  <% /* <% if (it.user) { %>
-  <nav class="container">
-    <div class="nav-brand">
-      <h3>Wellcome <b style="color: blue"><i><%= it.user.email %></i></b></h3>
-    </div>
-    <div class="collapsible">
-      <input id="collapsible1" type="checkbox" name="collapsible1">
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-      </label>
-      <div class="collapsible-body">
-        <ul class="inline">
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/quiz">Quiz</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <% } %> */ %>
-  </br>
   <div class="container">
     <%~ it.body %>
   </div>
