@@ -5,6 +5,7 @@ import * as registerController from "./controllers/registerController.js";
 import * as loginController from "./controllers/loginController.js";
 import * as logoutController from "./controllers/logoutController.js";
 import * as applicationController from "./controllers/applicationController.js";
+import * as terminationController from "./controllers/terminationController.js";
 
 // import * as topicsController from "./controllers/topicsController.js";
 // import * as questionsController from "./controllers/questionsController.js";
@@ -35,6 +36,12 @@ router.get("/auth/logout", logoutController.processLogout);
 // Handle application
 router.get("/application", applicationController.showApplicationForm);
 router.post("/application", applicationController.submitApplication);
+router.post("/application-update", applicationController.updateApplication);
+
+// Handle termination
+router.get("/termination", terminationController.showTerminationForm);
+router.post("/termination-application", terminationController.deleteApplication);
+router.post("/termination-rent", terminationController.deleteRents);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

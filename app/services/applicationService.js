@@ -1,21 +1,5 @@
 import { executeQuery } from "../database/database.js";
 
-// const listAvailableAnswers = async (questionID) => {
-//     const res = await executeQuery(`SELECT * FROM question_answer_options WHERE question_id=$1;`,questionID);
-
-//     return res.rows;
-// };
-
-// const addAnswer = async (questionID, answer, is_correct) => {
-//     await executeQuery(`INSERT INTO question_answer_options (question_id, option_text, is_correct) VALUES ($1, $2, $3);`, questionID, answer, is_correct);
-// };
-
-// const deleteAnswer = async (answerID) => {
-//     await executeQuery(`DELETE FROM question_answer_options WHERE id=$1`, answerID);
-// };
-
-// export { listAvailableAnswers, addAnswer, deleteAnswer };
-
 const getApartmentID = async (apartmentType) => {
   const result = await executeQuery(
     `SELECT * FROM apartments WHERE type=$type`,
@@ -51,4 +35,43 @@ const userApplication = async (userID) => {
   return result.rows;
 };
 
-export { getApartmentID, submitApplication, userApplication };
+const updateApplication = async (apartmentID, dateRent, userID) => {
+  await executeQuery(
+    `UPDATE application SET apartment_id=$apartment_id, date_rent=$date_rent WHERE user_id=$user_id`,
+    {
+      apartment_id: apartmentID,
+      date_rent: dateRent,
+      user_id: userID,
+    },
+  );
+};
+
+const apartmentName = async (userID) => {
+  const result = await executeQuery(
+    `SELECT * FROM application WHERE user_id=$user_id`,
+    {
+      user_id: userID,
+    },
+  );
+
+  if (!result.rows[0] || result.rows[0].length == 0) {
+    return;
+  } else {
+    const getIDapartment = result.rows[0].apartment_id;
+    const name_apartment = await executeQuery(
+      `SELECT * FROM apartments WHERE id=$id`,
+      {
+        id: getIDapartment,
+      },
+    );
+    return name_apartment.rows;
+  }
+};
+
+export {
+  apartmentName,
+  getApartmentID,
+  submitApplication,
+  updateApplication,
+  userApplication,
+};

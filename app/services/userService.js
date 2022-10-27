@@ -29,4 +29,12 @@ const findUserByEmail = async (email) => {
   return result.rows;
 };
 
-export { addUser, findUserByEmail };
+const showUserProfile = async (userID) => {
+  const result = await executeQuery(
+    `SELECT * FROM users WHERE id=$id;`,
+    { id: userID },
+  );
+  return result.rows;
+};
+
+export { addUser, findUserByEmail, showUserProfile };
