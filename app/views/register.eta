@@ -1,0 +1,36 @@
+<% layout('./layouts/layout1.eta') %>
+
+<div>
+  <h1>Registration form</h1>
+
+  <% if (it.regErrors) { %>
+  <ul>
+    <% Object.keys(it.regErrors).forEach((attribute) => { %>
+    <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
+    <li style="color: red"><%= err %></li>
+    <% }); %>
+    <% }); %>
+  </ul>
+  <% } %>
+
+  <form method="POST" action="/auth/register">
+    First name<br />
+    <input type="text" name="firstname" /><br />
+    Last name<br />
+    <input type="text" name="lastname" /><br />
+    Birthdate<br />
+    <input type="date" name="birthdate" /><br />
+    Gender<br />
+    <select type="text" name="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br />
+    Email<br />
+    <input type="email" name="email" /><br />
+    Password<br />
+    <input type="password" name="password" /><br /><br />
+    <input type="submit" value="Register" />
+  </form><br />
+
+  <a href="/login">Already registered? Login here.</a>
+</div>

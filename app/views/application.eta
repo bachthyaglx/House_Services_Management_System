@@ -1,0 +1,34 @@
+<% layout('./layouts/layout1.eta') %>
+
+
+<% if (it.check_application && it.check_application.length > 0) { %> <div>You did submit application. We are processing your application</div> <% } else { 
+
+%>
+<div>
+  <h1>Registration form</h1>
+
+  <% if (it.regErrors) { %>
+  <ul>
+    <% Object.keys(it.regErrors).forEach((attribute) => { %>
+    <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
+    <li style="color: red"><%= err %></li>
+    <% }); %>
+    <% }); %>
+  </ul>
+  <% } %>
+
+  <form method="POST" action="/application">
+    Type of apartment<br />
+    <select type="text" name="type_apartment">
+      <option value="2h-shared apartment">2h-shared apartment</option>
+      <option value="3h-shared apartment">3h-shared apartment</option>
+      <option value="1h-single apartment">1h-single apartment</option>
+      <option value="2h-family apartment">2h-family apartment</option>
+    </select><br />
+    Date need apartment<br />
+    <input type="date" name="date_rent" /><br />
+    <input type="submit" value="Register" />
+  </form><br />
+</div>
+<% }
+%>
