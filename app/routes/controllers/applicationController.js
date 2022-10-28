@@ -49,7 +49,7 @@ const updateApplication = async ({ request, response, user, render }) => {
   const body = request.body({ type: "form" });
   const form_value = await body.value;
 
-  const apartmentData = {
+  const apartmentData1 = {
     date_rent: form_value.get("date_rent"),
     type_apartment: form_value.get("type_apartment"),
   };
@@ -60,22 +60,22 @@ const updateApplication = async ({ request, response, user, render }) => {
   };
 
   const [passes, errors] = await validasaur.validate(
-    apartmentData,
+    apartmentData1,
     validationRules_application,
   );
 
   if (!passes) {
-    apartmentData.regErrors = errors;
+    apartmentData1.validationErrors = errors;
     render("application.eta", {
-      apartmentData,
+      error: apartmentData1.validationErrors.date_rent.required,
       check_profile: await userService.showUserProfile(user.id),
       check_application: await applicationService.userApplication(user.id),
-      apartment_application: await applicationService.apartmentName(user.id),});
+      apartment_application: await applicationService.apartmentName(user.id),
+    });
   } else {
     const apartmentID = await applicationService.getApartmentID(
       form_value.get("type_apartment"),
     );
-
     await applicationService.updateApplication(
       apartmentID[0].id,
       form_value.get("date_rent"),

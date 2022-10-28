@@ -35,12 +35,15 @@ router.get("/auth/logout", logoutController.processLogout);
 
 // Handle application
 router.get("/application", applicationController.showApplicationForm);
-router.post("/application", applicationController.submitApplication);
-router.post("/application-update", applicationController.updateApplication);
+router.post("/application/submit", applicationController.submitApplication);
+router.post("/application/update", applicationController.updateApplication);
 
 // Handle termination
 router.get("/termination", terminationController.showTerminationForm);
-router.post("/termination-application", terminationController.deleteApplication);
+router.post(
+  "/termination-application",
+  terminationController.deleteApplication,
+);
 router.post("/termination-rent", terminationController.deleteRents);
 
 // // Handle TOPICS
