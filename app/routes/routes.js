@@ -6,13 +6,12 @@ import * as loginController from "./controllers/loginController.js";
 import * as logoutController from "./controllers/logoutController.js";
 import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
+import * as admin_applicationController from "./controllers/admin_applicationController.js";
 
 // import * as topicsController from "./controllers/topicsController.js";
 // import * as questionsController from "./controllers/questionsController.js";
 // import * as answersController from "./controllers/answersController.js";
-// import * as registrationController from "./controllers/registrationController.js";
 // import * as quizController from "./controllers/quizController.js";
-
 // import * as questionAnswerAPI from "./apis/questionAnswerAPI.js";
 const router = new Router();
 
@@ -40,11 +39,11 @@ router.post("/application/update", applicationController.updateApplication);
 
 // Handle termination
 router.get("/termination", terminationController.showTerminationForm);
-router.post(
-  "/termination-application",
-  terminationController.deleteApplication,
-);
+router.post("/termination-application", terminationController.deleteApplication);
 router.post("/termination-rent", terminationController.deleteRents);
+
+// Handle APPLICATION for ADMIN
+router.get("/admin-application", admin_applicationController.showMain);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);
@@ -69,10 +68,6 @@ router.post("/termination-rent", terminationController.deleteRents);
 //   "/topics/:tId/questions/:qId/options/:oId/delete",
 //   answersController.deleteAnswer,
 // ); /* */
-
-// // Handle register form
-// router.get("/auth/register", registrationController.showRegistrationForm);
-// router.post("/auth/register", registrationController.registerUser);
 
 // // Handle quiz
 // router.get("/quiz", quizController.listTopics);
