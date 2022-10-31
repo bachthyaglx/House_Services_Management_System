@@ -12,11 +12,9 @@
 <li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
 </ul> */ %>
 
-<%= console.log(it.length) %>
-
 <div>
   <p>You are ADMIN</p>
-  <table style="border: 1px solid black;">
+  <table>
     <thead>
       <tr>
         <th style="border: 1px solid black; text-align: center;">First name</th>
@@ -31,26 +29,31 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.length){ for(var i = 0; i< it.length; i++) {%>
+      <% if(it.table1.length){ for(var i = 0; i< it.table1.length; i++) {%>
       <tr>
         <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].firstname%></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname%></td>
-        <td style="border: 1px solid black;"><%= it[i].gender%></td>
-        <td style="border: 1px solid black;"><%= it[i].email%></td>
-        <td style="border: 1px solid black;"><%= it[i].type%></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price%></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].date_request.toLocaleDateString('en-GB')%></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].date_rent.toLocaleDateString('en-GB')%></td>
-        <td style="border: 1px solid black;"> 
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].firstname%></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname%></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender%></td>
+        <td style="border: 1px solid black;"><%= it.table1[i].email%></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].type%></td>
+        <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].price%></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_request.toLocaleDateString('en-GB')%></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB')%></td>
+        <td style="text-align: right;">
+          <select name="address" id="address">
+            <% if(it.table1.length){ for (var j = 0; j < it.table2[i].length; j++) { %>
+              <option value="<%= it.table2[i][j].address %>"><%= it.table2[i][j].address %> <%= it.table2[i][j].zipcode %> <%= it.table2[i][j].city %></option>
+              <% } } else { %>
+              <tr>
+                <td>No data ever existed.</td>
+              </tr>
+              <% } %>
+          </select>
+        </td>
+        <td style="padding-left: 10px;"><form method="POST" action="/admin-application"><input type="submit" value="Reserve"></form></td>
       </tr>
-      <% } } else{ %>
+      <% } } else { %>
       <tr>
         <td>No data ever existed.</td>
       </tr>

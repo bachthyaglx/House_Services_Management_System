@@ -43,7 +43,8 @@ router.post("/termination-application", terminationController.deleteApplication)
 router.post("/termination-rent", terminationController.deleteRents);
 
 // Handle APPLICATION for ADMIN
-router.get("/admin-application", admin_applicationController.showMain);
+router.get("/admin-application", admin_applicationController.showApplicationList);
+router.post("/admin-application", admin_applicationController.reserveRoom);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);
