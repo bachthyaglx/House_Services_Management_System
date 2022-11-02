@@ -42,6 +42,7 @@
         <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB')%></td>
         <td style="text-align: right;">
           <select name="address" id="address">
+           userID, roomID, dateStart, duedateDeposit
             <% if(it.table1.length){ for (var j = 0; j < it.table2[i].length; j++) { %>
               <option value="<%= it.table2[i][j].address %>"><%= it.table2[i][j].address %> <%= it.table2[i][j].zipcode %> <%= it.table2[i][j].city %></option>
               <% } } else { %>
@@ -51,7 +52,7 @@
               <% } %>
           </select>
         </td>
-        <td style="padding-left: 10px;"><form method="POST" action="/admin-application"><input type="submit" value="Reserve"></form></td>
+        <td style="padding-left: 10px;"><form method="POST" action="/admin-application/user/<%= it.table1[i].id %>/room/it.table2[i][j].address/options/<%= i.id %>"><input type="submit" value="Reserve"></form></td>
       </tr>
       <% } } else { %>
       <tr>
