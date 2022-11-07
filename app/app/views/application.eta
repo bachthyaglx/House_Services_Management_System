@@ -1,0 +1,56 @@
+<% layout('./layouts/layout1.eta') %>
+
+<% if (it.check_application && it.check_application.length>0) { %>
+<h3>You did submit application, but you can update it within 2 days since your application was sent.</h3>
+<div>
+  <form method="POST" action="/application/update">
+    First name </br>
+    <input type="text" name="firstname" disabled="disabled" value="<%= it.check_profile[0].firstname %>" /></br></br>
+    Last name </br>
+    <input type="text" name="lastname" disabled="disabled" value="<%= it.check_profile[0].lastname %>" /></br></br>
+    Birthdate </br>
+    <input name="birthdate" disabled="disabled" value="<%= it.check_profile[0].birthdate.toLocaleDateString('en-GB') %>" /></br></br>
+    Gender </br>
+    <input type="text" name="gender" disabled="disabled" value="<%= it.check_profile[0].gender %>" /></br></br>
+    Email </br>
+    <input type="email" name="email" disabled="disabled" value="<%= it.check_profile[0].email %>" /></br></br></br>
+    Type of apartment <input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /> - Choose another apartment
+    <select type="text" name="type_apartment">
+      <option value="2h-shared apartment">2h-shared apartment</option>
+      <option value="3h-shared apartment">3h-shared apartment</option>
+      <option value="1h-single apartment">1h-single apartment</option>
+      <option value="2h-family apartment">2h-family apartment</option>
+    </select></br></br>
+    Date need apartment <input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"> - Choose another date
+    <input type="date" name="date_rent" /></br></br>
+    <p><input type="submit" value="Update" /> <% if (it.error) { %>
+    <p style="color: red"><%= it.error %></p><% } %> </p>
+  </form>
+</div>
+<% } else { %>
+<div>
+  <h1>Application Form</h1>
+  <% if (it.regErrors) { %>
+  <ul>
+    <% Object.keys(it.regErrors).forEach((attribute) => { %>
+    <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
+    <li style="color: red"><%= err %></li>
+    <% }); %>
+    <% }); %>
+  </ul>
+  <% } %>
+  <form method="POST" action="/application/submit">
+    Type of apartment<br />
+    <select type="text" name="type_apartment">
+      <option value="2h-shared apartment">2h-shared apartment</option>
+      <option value="3h-shared apartment">3h-shared apartment</option>
+      <option value="1h-single apartment">1h-single apartment</option>
+      <option value="2h-family apartment">2h-family apartment</option>
+    </select><br />
+    Date need apartment<br />
+    <input type="date" name="date_rent" /><br /><br />
+    <input type="submit" value="Register" />
+  </form><br />
+</div>
+<%}
+%>

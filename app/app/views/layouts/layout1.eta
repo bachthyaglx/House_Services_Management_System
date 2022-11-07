@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+  <title>Application</title>
+</head>
+
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
+    <div class="container-fluid" style="font-weight: bold; font-size: x-large; background: black; position: fixed; top: 0; right: 0;">
+      <!-- Navbar brand -->
+      <a class="navbar-brand nav-link" target="_blank">
+        <strong><% if (it.user) { %><h3>Hello <b style="color: blue"><i><%= it.user.email %></i></b></h3><% } %></strong>
+      </a>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (it.user && it.user.email!="admin@admin.com") { %>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/apartments">Apartments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/application">Application</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/termination">Termination</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/service">Service</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/auth/logout">Logout</a>
+        </li>
+        <% } else if (it.user && it.user.email=="admin@admin.com") { %>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/admin-application">Application Checks</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/admin-deposit">Deposit Checks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/admin-monthly">Monthly Paid Checks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/admin-termination">Termination</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/admin-service">Service Checks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/auth/logout">Logout</a>
+        </li>
+        <% } else { %>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/apartments">Apartments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/application">Application</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/termination">Termination</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/service">Service</a>
+        </li>
+        <li class="nav-item">
+          <% if (!it.user) {%><a class="nav-link" aria-current="page" href="/auth/register">Register</a><%} %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/auth/login">Login</a>
+        </li>
+        <% }
+        %>
+      </ul>
+    </div>
+  </nav>
+
+  <style>
+    /* Carousel styling */
+    #introCarousel,
+    .carousel-inner,
+    .carousel-item,
+    .carousel-item.active {
+      height: 100vh;
+    }
+
+    .carousel-item:nth-child(1) {
+      background-image: url('https://wallpaperaccess.com/full/38191.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .carousel-item:nth-child(2) {
+      background-image: url('https://wallpapershome.com/images/wallpapers/road-5120x2880-5k-4k-wallpaper-8k-clouds-sunset-12465.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .carousel-item:nth-child(3) {
+      background-image: url('https://images.nvidia.com/geforce-com/international/images/geforce-rtx-3090-8k-hdr-gaming/watch-dogs-legion-geforce-rtx-comparison-screenshot-001-4k.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    /* Height for devices larger than 576px */
+    @media (min-width: 992px) {
+      #introCarousel {
+        margin-top: -58.59px;
+      }
+
+      #introCarousel,
+      .carousel-inner,
+      .carousel-item,
+      .carousel-item.active {
+        height: 50vh;
+      }
+    }
+
+    .navbar .nav-link {
+      color: #fff !important;
+    }
+  </style>
+
+  <!-- Carousel wrapper -->
+  <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-mdb-target="#introCarousel" data-mdb-slide-to="0" class="active"></li>
+      <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
+      <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
+    </ol>
+
+    <!-- Inner -->
+    <div class="carousel-inner">
+      <!-- Single item -->
+      <div class="carousel-item active">
+        <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+              <p>
+                Cheap
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single item -->
+      <div class="carousel-item">
+        <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single item -->
+      <div class="carousel-item">
+        <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Inner -->
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#introCarousel" role="button" data-mdb-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#introCarousel" role="button" data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidde n="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <!-- Carousel wrapper -->
+</header>
+
+<body>
+  <div class="container">
+    <%~ it.body %>
+  </div>
+</body>
+
+<% /* <footer class="bg-black text-center text-white d-none d-lg-block">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Form -->
+    <section class="">
+      <form action="">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-auto">
+            <p class="pt-2">
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-5 col-12">
+            <!-- Email input -->
+            <div class="form-outline form-white mb-4">
+              <input type="email" id="form5Example29" class="form-control" style="border: 2px solid #FFFFFF;" placeholder="Email" />
+              <label class="form-label" for="form5Example29"></label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-auto">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-light mb-4">
+              Subscribe
+            </button>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </form>
+    </section>
+    <!-- Section: Form -->
+  </div>
+  <!-- Grid container -->
+</footer> */ %>
+
+</html>
