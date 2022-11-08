@@ -24,14 +24,43 @@ const displayListRoom = async (firstname, sex) => {
   return table2.rows;
 };
 
-const reserveRoom = async (userID, roomID, dateStart, duedateDeposit) => {
-  await executeQuery(`INSERT INTO rents (user_id, room_id, datestart, duedate_deposit) VALUES ($userID, $roomID, $dateStart, $duedateDeposit)`, {
-    userID: userID,
-    roomID: roomID,
-    dateStart: dateStart,
-    duedateDeposit: duedateDeposit,
-  }
+const displayUserInfo = async (userid) => {
+  const table1 = await executeQuery(
+    `SELECT tr1.id, tr1.firstname, tr1.lastname, tr1.gender, tr1.email, t.date_request, t.date_rent
+        FROM application AS t 
+        INNER JOIN users AS tr1 ON t.user_id = tr1.id
+        WHERE t.user_id=$user_id;`,
+    {
+      user_id: userid,
+    },
   );
+
+  return table1.rows;
 };
 
-export { displayListRoom, displayListUserInfo, reserveRoom };
+const processAproval = async (userID, roomID, dateStart, duedateDeposit, sex) => {
+  await executeQuery(
+    `INSERT INTO rents (user_id, room_id, datestart, duedate_deposit) VALUES ($userID, $roomID, $dateStart, $duedateDeposit)`,
+    {
+      userID: userID,
+      roomID: roomID,
+      dateStart: dateStart,
+      duedateDeposit: duedateDeposit,
+    },
+  );
+
+  await executeQuery(
+    `UPDATE rooms SET sex=$sex WHERE id=$id`,
+    {
+      sex: sex,
+      id: roomID,
+    },
+  );
+
+  await executeQuery(`DELETE FROM application WHERE user_id=$user_id;`, 
+  {
+    user_id: userID,
+  });
+};
+
+export { processAproval, displayListRoom, displayListUserInfo, displayUserInfo };

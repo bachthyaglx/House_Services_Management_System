@@ -7,6 +7,7 @@ import * as logoutController from "./controllers/logoutController.js";
 import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
 import * as admin_applicationController from "./controllers/admin_applicationController.js";
+import * as admin_depositController from "./controllers/admin_depositController.js";
 
 // import * as topicsController from "./controllers/topicsController.js";
 // import * as questionsController from "./controllers/questionsController.js";
@@ -44,7 +45,13 @@ router.post("/termination-rent", terminationController.deleteRents);
 
 // Handle APPLICATION for ADMIN
 router.get("/admin-application", admin_applicationController.showApplicationList);
-router.post("/admin-application", admin_applicationController.reserveRoom);
+router.get("/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
+router.post("/admin-application/user/:uID", admin_applicationController.approveRoom);
+
+// Handle DEPOSIT CHECKS for ADMIN
+router.get("/admin-deposit", admin_depositController.showDepositList);
+// router.get("/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
+// router.post("/admin-application/user/:uID", admin_applicationController.approveRoom);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);
