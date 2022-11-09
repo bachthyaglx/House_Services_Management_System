@@ -2,13 +2,14 @@
 
 <div>
   <p>You are ADMIN</p>
-  <form>
+  <form method="POST" action="/admin-deposit">
     <p>Check paid deposit
       <select name="statusDeposit">
         <option value="All">All</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
+      <input type="submit" value="Check" />
     </p>
   </form>
   <table>

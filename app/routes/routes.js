@@ -8,6 +8,8 @@ import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
 import * as admin_applicationController from "./controllers/admin_applicationController.js";
 import * as admin_depositController from "./controllers/admin_depositController.js";
+import * as admin_monthlyPaidController from "./controllers/admin_monthlyPaidController.js";
+import * as admin_terminationController from "./controllers/admin_terminationController.js";
 
 // import * as topicsController from "./controllers/topicsController.js";
 // import * as questionsController from "./controllers/questionsController.js";
@@ -50,9 +52,16 @@ router.post("/admin-application/user/:uID", admin_applicationController.approveR
 
 // Handle DEPOSIT CHECKS for ADMIN
 router.get("/admin-deposit", admin_depositController.showDepositList);
-router.post("/admin-deposit", admin_depositController.showDepositList);
-// router.post("/admin-deposit", admin_depositController.showDepositList);
-// router.post("/admin-application/user/:uID", admin_applicationController.approveRoom);
+router.post("/admin-deposit", admin_depositController.showDepositStatus);
+
+// Handle MONTHLY PAID CHECKS for ADMIN
+router.get("/admin-monthly-paid", admin_monthlyPaidController.showMonthlyPaidList);
+router.post("/admin-monthly-paid", admin_monthlyPaidController.checkMonthlyPaidStatus);
+
+// Handle MONTHLY PAID CHECKS for ADMIN
+router.get("/admin-termination/application", admin_terminationController.showMonthlyPaidList);
+router.get("/admin-termination/deposit", admin_terminationController.checkMonthlyPaidStatus);
+router.get("/admin-termination/monthly-paid", admin_terminationController.checkMonthlyPaidStatus);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

@@ -1,0 +1,48 @@
+<% layout('./layouts/layout1.eta') %>
+
+<div>
+  <p>You are ADMIN</p>
+  <form method="POST" action="/admin-monthly-paid">
+    <p>Check paid deposit
+      <select name="monthlyPaidStatus">
+        <option value="All">All</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <input type="submit" value="Check" />
+    </p>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; text-align: center;">First name</th>
+        <th style="border: 1px solid black; text-align: center;">Last name</th>
+        <th style="border: 1px solid black; text-align: center;">Gender</th>
+        <th style="border: 1px solid black; text-align: center;">Apartment Type</th>
+        <th style="border: 1px solid black; text-align: center;">Room Address</th>
+        <th style="border: 1px solid black; text-align: center;">Price/month/person</th>
+        <th style="border: 1px solid black; text-align: center;">Duedate paid monthly</th>
+        <th style="border: 1px solid black; text-align: center;">Paid Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(it.length) { for(var i = 0; i< it.length; i++) {%>
+      <tr>
+        <% /* <th scope="row"><%= (i+1) %></th> */ %>
+        <td style="border: 1px solid black; text-align: center;"><a href="/admin-monthly-paid/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
+        <td style="border: 1px solid black;"><%= it[i].gender %></td>
+        <td style="border: 1px solid black;"><%= it[i].type %></td>
+        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
+        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].monthly_paid %></td>
+      </tr>
+      <% } } else { %>
+      <tr>
+        <td>No data ever existed.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

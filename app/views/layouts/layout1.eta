@@ -51,10 +51,15 @@
           <a class="nav-link" aria-current="page" href="/admin-deposit">Deposit Checks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin-monthly">Monthly Paid Checks</a>
+          <a class="nav-link" aria-current="page" href="/admin-monthly-paid">Monthly Paid Checks</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin-termination">Termination</a>
+        <li class="nav-item nav-link dropdown">
+          <button class="dropbtn">Termination</button>
+          <div class="dropdown-content">
+            <a aria-current="page" href="/admin-termination/application">Application</a>
+            <a aria-current="page" href="/admin-termination/deposit">Deposit Paid</a>
+            <a aria-current="page" href="/admin-termination/monthly-paid">Monthly Paid</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/admin-service">Service Checks</a>
@@ -136,6 +141,47 @@
 
     .navbar .nav-link {
       color: #fff !important;
+    }
+
+    .dropbtn {
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      font-size: x-large;
+      position: relative;
+      top: -1.55px;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: black;
+      min-width: 180px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #888888;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
     }
   </style>
 
