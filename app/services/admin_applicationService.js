@@ -44,8 +44,8 @@ const processAproval = async (userID, roomID, dateStart, duedateDeposit, sex) =>
     {
       userID: userID,
       roomID: roomID,
-      dateStart: dateStart,
-      duedateDeposit: duedateDeposit,
+      dateStart: to_date(dateStart,'YYYY-MM-DD'),
+      duedateDeposit: to_date(duedateDeposit,'YYYY-MM-DD'),
     },
   );
 

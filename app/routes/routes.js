@@ -50,7 +50,8 @@ router.post("/admin-application/user/:uID", admin_applicationController.approveR
 
 // Handle DEPOSIT CHECKS for ADMIN
 router.get("/admin-deposit", admin_depositController.showDepositList);
-// router.get("/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
+router.post("/admin-deposit", admin_depositController.showDepositList);
+// router.post("/admin-deposit", admin_depositController.showDepositList);
 // router.post("/admin-application/user/:uID", admin_applicationController.approveRoom);
 
 // // Handle TOPICS

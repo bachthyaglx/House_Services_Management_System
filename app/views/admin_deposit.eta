@@ -2,6 +2,15 @@
 
 <div>
   <p>You are ADMIN</p>
+  <form>
+    <p>Check paid deposit
+      <select name="statusDeposit">
+        <option value="All">All</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </p>
+  </form>
   <table>
     <thead>
       <tr>
@@ -13,20 +22,22 @@
         <th style="border: 1px solid black; text-align: center;">Price/month/person</th>
         <th style="border: 1px solid black; text-align: center;">Date Need Apartment</th>
         <th style="border: 1px solid black; text-align: center;">Duedate Deposit</th>
+        <th style="border: 1px solid black; text-align: center;">Paid Deposit</th>
       </tr>
     </thead>
     <tbody>
-      <% if(it.table1.length) { for(var i = 0; i< it.table1.length; i++) {%>
+      <% if(it.length) { for(var i = 0; i< it.length; i++) {%>
       <tr>
         <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center; "><a href="/admin-application/user/<%= it.table1[i].id %>"><%= it.table1[i].firstname %></a></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it.table1[i].email %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].type %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_request.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><a href="/admin-application/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
+        <td style="border: 1px solid black;"><%= it[i].gender %></td>
+        <td style="border: 1px solid black;"><%= it[i].type %></td>
+        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
+        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].datestart.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].duedate_deposit.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].deposit_paid %></td>
       </tr>
       <% } } else { %>
       <tr>
