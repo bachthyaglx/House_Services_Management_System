@@ -1,0 +1,43 @@
+<% layout('./layouts/layout1.eta') %>
+
+<div>
+  <p>You are ADMIN</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; text-align: center;">First name</th>
+        <th style="border: 1px solid black; text-align: center;">Last name</th>
+        <th style="border: 1px solid black; text-align: center;">Gender</th>
+        <th style="border: 1px solid black; text-align: center;">Email</th>
+        <th style="border: 1px solid black; text-align: center;">Apartment Type</th>
+        <th style="border: 1px solid black; text-align: center;">Price/month/person</th>
+        <th style="border: 1px solid black; text-align: center;">Date Request</th>
+        <th style="border: 1px solid black; text-align: center;">Date Need Apartment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(it.table1.length) { for(var i = 0; i< it.table1.length; i++) {%>
+      <tr>
+        <% /* <th scope="row"><%= (i+1) %></th> */ %>
+        <td style="border: 1px solid black; text-align: center; "><%= it.table1[i].firstname %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender %></td>
+        <td style="border: 1px solid black;"><%= it.table1[i].email %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].type %></td>
+        <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].price %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_request.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB') %></td>
+        <td style="text-align: right;">
+          <form method="POST" action="/admin-termination/application/user/<%= it.table1[i].id %>">>
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+      <% } } else { %>
+      <tr>
+        <td>No data ever existed.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
