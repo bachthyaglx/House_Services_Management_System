@@ -58,7 +58,7 @@ router.post("/admin-deposit", admin_depositController.showDepositStatus);
 router.get("/admin-monthly-paid", admin_monthlyPaidController.showMonthlyPaidList);
 router.post("/admin-monthly-paid", admin_monthlyPaidController.checkMonthlyPaidStatus);
 
-// Handle MONTHLY PAID CHECKS for ADMIN
+// Handle TERMINATION for ADMIN
 router.get("/admin-termination/application", admin_terminationController.showMonthlyPaidList);
 router.get("/admin-termination/deposit", admin_terminationController.checkMonthlyPaidStatus);
 router.get("/admin-termination/monthly-paid", admin_terminationController.checkMonthlyPaidStatus);
