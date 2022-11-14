@@ -1,7 +1,8 @@
 <% layout('./layouts/layout1.eta') %>
 
-<% if (it.check_application && it.check_application.length>0) { %>
-<h3>You did submit application, but you can update it within 2 days since your application was sent.</h3>
+<% if (it.check_application && it.check_application.length>0 && (it.currentDate-it.dateSubmitApplication)<=2) { %>
+<h3>- You did submit application.</h3>
+<h3>- You can update your application within 2 days since it was sent.</h3>
 <div>
   <form method="POST" action="/application/update">
     First name </br>
@@ -14,20 +15,31 @@
     <input type="text" name="gender" disabled="disabled" value="<%= it.check_profile[0].gender %>" /></br></br>
     Email </br>
     <input type="email" name="email" disabled="disabled" value="<%= it.check_profile[0].email %>" /></br></br></br>
-    Type of apartment <input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /> - Choose another apartment
+    Type of apartment <input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /> - Change another apartment
     <select type="text" name="type_apartment">
       <option value="2h-shared apartment">2h-shared apartment</option>
       <option value="3h-shared apartment">3h-shared apartment</option>
       <option value="1h-single apartment">1h-single apartment</option>
       <option value="2h-family apartment">2h-family apartment</option>
     </select></br></br>
-    Date need apartment <input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"> - Choose another date
-    <input type="date" name="date_rent" /></br></br>
+    Date need apartment <input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"> - Change another date
+    <input type="date" data-date-format="YYYY MMMM DD" name="date_rent" /></br></br>
     <p><input type="submit" value="Update" /> <% if (it.error) { %>
     <p style="color: red"><%= it.error %></p><% } %> </p>
   </form>
 </div>
-<% } else { %>
+<% } else if (it.check_application && it.check_application.length>0 && (it.currentDate-it.dateSubmitApplication)>2) { %>
+<h3>- You did submit application.</h3>
+<h3>- We are processing your application..</h3>
+<% } else if (it.check_rent && it.check_rent.length>0 && it.check_rent[0].deposit_paid=='No') { %>
+<h3>- You did submit application.</h3>
+<h3>- Your application has been processed.</h3>
+<h3>- We approved your application.</h3>
+<h3>- Please <a href="">pay deposit</a> then...</h3>
+<% } else if (it.check_monthlyPaid && it.check_monthlyPaid.length>0) { 
+  if (it.check_monthlyPaid[0].monthly_paid=='No') { %><h3>- Please <a href="">pay monthly rent for this month</h3> then...</h3><% 
+  } else { %><h3>- Lets fun and enjoy our service!</h3> <% }
+} else { %>
 <div>
   <h1>Application Form</h1>
   <% if (it.regErrors) { %>
@@ -48,7 +60,7 @@
       <option value="2h-family apartment">2h-family apartment</option>
     </select><br />
     Date need apartment<br />
-    <input type="date" name="date_rent" /><br /><br />
+    <input type="date" data-date-format="YYYY MMMM DD" name="date_rent" /><br /><br />
     <input type="submit" value="Register" />
   </form><br />
 </div>

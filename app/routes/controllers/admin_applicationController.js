@@ -22,7 +22,6 @@ const showPossibleRoom = async ({ render, params }) => {
   const table1 = await admin_applicationService.displayUserInfo(params.uID);
   const table2 = await admin_applicationService.displayListRoom(
     table1[0].firstname,
-    table1[0].gender,
   );
 
   render("admin_approveRoom.eta", {
@@ -47,18 +46,26 @@ const approveRoom = async ({ request, response, render, params }) => {
     userData,
     validationRule_duedateDeposit,
   );
-  
+
   const table1 = await admin_applicationService.displayUserInfo(params.uID);
-  
+
   if (!passes) {
     userData.regErrors = errors;
     render("admin_approveRoom.eta", {
       userData: userData.regErrors,
       table1: table1,
-      table2: await admin_applicationService.displayListRoom(table1[0].firstname, table1[0].gender),
+      table2: await admin_applicationService.displayListRoom(
+        table1[0].firstname,
+      ),
     });
   } else {
-    await admin_applicationService.processAproval(text_form.get("userID"), text_form.get("roomID"), text_form.get("dateRent"), text_form.get("duedateDeposit"), text_form.get("gender"));
+    await admin_applicationService.processAproval(
+      text_form.get("userID"),
+      text_form.get("roomID"),
+      table1[0].date_rent,
+      text_form.get("duedateDeposit"),
+      text_form.get("gender"),
+    );
     response.redirect(`/admin-application`);
   }
 };

@@ -68,10 +68,32 @@ const apartmentName = async (userID) => {
   }
 };
 
+const userRent = async (userID) => {
+  const result = await executeQuery(
+    `SELECT * FROM rents WHERE user_id=$user_id;`,
+    {
+      user_id: userID,
+    },
+  );
+  return result.rows;
+};
+
+const userMonthlyPaid = async (userID) => {
+  const result = await executeQuery(
+    `SELECT * FROM monthlypaid WHERE rent_id IN (SELECT id from rents WHERE user_id=$user_id);`,
+    {
+      user_id: userID,
+    },
+  );
+  return result.rows;
+};
+
 export {
   apartmentName,
   getApartmentID,
   submitApplication,
   updateApplication,
   userApplication,
+  userRent,
+  userMonthlyPaid,
 };

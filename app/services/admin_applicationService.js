@@ -14,10 +14,9 @@ const displayListUserInfo = async () => {
 
 const displayListRoom = async (firstname, sex) => {
   const table2 = await executeQuery(
-    `SELECT id, city, zipcode, address FROM rooms AS t WHERE apartment_id IN (SELECT apartment_id FROM application WHERE user_id IN (SELECT id FROM users AS c WHERE firstname=$firstname)) AND (t.sex='' OR t.sex=$sex)`,
+    `SELECT id, city, zipcode, address FROM rooms AS t WHERE apartment_id IN (SELECT apartment_id FROM application WHERE user_id IN (SELECT id FROM users AS c WHERE firstname=$firstname)) AND t.sex='';`,
     {
       firstname: firstname,
-      sex: sex,
     },
   );
 
@@ -44,8 +43,8 @@ const processAproval = async (userID, roomID, dateStart, duedateDeposit, sex) =>
     {
       userID: userID,
       roomID: roomID,
-      dateStart: to_date(dateStart,'YYYY-MM-DD'),
-      duedateDeposit: to_date(duedateDeposit,'YYYY-MM-DD'),
+      dateStart: dateStart,
+      duedateDeposit: duedateDeposit,
     },
   );
 

@@ -1,23 +1,33 @@
 import * as admin_terminationService from "../../services/admin_terminationService.js";
 
-const showMonthlyPaidList = async ({ render }) => {
-    const result = await admin_monthlyPaidService.showMonthlyPaidList();
-    render("admin_monthlyPaid.eta", result);
+const displayApplicationList = async ({ render }) => {
+    const result = await admin_terminationService.displayApplicationList();
+    render("admin_termination-application.eta", result);
 };
 
-const checkMonthlyPaidStatus = async ({ response, request, render }) => {
-    const body = request.body({ type: "form" });
-    const form_text = await body.value;
-  
-    if (form_text.get("monthlyPaidStatus") == "All") {
-      const result1 = await admin_monthlyPaidService.showMonthlyPaidList();
-      render("admin_monthlyPaid.eta", result1);
-    } else {
-      const result2 = await admin_monthlyPaidService.checkMonthlyPaidStatus(
-        form_text.get("monthlyPaidStatus"),
-      );
-      render("admin_monthlyPaid.eta", result2);
-    }
-  };
+const deleteApplication = async ({ response, params }) => {
+  await admin_terminationService.deleteApplication(params.uID);
+  response.redirect("/admin-termination/application");
+};
 
-export { showMonthlyPaidList, checkMonthlyPaidStatus };
+const duedateNotPaidDeposit = async ({ render }) => {
+  const result = await admin_terminationService.duedateNotPaidDeposit();
+  render("admin_termination-deposit.eta", result);
+};
+
+const terminateRent = async ({ response, params }) => {
+  await admin_terminationService.terminateRent(params.uID);
+  response.redirect("/admin-termination/deposit");
+};
+
+const duedateNotMonthlyPaid = async ({ render }) => {
+  const result = await admin_terminationService.duedateNotMonthlyPaid();
+  render("admin_termination-monthly-paid.eta", result);
+};
+
+const terminateRoom = async ({ response, params }) => {
+  await admin_terminationService.terminateRoom(params.rID);
+  response.redirect("/admin-termination/monthly-paid");
+};
+
+export { displayApplicationList, deleteApplication, duedateNotPaidDeposit, terminateRent, duedateNotMonthlyPaid, terminateRoom };

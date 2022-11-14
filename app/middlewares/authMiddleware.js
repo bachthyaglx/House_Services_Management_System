@@ -1,4 +1,4 @@
-const restrictedPaths = ["/application", "/termination", "/service"];
+const restrictedPaths = ["/application", "/termination", "/service", "/payment"];
 
 let path = "";
 
@@ -12,6 +12,7 @@ const authMiddleware = async (context, next) => {
   ) {
     const name = context.request.url.pathname;
     path = name;
+
     context.response.redirect("/auth/login");
   } else {
     await next();

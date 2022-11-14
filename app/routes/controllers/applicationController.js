@@ -42,6 +42,10 @@ const showApplicationForm = async ({ render, user }) => {
     check_profile: await userService.showUserProfile(user.id),
     check_application: await applicationService.userApplication(user.id),
     apartment_application: await applicationService.apartmentName(user.id),
+    check_rent: await applicationService.userRent(user.id),
+    check_monthlyPaid: await applicationService.userMonthlyPaid(user.id),
+    currentDate: new Date().getDate(),
+    dateSubmitApplication: new Date(`${(await applicationService.userApplication(user.id))[0].date_request}`).getDate(),
   });
 };
 

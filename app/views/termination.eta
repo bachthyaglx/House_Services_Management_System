@@ -2,17 +2,17 @@
 
 <% if (it.check_application && it.check_application.length > 0) { %>
         <div>
-            <p>Do you wanna delete your housing application?</p>
-            <form method="POST" action="/termination-application">
-                <input type="submit" value="Delete" />
+            <p>Do you wanna cancel your housing application?</p>
+            <form method="POST" action="/termination/application">
+                <input type="submit" value="Cancel" />
             </form><br />
         </div>
     <% } 
     else if (it.check_rent && it.check_rent.length > 0) { %> 
         <div>
             <p>Do you want to terminate your housing contract?</p>
-            <form method="POST" action="/termination-rent">
-                <input type="submit" value="Delete" />
+            <form method="POST" action="/termination/rent">
+                <input type="submit" value="Terminate" />
             </form><br />
         </div>    
     <% }

@@ -3,7 +3,7 @@
 <div>
   <p>You are ADMIN</p>
   <form method="POST" action="/admin-deposit">
-    <p>Check paid deposit
+    <p>Paid status
       <select name="statusDeposit">
         <option value="All">All</option>
         <option value="Yes">Yes</option>

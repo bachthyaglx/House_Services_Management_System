@@ -41,9 +41,9 @@ router.post("/application/submit", applicationController.submitApplication);
 router.post("/application/update", applicationController.updateApplication);
 
 // Handle termination
-router.get("/termination", terminationController.showTerminationForm);
-router.post("/termination-application", terminationController.deleteApplication);
-router.post("/termination-rent", terminationController.deleteRents);
+router.get("/termination/application", terminationController.showTerminationForm);
+router.post("/termination/application", terminationController.deleteApplication);
+router.post("/termination/rent", terminationController.deleteRents);
 
 // Handle APPLICATION for ADMIN
 router.get("/admin-application", admin_applicationController.showApplicationList);
@@ -59,9 +59,12 @@ router.get("/admin-monthly-paid", admin_monthlyPaidController.showMonthlyPaidLis
 router.post("/admin-monthly-paid", admin_monthlyPaidController.checkMonthlyPaidStatus);
 
 // Handle TERMINATION for ADMIN
-router.get("/admin-termination/application", admin_terminationController.showMonthlyPaidList);
-router.get("/admin-termination/deposit", admin_terminationController.checkMonthlyPaidStatus);
-router.get("/admin-termination/monthly-paid", admin_terminationController.checkMonthlyPaidStatus);
+router.get("/admin-termination/application", admin_terminationController.displayApplicationList);
+router.post("/admin-termination/application/user/:uID", admin_terminationController.deleteApplication);
+router.get("/admin-termination/deposit", admin_terminationController.duedateNotPaidDeposit);
+router.post("/admin-termination/deposit/user/:uID", admin_terminationController.terminateRent);
+router.get("/admin-termination/monthly-paid", admin_terminationController.duedateNotMonthlyPaid);
+router.post("/admin-termination/monthly-paid/room/:rID", admin_terminationController.terminateRoom);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

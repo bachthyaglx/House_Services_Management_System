@@ -34,8 +34,19 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/application">Application</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/termination">Termination</a>
+        <li class="nav-item nav-link dropdown">
+          <button class="dropbtn">Termination</button>
+          <div class="dropdown-content">
+            <a aria-current="page" href="/termination/application">Application</a>
+            <a aria-current="page" href="/termination/rent">Rent</a>
+          </div>
+        </li>
+        <li class="nav-item nav-link dropdown">
+          <button class="dropbtn">Payment</button>
+          <div class="dropdown-content">
+            <a aria-current="page" href="/payment/deposit">Deposit</a>
+            <a aria-current="page" href="/payment/monthly-paid">Monthly Rent</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/service">Service</a>
@@ -77,8 +88,19 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/application">Application</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/termination">Termination</a>
+        <li class="nav-item nav-link dropdown">
+          <button class="dropbtn">Termination</button>
+          <div class="dropdown-content">
+            <a aria-current="page" href="/termination/application">Application</a>
+            <a aria-current="page" href="/termination/rent">Rent</a>
+          </div>
+        </li>
+        <li class="nav-item nav-link dropdown">
+          <button class="dropbtn">Payment</button>
+          <div class="dropdown-content">
+            <a aria-current="page" href="/payment/deposit">Deposit</a>
+            <a aria-current="page" href="/payment/monthly-paid">Monthly Rent</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/service">Service</a>

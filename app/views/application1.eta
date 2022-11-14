@@ -21,7 +21,7 @@
       <option value="2h-family apartment">2h-family apartment</option>
     </select></br></br>
     Date need apartment <input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"> - Choose another date
-    <input type="date" name="daterent" /></br></br>
+    <input type="date" data-date-format="YYYY MMMM DD" name="daterent" /></br></br>
     <p><input type="submit" value="Update" /></p>
     <% if (it.regErrors) { %>
     <ul>
