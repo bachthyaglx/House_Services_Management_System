@@ -20,4 +20,22 @@ const paymentMonthlyPaid = async (userID) => {
   return result.rows;
 };
 
-export { paymentDeposit, paymentMonthlyPaid };
+const payDeposit = async (userID) => {
+  await executeQuery(
+    `UPDATE rents SET deposit_paid='Yes' WHERE user_id=$user_id;`,
+    {
+      user_id: userID,
+    },
+  );
+};
+
+const payMonthlyPaid = async (userID) => {
+  await executeQuery(
+    `UPDATE monthlypaid SET monthly_paid='Yes' WHERE rent_id IN (SELECT id FROM rents WHERE user_id=$user_id);`,
+    {
+      user_id: userID,
+    },
+  );
+};
+
+export { payDeposit, paymentDeposit, paymentMonthlyPaid, payMonthlyPaid };

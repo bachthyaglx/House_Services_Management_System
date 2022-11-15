@@ -49,8 +49,10 @@ router.post("/termination/application", terminationController.deleteApplication)
 router.post("/termination/rent", terminationController.deleteRents);
 
 // Handle payment
-router.get("/payment/deposit", paymentController.);
-router.get("/payment/monthly-paid", paymentController.);
+router.get("/payment/deposit", paymentController.paymentDepositAction);
+router.post("/payment/deposit", paymentController.payDeposit);
+router.get("/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
+router.post("/payment/monthly-paid", paymentController.payMonthlyPaid);
 
 //----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN

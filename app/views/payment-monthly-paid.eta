@@ -1,0 +1,17 @@
+<% layout('./layouts/layout1.eta') %>
+
+<% if (it.paymentMonthlyPaid && it.paymentMonthlyPaid.length>0) { 
+    if (it.paymentMonthlyPaid[0].monthly_paid=='No') {
+        %>
+            <div>
+                <p>Confirm payment for monthly rent?</p>
+                <form method="POST" action="/payment/monthly-paid">
+                    <input type="submit" value="Yes" />
+                </form><br />
+            </div>
+    <% }
+    else {
+        %><p>You paid monthly rent for month: <%= it.currentMonth %></p><%
+    }
+}   else { %><div>You do not have housing contract or paid deposit yet! Check your <a href="/application">housing application!</a></div> <% }
+%>

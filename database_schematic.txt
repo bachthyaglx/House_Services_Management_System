@@ -1,0 +1,115 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  firstname varchar(255),
+  lastname varchar(255),
+  birthdate date,
+  gender varchar(255),
+  email varchar(255) not null unique,
+  password CHAR(60) not null,
+  admin boolean default false
+);
+
+CREATE UNIQUE INDEX ON users((lower(email)));
+
+CREATE TABLE apartments (
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(255) UNIQUE,
+  quantity integer,
+  price float
+);
+
+CREATE TABLE rooms (
+  id SERIAL PRIMARY KEY,
+  apartment_id INTEGER REFERENCES apartments(id),
+  house INTEGER,
+  city VARCHAR(255),
+  zipcode VARCHAR(255),
+  address VARCHAR(255) unique,
+  sex VARCHAR(255) default ''
+);
+
+CREATE TABLE application (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  apartment_id INTEGER REFERENCES apartments(id),
+  date_request date default current_date,
+  date_rent date
+);
+
+CREATE TABLE rents (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) unique,
+  room_id INTEGER REFERENCES rooms(id) unique,
+  datestart DATE,
+  duedate_deposit date,
+  deposit_paid VARCHAR(255) default 'No'
+);
+
+CREATE TABLE monthlypaid (
+  id SERIAL PRIMARY KEY,
+  rent_id INTEGER REFERENCES rents(id),
+  duedate_monthly date,
+  monthly_paid VARCHAR(255) default 'No'
+);
+
+CREATE TABLE maintenance (
+  id SERIAL PRIMARY KEY,
+  room_id INTEGER REFERENCES rooms(id),
+  type VARCHAR(255) unique,
+  datereport date,
+  resolve VARCHAR(255) default 'No'
+);
+
+---DROP ALL TABLES-----
+drop table users cascade;
+drop table apartments cascade;
+drop table rooms cascade;
+drop table application cascade;
+drop table rents cascade;
+drop table monthlypaid cascade;
+drop table maintenance cascade;
+
+----INSERT APARTMENTS-------
+insert into apartments (type, quantity, price) values ('2h-shared apartment',5,280.55);
+insert into apartments (type, quantity, price) values ('3h-shared apartment',5,250.24);
+insert into apartments (type, quantity, price) values ('1h-single apartment',4,350);
+insert into apartments (type, quantity, price) values ('2h-family apartment',3,460);
+
+----INSERT ROOMS-----------
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 1, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 1/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 1, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 1/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 2, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 2/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 2, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 2/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 3, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 3/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 3, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 3/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 4, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 4/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 4, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 4/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 5, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 5/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (1, 5, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 5/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 1, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 1/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 1, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 1/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 1, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 1/3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 2, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 2/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 2, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 2/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 2, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 2/3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 3, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 3/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 3, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 3/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 3, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 3/3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 4, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 4/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 4, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 4/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 4, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 4/3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 5, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 5/1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 5, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 5/2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (2, 5, 'Long Xuyen', 62000, 'Tran Hung Dao 5 as 5/3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (3, 1, 'Long Xuyen', 62000, 'Quang Trung 2 as 1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (3, 2, 'Long Xuyen', 62000, 'Quang Trung 2 as 2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (3, 3, 'Long Xuyen', 62000, 'Quang Trung 2 as 3');
+insert into rooms (apartment_id, house, city, zipcode, address) values (3, 4, 'Long Xuyen', 62000, 'Quang Trung 2 as 4');
+insert into rooms (apartment_id, house, city, zipcode, address) values (4, 1, 'Long Xuyen', 62000, 'Yet Kieu 10 as 1');
+insert into rooms (apartment_id, house, city, zipcode, address) values (4, 2, 'Long Xuyen', 62000, 'Yet Kieu 10 as 2');
+insert into rooms (apartment_id, house, city, zipcode, address) values (4, 3, 'Long Xuyen', 62000, 'Yet Kieu 10 as 3');
+
+---INSERT ADMIN
+insert into users (email, password, admin) values ('admin"admin.com', '$2a$12$.lOV4EJhJqYWxVR/RSZtk.QapD6f90jC4JkU.L3O4Tokj5SqpjZcq', 'True')
+
+		  
