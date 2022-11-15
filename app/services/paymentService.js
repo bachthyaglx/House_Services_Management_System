@@ -27,6 +27,12 @@ const payDeposit = async (userID) => {
       user_id: userID,
     },
   );
+  await executeQuery(
+    `INSERT INTO monthlypaid(rent_id, duedate_monthly);`,
+    {
+      user_id: userID,
+    },
+  );
 };
 
 const payMonthlyPaid = async (userID) => {
