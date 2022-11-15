@@ -1,0 +1,22 @@
+<% layout('./layouts/layout1.eta') %>
+
+<% if (it.check_application && it.check_application.length > 0) { %>
+        <div>
+            <p>Confirm payment for deposit?</p>
+            <form method="POST" action="/payment/deposit">
+                <input type="submit" value="Yes" />
+            </form><br />
+        </div>
+    <% } 
+    else if (it.check_rent && it.check_rent.length > 0) { %> 
+        <div>
+            <p>Do you want to terminate your housing contract?</p>
+            <form method="POST" action="/termination/rent">
+                <input type="submit" value="Terminate" />
+            </form><br />
+        </div>    
+    <% }
+    else { %><div>You do not have housing application or housing contract yet.</div> 
+             <div>Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></div>
+    <% }
+%>

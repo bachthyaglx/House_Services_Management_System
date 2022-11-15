@@ -38,6 +38,14 @@ const submitApplication = async ({ request, response, render, user }) => {
 };
 
 const showApplicationForm = async ({ render, user }) => {
+  const dateSubmit_ob = await applicationService.userApplication(user.id);
+  let t = "";
+  if(dateSubmit_ob && dateSubmit_ob.length>0) {
+    t = new Date(dateSubmit_ob[0].date_request).getDate();
+  } else {
+    t=0;
+  }
+
   render("application.eta", {
     check_profile: await userService.showUserProfile(user.id),
     check_application: await applicationService.userApplication(user.id),
@@ -45,7 +53,7 @@ const showApplicationForm = async ({ render, user }) => {
     check_rent: await applicationService.userRent(user.id),
     check_monthlyPaid: await applicationService.userMonthlyPaid(user.id),
     currentDate: new Date().getDate(),
-    dateSubmitApplication: new Date(`${(await applicationService.userApplication(user.id))[0].date_request}`).getDate(),
+    dateSubmitApplication: t,
   });
 };
 

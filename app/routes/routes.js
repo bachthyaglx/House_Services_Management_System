@@ -6,6 +6,8 @@ import * as loginController from "./controllers/loginController.js";
 import * as logoutController from "./controllers/logoutController.js";
 import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
+import * as paymentController from "./controllers/paymentController.js";
+
 import * as admin_applicationController from "./controllers/admin_applicationController.js";
 import * as admin_depositController from "./controllers/admin_depositController.js";
 import * as admin_monthlyPaidController from "./controllers/admin_monthlyPaidController.js";
@@ -18,6 +20,7 @@ import * as admin_terminationController from "./controllers/admin_terminationCon
 // import * as questionAnswerAPI from "./apis/questionAnswerAPI.js";
 const router = new Router();
 
+//--------------------------------------------USER-------------------------------------------------
 // Handle mainpage
 router.get("/", mainController.showMain);
 
@@ -45,6 +48,11 @@ router.get("/termination/application", terminationController.showTerminationForm
 router.post("/termination/application", terminationController.deleteApplication);
 router.post("/termination/rent", terminationController.deleteRents);
 
+// Handle payment
+router.get("/payment/deposit", paymentController.);
+router.get("/payment/monthly-paid", paymentController.);
+
+//----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN
 router.get("/admin-application", admin_applicationController.showApplicationList);
 router.get("/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
