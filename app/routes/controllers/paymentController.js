@@ -2,11 +2,9 @@ import * as paymentService from "../../services/paymentService.js";
 
 const paymentDepositAction = async ({ render, user }) => {
   const payment_deposit = await paymentService.paymentDeposit(user.id);
-  const payment_monthlyPaid = await paymentService.paymentMonthlyPaid(user.id);
 
   render("payment-deposit.eta", {
     paymentDeposit: payment_deposit,
-    paymentMonthlyPaid: payment_monthlyPaid,
     currentMonth: new Date().getMonth(),
   });
 };

@@ -1,16 +1,41 @@
 <% layout('./layouts/layout1.eta') %>
 
 <% if (it.paymentDeposit && it.paymentDeposit.length>0) { 
-    if (it.paymentDeposit[0].deposit_paid=='No') {
-        %>
-            <div>
-                <p>Confirm payment for deposit?</p>
-                <form method="POST" action="/payment/deposit">
-                    <input type="submit" value="Yes" />
-                </form><br />
-            </div>
+    if (it.paymentDeposit[0].deposit_paid=='No') { %>
+        <div>
+        <form method="POST" action="/payment/deposit">
+            <label for="firstname">Firstname</label>
+            <input type="text" style="background-color: #E0E0E0" name="firstname" value="<%= it.paymentDeposit[0].firstname %>" readonly><br><br>
+
+            <label for="lastname">Lastname</label>
+            <input type="text" style="background-color: #E0E0E0" name="lastname" value="<%= it.paymentDeposit[0].lastname %>" readonly><br><br>
+
+            <label for="gender">Gender</label>
+            <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.paymentDeposit[0].gender %>" readonly><br><br>
+
+            <label for="apartment">Type of apartment</label>
+            <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.paymentDeposit[0].type %>" readonly><br><br>
+            
+            <label for="address">House address</label>
+            <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.paymentDeposit[0].address %>, <%= it.paymentDeposit[0].zipcode %> <%= it.paymentDeposit[0].city %>" readonly><br><br>
+
+            <label for="dateStart">Rent date</label>
+            <input type="text" style="background-color: #E0E0E0" name="dateRent" value="<%= it.paymentDeposit[0].datestart.toLocaleDateString('en-GB') %>" readonly><br><br>
+
+            <label for="deposit">Deposit</label>
+            <input type="text" style="background-color: #E0E0E0" name="gender" value="€<%= it.paymentDeposit[0].deposit %>" readonly><br><br>
+
+            <label for="duedateDeposit">Duedate deposit</label>
+            <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.paymentDeposit[0].duedate_deposit.toLocaleDateString('en-GB') %>" readonly> <br><br>
+
+            <label for="paidStatus">Paid</label>
+            <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.paymentDeposit[0].deposit_paid %>" readonly> <br><br>
+            Are you agree to process deposit payment? <input type="submit" value="Yes">
+        </form>
+        </div>
     <% } else {
-        %><p>You paid deposit! Click here to check <a href="/payment/monthly-paid">monthly rent</a> and pay it!</p><%
-    }
-}   else { %><div>You do not have housing contract yet! Check your <a href="/application">housing application!</a></div> <% }
-%>
+            %><p>You paid deposit! Click here to check <a href="/payment/monthly-paid">monthly rent</a> and pay it!</p><%
+        }
+}   else { %>
+<div>You do not have housing contract yet! Check your <a href="/application">housing application!</a></div> <% 
+} %>

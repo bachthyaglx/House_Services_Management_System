@@ -1,6 +1,6 @@
 <% layout('./layouts/layout1.eta') %>
 
-<% if (it.check_application && it.check_application.length>0 && (it.currentDate-it.dateSubmitApplication)<=2) { %>
+<% if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication<=2) { %>
 <h3>- You did submit application.</h3>
 <h3>- You can update your application within 2 days since it was sent.</h3>
 <div>
@@ -28,8 +28,9 @@
     <p style="color: red"><%= it.error %></p><% } %> </p>
   </form>
 </div>
-<% } else if (it.check_application && it.check_application.length>0 && (it.currentDate-it.dateSubmitApplication)>2) { %>
+<% } else if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication>2) { %>
 <h3>- You did submit application.</h3>
+<h3>- After 2 days since your application was submited, you can't modify it.</h3>
 <h3>- We are processing your application..</h3>
 <% } else if (it.check_rent && it.check_rent.length>0 && it.check_rent[0].deposit_paid=='No') { %>
 <h3>- You did submit application.</h3>
@@ -61,7 +62,7 @@
     </select><br />
     Date need apartment<br />
     <input type="date" data-date-format="YYYY MMMM DD" name="date_rent" /><br /><br />
-    <input type="submit" value="Register" />
+    <input type="submit" value="Send application" />
   </form><br />
 </div>
 <%}

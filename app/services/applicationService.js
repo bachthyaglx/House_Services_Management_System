@@ -94,6 +94,6 @@ export {
   submitApplication,
   updateApplication,
   userApplication,
-  userRent,
   userMonthlyPaid,
+  userRent,
 };

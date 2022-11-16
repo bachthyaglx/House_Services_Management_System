@@ -40,10 +40,15 @@ const submitApplication = async ({ request, response, render, user }) => {
 const showApplicationForm = async ({ render, user }) => {
   const dateSubmit_ob = await applicationService.userApplication(user.id);
   let t = "";
-  if(dateSubmit_ob && dateSubmit_ob.length>0) {
-    t = new Date(dateSubmit_ob[0].date_request).getDate();
-  } else {
-    t=0;
+  
+  if (dateSubmit_ob && dateSubmit_ob.length > 0) {
+    let duedateModifyApplication = () => {
+      var dateSubmit = new Date(`${dateSubmit_ob[0].date_request}`).getDate();
+      var dateCurrent = new Date().getDate();
+      var result = dateCurrent - dateSubmit;
+      return result;
+    };
+    t = duedateModifyApplication();
   }
 
   render("application.eta", {
@@ -52,7 +57,6 @@ const showApplicationForm = async ({ render, user }) => {
     apartment_application: await applicationService.apartmentName(user.id),
     check_rent: await applicationService.userRent(user.id),
     check_monthlyPaid: await applicationService.userMonthlyPaid(user.id),
-    currentDate: new Date().getDate(),
     dateSubmitApplication: t,
   });
 };
