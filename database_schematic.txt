@@ -41,6 +41,7 @@ CREATE TABLE rents (
   user_id INTEGER REFERENCES users(id) unique,
   room_id INTEGER REFERENCES rooms(id) unique,
   datestart DATE,
+  deposit_fee float,
   duedate_deposit date,
   deposit_paid VARCHAR(255) default 'No'
 );
@@ -59,15 +60,6 @@ CREATE TABLE maintenance (
   datereport date,
   resolve VARCHAR(255) default 'No'
 );
-
----DROP ALL TABLES-----
-drop table users cascade;
-drop table apartments cascade;
-drop table rooms cascade;
-drop table application cascade;
-drop table rents cascade;
-drop table monthlypaid cascade;
-drop table maintenance cascade;
 
 ----INSERT APARTMENTS-------
 insert into apartments (type, quantity, price) values ('2h-shared apartment',5,280.55);
@@ -111,5 +103,14 @@ insert into rooms (apartment_id, house, city, zipcode, address) values (4, 3, 'L
 
 ---INSERT ADMIN
 insert into users (email, password, admin) values ('admin"admin.com', '$2a$12$.lOV4EJhJqYWxVR/RSZtk.QapD6f90jC4JkU.L3O4Tokj5SqpjZcq', 'True')
+
+---DROP ALL TABLES-----
+drop table users cascade;
+drop table apartments cascade;
+drop table rooms cascade;
+drop table application cascade;
+drop table rents cascade;
+drop table monthlypaid cascade;
+drop table maintenance cascade;
 
 		  
