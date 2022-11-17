@@ -9,20 +9,18 @@ const paymentDepositAction = async ({ render, user }) => {
   });
 };
 
-const paymentMonthlyPaidAction = async ({ render, user }) => {
-  const payment_deposit = await paymentService.paymentDeposit(user.id);
-  const payment_monthlyPaid = await paymentService.paymentMonthlyPaid(user.id);
-
-  render("payment-monthly-paid.eta", {
-    paymentDeposit: payment_deposit,
-    paymentMonthlyPaid: payment_monthlyPaid,
-    currentMonth: new Date().getMonth(),
-  });
-};
-
 const payDeposit = async ({ user, response }) => {
   await paymentService.payDeposit(user.id);
   response.redirect("/payment/deposit");
+};
+
+const paymentMonthlyPaidAction = async ({ render, user }) => {
+  const payment_monthlyPaid = await paymentService.paymentMonthlyPaid(user.id);
+
+  render("payment-monthly-paid.eta", {
+    paymentMonthlyPaid: payment_monthlyPaid,
+    currentMonth: new Date().getMonth(),
+  });
 };
 
 const payMonthlyPaid = async({ user, response }) => {

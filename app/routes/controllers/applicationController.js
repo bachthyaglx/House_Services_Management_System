@@ -40,12 +40,14 @@ const submitApplication = async ({ request, response, render, user }) => {
 const showApplicationForm = async ({ render, user }) => {
   const dateSubmit_ob = await applicationService.userApplication(user.id);
   let t = "";
-  
+
   if (dateSubmit_ob && dateSubmit_ob.length > 0) {
+    //Function caltulating number of days between two dates
     let duedateModifyApplication = () => {
-      var dateSubmit = new Date(`${dateSubmit_ob[0].date_request}`).getDate();
-      var dateCurrent = new Date().getDate();
-      var result = dateCurrent - dateSubmit;
+      var dateSubmit = new Date(`${dateSubmit_ob[0].date_request}`).getTime();
+      var dateCurrent = new Date().getTime();
+      var MS_PER_DAY = 1000 * 60 * 60 * 24;
+      var result = (dateCurrent - dateSubmit) / MS_PER_DAY;
       return result;
     };
     t = duedateModifyApplication();

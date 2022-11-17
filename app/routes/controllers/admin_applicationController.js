@@ -30,7 +30,7 @@ const showPossibleRoom = async ({ render, params }) => {
     dateRent.setDate(dateRent.getDate() - 7);
     return dateRent.toLocaleDateString("en-GB");
   };
-
+  
   render("admin_approveRoom.eta", {
     duedateDeposit: dateRent(),
     table1: table1,
