@@ -16,7 +16,7 @@
     <label for="userID">Gender</label>
     <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.table1[0].gender %>" readonly><br><br>
 
-    <label for="dateStart">Date Need Apartment</label>
+    <label for="dateStart">Need Apartment From</label>
     <input type="text" style="background-color: #E0E0E0" name="dateRent" value="<%= it.table1[0].date_rent.toLocaleDateString('en-GB') %>" readonly><br><br>
 
     <label for="duedateDeposit">Duedate Deposit (Automatically generated)</label>

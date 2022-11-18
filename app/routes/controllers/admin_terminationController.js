@@ -15,8 +15,8 @@ const duedateNotPaidDeposit = async ({ render }) => {
   render("admin_termination-deposit.eta", result);
 };
 
-const terminateRent = async ({ response, params }) => {
-  await admin_terminationService.terminateRent(params.uID);
+const terminateDeposit = async ({ response, params }) => {
+  await admin_terminationService.terminateDeposit(params.uID);
   response.redirect("/admin-termination/deposit");
 };
 
@@ -25,9 +25,9 @@ const duedateNotMonthlyPaid = async ({ render }) => {
   render("admin_termination-monthly-paid.eta", result);
 };
 
-const terminateRoom = async ({ response, params }) => {
-  await admin_terminationService.terminateRoom(params.rID);
+const terminateMonthlyPaid = async ({ response, params }) => {
+  await admin_terminationService.terminateMonthlyPaid(params.rID);
   response.redirect("/admin-termination/monthly-paid");
 };
 
-export { displayApplicationList, deleteApplication, duedateNotPaidDeposit, terminateRent, duedateNotMonthlyPaid, terminateRoom };
+export { displayApplicationList, deleteApplication, duedateNotPaidDeposit, terminateDeposit, duedateNotMonthlyPaid, terminateMonthlyPaid };

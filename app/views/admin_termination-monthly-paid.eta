@@ -8,10 +8,11 @@
         <th style="border: 1px solid black; text-align: center;">First name</th>
         <th style="border: 1px solid black; text-align: center;">Last name</th>
         <th style="border: 1px solid black; text-align: center;">Gender</th>
-        <th style="border: 1px solid black; text-align: center;">Apartment Type</th>
-        <th style="border: 1px solid black; text-align: center;">Room Address</th>
-        <th style="border: 1px solid black; text-align: center;">Monthly Rent</th>
-        <th style="border: 1px solid black; text-align: center;">Duedate Paid</th>
+        <th style="border: 1px solid black; text-align: center;">Apartment</th>
+        <th style="border: 1px solid black; text-align: center;">Address</th>
+        <th style="border: 1px solid black; text-align: center;">Price/month</th>
+        <th style="border: 1px solid black; text-align: center;">Month</th>
+        <th style="border: 1px solid black; text-align: center;">Duedate</th>
         <th style="border: 1px solid black; text-align: center;">Today</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@
         <td style="border: 1px solid black;"><%= it[i].type %></td>
         <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
         <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it[i].month.toLocaleDateString('en-GB') %></td>
         <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
         <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
         <td style="text-align: right;">

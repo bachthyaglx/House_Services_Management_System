@@ -10,9 +10,9 @@
         <th style="border: 1px solid black; text-align: center;">Gender</th>
         <th style="border: 1px solid black; text-align: center;">Apartment Type</th>
         <th style="border: 1px solid black; text-align: center;">Room Address</th>
-        <th style="border: 1px solid black; text-align: center;">Price/month/person</th>
-        <th style="border: 1px solid black; text-align: center;">Date Need Apartment</th>
-        <th style="border: 1px solid black; text-align: center;">Duedate Deposit</th>
+        <th style="border: 1px solid black; text-align: center;">Price/month</th>
+        <th style="border: 1px solid black; text-align: center;">Need From</th>
+        <th style="border: 1px solid black; text-align: center;">Duedate</th>
         <th style="border: 1px solid black; text-align: center;">Today</th>
       </tr>
     </thead>

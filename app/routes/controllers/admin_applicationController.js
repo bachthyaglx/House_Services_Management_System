@@ -1,7 +1,6 @@
 import * as admin_applicationService from "../../services/admin_applicationService.js";
-import { validasaur } from "../../deps.js";
 
-const showApplicationList = async ({ request, response, render, user }) => {
+const showApplicationList = async ({ render }) => {
   const table1 = await admin_applicationService.displayListUserInfo();
   var table2 = [];
   for (var i = 0; i < table1.length; i++) {

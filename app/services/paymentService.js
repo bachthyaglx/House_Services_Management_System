@@ -65,7 +65,8 @@ const paymentMonthlyPaid = async (userID) => {
         INNER JOIN users AS t1 ON t4.user_id = t1.id 
         INNER JOIN rooms AS t3 ON t4.room_id = t3.id
         INNER JOIN apartments AS t2 ON t3.apartment_id = t2.id
-        WHERE t.rent_id = (SELECT id FROM rents WHERE user_id=$user_Id);`,
+        WHERE t.rent_id = (SELECT id FROM rents WHERE user_id=$user_Id)
+        ORDER BY month DESC;`,
     {
       user_id: userID,
     },

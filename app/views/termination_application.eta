@@ -1,0 +1,14 @@
+<% layout('./layouts/layout1.eta') %>
+
+<% if (it.check_application && it.check_application.length > 0) { %>
+    <div>
+    <p>Do you wanna cancel your housing application?</p>
+    <form method="POST" action="/termination/application">
+        <input type="submit" value="Cancel" />
+    </form><br />
+    </div>
+    <% } else { 
+        %><div>You do not have housing application yet.</div>
+        <div>Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></div>
+    <% }
+%>

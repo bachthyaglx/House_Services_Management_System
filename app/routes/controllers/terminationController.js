@@ -10,11 +10,16 @@ const deleteRents = async ({ user }) => {
   response.redirect("/termination/rent");
 };
 
-const showTerminationForm = async ({ render, user }) => {
-  render("termination.eta", {
-    check_application: await terminationService.checkTerminationApplication(user.id),
-    check_rent: await terminationService.checkTerminationRent(user.id),
+const showTerminationApplication = async ({ render, user }) => {
+  render("termination_application.eta", {
+    check_application: await terminationService.checkTerminationApplication(user.id)
   });
 };
 
-export { deleteApplication, deleteRents, showTerminationForm };
+const showTerminationRent= async ({ render, user }) => {
+  render("termination_rent.eta", {
+    check_rent: await terminationService.checkTerminationRent(user.id)
+  });
+};
+
+export { deleteApplication, deleteRents, showTerminationApplication, showTerminationRent };
