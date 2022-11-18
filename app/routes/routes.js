@@ -13,20 +13,15 @@ import * as admin_depositController from "./controllers/admin_depositController.
 import * as admin_monthlyPaidController from "./controllers/admin_monthlyPaidController.js";
 import * as admin_terminationController from "./controllers/admin_terminationController.js";
 
-// import * as topicsController from "./controllers/topicsController.js";
-// import * as questionsController from "./controllers/questionsController.js";
-// import * as answersController from "./controllers/answersController.js";
-// import * as quizController from "./controllers/quizController.js";
-// import * as questionAnswerAPI from "./apis/questionAnswerAPI.js";
 const router = new Router();
 
-//--------------------------------------------USER-------------------------------------------------
 // Handle mainpage
 router.get("/", mainController.showMain);
 
 // Handle apartments
 router.get("/apartments", apartmentsController.showApartments);
 
+//--------------------------------------------USER-------------------------------------------------
 // Handle register
 router.get("/auth/register", registerController.showRegistrationForm);
 router.post("/auth/register", registerController.registerUser);
