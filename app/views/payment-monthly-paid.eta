@@ -1,5 +1,13 @@
 <% layout('./layouts/layout1.eta') %>
 
+<div>Here you can check your monthly rent.</div></br>
+<% if(it.calculate_No_Paid && it.calculate_No_Paid.length>0 && it.calculate_No_Paid[0].count>0) {%>
+    <div>There has total <b style="color: Red;"><%= it.calculate_No_Paid[0].count %></b> months(s) of rent you have not paid yet!</div></br>
+  <% } else if(it.calculate_No_Paid && it.calculate_No_Paid.length>0 && it.calculate_No_Paid[0].count==0) {%>
+    <div style="color: green;">You paid all monthly rent(s).</div></br>
+  <% } 
+%>
+
 <div>
   <table>
     <thead>
@@ -16,25 +24,27 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.paymentMonthlyPaid && it.paymentMonthlyPaid.length>0) { for(var i = 0; i< it.paymentMonthlyPaid.length; i++) {%>
+      <% if(it.paymentMonthlyPaid && it.paymentMonthlyPaid.length>0) { for(let i = 0; i< it.paymentMonthlyPaid.length; i++) {%>
       <tr>
         <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].firstname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
-        <td style="border: 1px solid black;"><%= it[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it[i].type %></td>
-        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].month.toLocaleDateString('en-GB') %></td>
-        <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
-        <% if(it.paymentMonthlyPaid[i]) { for(var i = 0; i<it.paymentMonthlyPaid.length; i++) {%>
-            <td style="text-align: right;">
-            <form method="POST" action="/admin-termination/monthly-paid/room/<%= it[i].id %>">
-                <input type="submit" value="Pay" style="background-color: #EC5151; border: 1px solid black ;">
-            </form>
-            </td> <% } 
-        %>
+        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].firstname %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].lastname %></td>
+        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].gender %></td>
+        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].type %></td>
+        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].address %>, <%= it.paymentMonthlyPaid[i].zipcode %> <%= it.paymentMonthlyPaid[i].city %></td>
+        <td style="border: 1px solid black; text-align: center;">€<%= it.paymentMonthlyPaid[i].price %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].month.toLocaleDateString('en-GB') %></td>
+        <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].current_date.toLocaleDateString('en-GB') %></td>
+        <td style="text-align: right;"> <% if(it.paymentMonthlyPaid[i].monthly_paid=='No') { %>
+          <form method="POST" action="/payment/monthly-paid/<%= it.paymentMonthlyPaid[i].id %>">
+            <input type="submit" value="Pay it" style="background-color: #EC5151; border: 1px solid black ;">
+          </form>
+          <% } else { %>
+              <div style="color: green; text-align: center;">Paid</div>
+            <% }
+          %>
+        </td>
       </tr>
       <% } } else { %>
       <tr>

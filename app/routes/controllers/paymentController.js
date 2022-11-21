@@ -16,15 +16,18 @@ const payDeposit = async ({ user, response }) => {
 
 const paymentMonthlyPaidAction = async ({ render, user }) => {
   const payment_monthlyPaid = await paymentService.paymentMonthlyPaid(user.id);
+  const calculate_No_Paid = await paymentService.calculate_No_Paid(user.id);
 
   render("payment-monthly-paid.eta", {
+    calculate_No_Paid: calculate_No_Paid,
     paymentMonthlyPaid: payment_monthlyPaid,
     currentMonth: new Date().getMonth(),
   });
 };
 
-const payMonthlyPaid = async({ user, response }) => {
-  await paymentService.payMonthlyPaid(user.id);
+const payMonthlyPaid = async({ user, response, params }) => {
+
+  await paymentService.payMonthlyPaid(user.id, params.mID);
   response.redirect("/payment/monthly-paid");
 };
 

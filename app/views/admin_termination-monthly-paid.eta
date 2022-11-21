@@ -30,7 +30,7 @@
         <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
         <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
         <td style="text-align: right;">
-          <form method="POST" action="/admin-termination/monthly-paid/room/<%= it[i].id %>">
+          <form method="POST" action="/admin-termination/monthly-paid/<%= it[i].id %>">
             <input type="submit" value="Terminate" style="background-color: #EC5151; border: 1px solid black ;">
           </form>
         </td>

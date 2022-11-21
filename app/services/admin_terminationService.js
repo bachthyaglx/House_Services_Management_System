@@ -47,9 +47,9 @@ const duedateNotMonthlyPaid = async () => {
 };
 
 const terminateMonthlyPaid = async (id) => {
-  await executeQuery(`DELETE FROM monthlypaid WHERE id=$id;`,{ id: id });
+  await executeQuery(`DELETE FROM monthlypaid WHERE id=$id;`, { id: id });
   await executeQuery(`ALTER SEQUENCE monthlypaid_id_seq RESTART WITH 1;`);
-  await executeQuery(`DELETE FROM rents WHERE id=(SELECT rent_id FROM monthlypaid WHERE id=$id);`,{ id: id });
+  await executeQuery(`DELETE FROM rents WHERE id=(SELECT rent_id FROM monthlypaid WHERE id=$id);`, { id: id });
   await executeQuery(`ALTER SEQUENCE rents_id_seq RESTART WITH 1;`);
 };
 

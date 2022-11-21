@@ -2,13 +2,16 @@
 
 <% if (it.check_application && it.check_application.length > 0) { %>
     <div>
-    <p>Do you wanna cancel your housing application?</p>
-    <form method="POST" action="/termination/application">
-        <input type="submit" value="Cancel" />
-    </form><br />
+        <p>Do you wanna cancel your application?</p>
+        <form method="POST" action="/termination/application">
+            <input type="submit" value="Cancel" />
+        </form><br />
     </div>
-    <% } else { 
-        %><div>You do not have housing application yet.</div>
+    <% } else if (it.check_rent && it.check_rent.length>0) { %>
+        <div>We passed through your application.</div>
+        <div style="color: green;">You have a contract already.</div>
+    <% } else { %>
+        <div>You do not have housing application yet.</div>
         <div>Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></div>
     <% }
 %>

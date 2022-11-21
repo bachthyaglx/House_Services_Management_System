@@ -59,7 +59,7 @@ const payDeposit = async (userID) => {
 
 const paymentMonthlyPaid = async (userID) => {
   const result = await executeQuery(
-    `SELECT t1.firstname, t1.lastname, t1.gender, t2.type, t3.address, t3.zipcode, t3.city, t2.price, t.month, t.duedate_monthly, t.monthly_paid
+    `SELECT t.id, t1.firstname, t1.lastname, t1.gender, t2.type, t3.address, t3.zipcode, t3.city, t2.price, t.month, t.duedate_monthly, t.monthly_paid, current_date
         FROM monthlypaid AS t
         INNER JOIN rents AS t4 ON t.rent_id = t4.id
         INNER JOIN users AS t1 ON t4.user_id = t1.id 
@@ -74,14 +74,25 @@ const paymentMonthlyPaid = async (userID) => {
   return result.rows;
 };
 
-
-const payMonthlyPaid = async (userID) => {
-  await executeQuery(
-    `UPDATE monthlypaid SET monthly_paid='Yes' WHERE rent_id IN (SELECT id FROM rents WHERE user_id=$user_id);`,
+const calculate_No_Paid = async (userID) => {
+  const result = await executeQuery(
+    `SELECT count(monthly_paid) FROM monthlypaid 
+     WHERE rent_id=(SELECT id FROM rents WHERE user_id=$user_id) AND monthly_paid='No';`,
     {
       user_id: userID,
     },
   );
+  return result.rows;
 };
 
-export { payDeposit, paymentDeposit, paymentMonthlyPaid, payMonthlyPaid };
+const payMonthlyPaid = async (userID, id) => {
+  await executeQuery(
+    `UPDATE monthlypaid SET monthly_paid='Yes' WHERE rent_id=(SELECT id FROM rents WHERE user_id=$user_id) AND id=$id;`,
+    {
+      user_id: userID,
+      id: id,
+    },
+  );
+};
+
+export { payDeposit, paymentDeposit, paymentMonthlyPaid, payMonthlyPaid, calculate_No_Paid };

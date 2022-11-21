@@ -3,13 +3,14 @@
 <div>
   <p>You are ADMIN</p>
   <form method="POST" action="/admin-monthly-paid">
-    <p>Check paid deposit
+    <p>Check by status
       <select name="monthlyPaidStatus">
         <option value="All">All</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
-      <input type="submit" value="Check" />
+      date <input type="month" name="date"/>
+      <input type="submit" value="Search" />
     </p>
   </form>
   <table>

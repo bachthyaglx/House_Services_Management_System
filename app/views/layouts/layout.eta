@@ -268,12 +268,12 @@
 </header>
 
 <body>
-  <div class="container">
+  <div class="container" style="padding-top: 25px; padding-bottom: 25px;">
     <%~ it.body %>
   </div>
 </body>
 
-<% /* <footer class="bg-black text-center text-white d-none d-lg-block">
+<footer class="bg-black text-center text-white d-none d-lg-block" style="font-weight: bold; font-size: x-large; background: black; position: bottom: 0; right:0; left: 0;">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
     <!-- Section: Form -->
@@ -314,6 +314,6 @@
     <!-- Section: Form -->
   </div>
   <!-- Grid container -->
-</footer> */ %>
+</footer>
 
 </html>

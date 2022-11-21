@@ -4,10 +4,18 @@
 
 <% if (it.error) { %><p style="color: red"><%= it.error %></p><% }; %>
 
+<p>Login is required when you want to restrict user to access certain part or whole website.</p>
+
+<p>Its like your computer if you want that no one can access your computer except you, What you do you just add password to your account. Now only user who have your password can login into your computer.</p>
+
+<p>Like wise if you want that users can access certain functionalities on your website after login. You can force user to login first, Now user have to enter his/her login credentials an then after website will serve him information related to his login credentials.</p>
+
+<p>So you can decide what functions should be allowed with login into your website according to your website functionality.</p>
+
 <form method="POST" action="/auth/login">
-  Email:<br/>
+  <b>Email:</b><br/>
   <input type="email" name="email"/><br/>
-  Password:<br/>
+  <b>Password:</b><br/>
   <input type="password" name="password" /><br/><br/>
   <input type="submit" value="Login" />
 </form><br/>

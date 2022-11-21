@@ -26,7 +26,7 @@ CREATE TABLE rooms (
   city VARCHAR(255),
   zipcode VARCHAR(255),
   address VARCHAR(255) UNIQUE,
-  sex VARCHAR(255) DEFAULT ''
+  sex VARCHAR(255) DEFAULT '',
   reserve VARCHAR(255) DEFAULT 'No'
 );
 
@@ -55,10 +55,16 @@ CREATE TABLE monthlypaid (
   monthly_paid VARCHAR(255) DEFAULT 'No'
 );
 
+CREATE TABLE services (
+  id SERIAL PRIMARY KEY,
+  category VARCHAR(255),
+  type_request VARCHAR(255)
+);
+
 CREATE TABLE maintenance (
   id SERIAL PRIMARY KEY,
-  room_id INTEGER REFERENCES rooms(id),
-  type VARCHAR(255) UNIQUE,
+  rent_id INTEGER REFERENCES rents(id),
+  service_id INTEGER REFERENCES services(id),
   date_report DATE,
   resolve VARCHAR(255) DEFAULT 'No'
 );
@@ -103,7 +109,48 @@ INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 1, 'L
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 2, 'Long Xuyen', 62000, 'Yet Kieu 10 as 2');
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 3, 'Long Xuyen', 62000, 'Yet Kieu 10 as 3');
 
----INSERT ADMIN
+---------INSERT SERVICES-----------------------------------------------------------
+INSERT INTO services (category, type_request) VALUES ('Keys and locks', 'Key');
+INSERT INTO services (category, type_request) VALUES ('Keys and locks', 'Changing of lock');
+INSERT INTO services (category, type_request) VALUES ('Keys and locks', 'iLOQ');
+INSERT INTO services (category, type_request) VALUES ('Keys and locks', 'Incorret key return');
+INSERT INTO services (category, type_request) VALUES ('Cleaning and clearing the apartment/room', 'Cleaning');
+INSERT INTO services (category, type_request) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of small items');
+INSERT INTO services (category, type_request) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of bigger items eg. coach/bed/washing machine');
+INSERT INTO services (category, type_request) VALUES ('Repairs', 'Vinyl floor covering');
+INSERT INTO services (category, type_request) VALUES ('Repairs', 'Changing floor boards');
+INSERT INTO services (category, type_request) VALUES ('Inner doors in apartment', 'Change of the door frame');
+INSERT INTO services (category, type_request) VALUES ('Inner doors in apartment', 'Change of the door panel');
+INSERT INTO services (category, type_request) VALUES ('Entrance door', 'Change of the door frame');
+INSERT INTO services (category, type_request) VALUES ('Entrance door', 'Change of the door panel');
+INSERT INTO services (category, type_request) VALUES ('Windows', 'Renewal of window');
+INSERT INTO services (category, type_request) VALUES ('Painting', 'Repair/painting of wall');
+INSERT INTO services (category, type_request) VALUES ('Painting', 'Painting of ceiling');
+INSERT INTO services (category, type_request) VALUES ('Painting', 'Ozonization (odor elimination)');
+INSERT INTO services (category, type_request) VALUES ('Household appliances', 'Refridgerator');
+INSERT INTO services (category, type_request) VALUES ('Household appliances', 'Stove');
+INSERT INTO services (category, type_request) VALUES ('Household appliances', 'Stove/fridge replacement');
+INSERT INTO services (category, type_request) VALUES ('Household appliances', 'Damages to household appliances done by the tenant');
+INSERT INTO services (category, type_request) VALUES ('Fixtures', 'Room cabinet renewal');
+INSERT INTO services (category, type_request) VALUES ('Fixtures', 'Cabinet installation');
+INSERT INTO services (category, type_request) VALUES ('Fixtures', 'Renewing of kitchen draw panels');
+INSERT INTO services (category, type_request) VALUES ('Fixtures', 'Renewing of kitchen cabinet door');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Dining table and benches');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Bench/table');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Chair');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Book shelf');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Work desk');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Bed');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Fire alarm');
+INSERT INTO services (category, type_request) VALUES ('Furniture in apartments', 'Ceiling light fixture');
+INSERT INTO services (category, type_request) VALUES ('Equipment', 'Bathroom mirror cabinet');
+INSERT INTO services (category, type_request) VALUES ('Equipment', 'Bathroom mirror cabinet door');
+INSERT INTO services (category, type_request) VALUES ('Heating, plumbing, ventilation', 'Heater thermostat');
+INSERT INTO services (category, type_request) VALUES ('Heating, plumbing, ventilation', 'Toilet seat');
+INSERT INTO services (category, type_request) VALUES ('Heating, plumbing, ventilation', 'Toilet seat cover/lid');
+INSERT INTO services (category, type_request) VALUES ('Heating, plumbing, ventilation', 'Toilet cistern');
+
+--------INSERT ADMIN---------
 INSERT INTO users (email, password, admin) VALUES ('admin@admin.com', '$2a$12$.lOV4EJhJqYWxVR/RSZtk.QapD6f90jC4JkU.L3O4Tokj5SqpjZcq', 'True')
 
 ---DROP ALL TABLES-----

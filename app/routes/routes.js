@@ -48,7 +48,7 @@ router.post("/termination/rent", terminationController.deleteRents);
 router.get("/payment/deposit", paymentController.paymentDepositAction);
 router.post("/payment/deposit", paymentController.payDeposit);
 router.get("/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
-router.post("/payment/monthly-paid", paymentController.payMonthlyPaid);
+router.post("/payment/monthly-paid/:mID", paymentController.payMonthlyPaid);
 
 //----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN
@@ -70,7 +70,7 @@ router.post("/admin-termination/application/user/:uID", admin_terminationControl
 router.get("/admin-termination/deposit", admin_terminationController.duedateNotPaidDeposit);
 router.post("/admin-termination/deposit/user/:uID", admin_terminationController.terminateDeposit);
 router.get("/admin-termination/monthly-paid", admin_terminationController.duedateNotMonthlyPaid);
-router.post("/admin-termination/monthly-paid/room/:rID", admin_terminationController.terminateMonthlyPaid);
+router.post("/admin-termination/monthly-paid/:mID", admin_terminationController.terminateMonthlyPaid);
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

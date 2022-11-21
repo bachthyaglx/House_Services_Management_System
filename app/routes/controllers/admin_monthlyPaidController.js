@@ -5,7 +5,7 @@ const showMonthlyPaidList = async ({ render }) => {
     render("admin_monthlyPaid.eta", result);
 };
 
-const checkMonthlyPaidStatus = async ({ response, request, render }) => {
+const checkMonthlyPaidStatus = async ({ request, render }) => {
     const body = request.body({ type: "form" });
     const form_text = await body.value;
   

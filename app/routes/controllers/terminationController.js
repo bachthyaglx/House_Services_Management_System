@@ -12,13 +12,15 @@ const deleteRents = async ({ user }) => {
 
 const showTerminationApplication = async ({ render, user }) => {
   render("termination_application.eta", {
-    check_application: await terminationService.checkTerminationApplication(user.id)
+    check_application: await terminationService.checkTerminationApplication(user.id),
+    check_rent: await terminationService.checkTerminationRent(user.id),
   });
 };
 
 const showTerminationRent= async ({ render, user }) => {
   render("termination_rent.eta", {
-    check_rent: await terminationService.checkTerminationRent(user.id)
+    check_rent: await terminationService.checkTerminationRent(user.id),
+    check_allMonthlyPaid: await terminationService.check_notMonthlyPaid(user.id),
   });
 };
 

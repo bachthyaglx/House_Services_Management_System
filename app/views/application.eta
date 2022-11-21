@@ -38,8 +38,13 @@
 <h3>- We approved your application.</h3>
 <h3>- Please <a href="/payment/deposit">pay deposit</a> then...</h3>
 <% } else if (it.check_monthlyPaid && it.check_monthlyPaid.length>0) { 
-  if (it.check_monthlyPaid[0].monthly_paid=='No') { %><h3>- Please pay <a href="/payment/monthly-paid">monthly rent</a> for this month then...</h3><% 
-  } else { %><h3>- Lets fun and enjoy our service!</h3> <% }
+  %>
+    <h3>- You did submit application.</h3>
+    <h3>- Your application has been processed.</h3>
+    <h3>- We approved your application.</h3>
+    <h3>- You paid deposit.</h3>
+    <h3>- Please check <a href="/payment/monthly-paid">monthly rent(s)</a>.</h3>
+  <% 
 } else { %>
 <div>
   <h1>Application Form</h1>
