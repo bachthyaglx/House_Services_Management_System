@@ -1,4 +1,5 @@
 import { Router } from "../deps.js";
+
 import * as mainController from "./controllers/mainController.js";
 import * as apartmentsController from "./controllers/apartmentsController.js";
 import * as registerController from "./controllers/registerController.js";
@@ -7,11 +8,13 @@ import * as logoutController from "./controllers/logoutController.js";
 import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
 import * as paymentController from "./controllers/paymentController.js";
+import * as servicesController from "./controllers/servicesController.js";
 
 import * as admin_applicationController from "./controllers/admin_applicationController.js";
 import * as admin_depositController from "./controllers/admin_depositController.js";
 import * as admin_monthlyPaidController from "./controllers/admin_monthlyPaidController.js";
 import * as admin_terminationController from "./controllers/admin_terminationController.js";
+// import * as admin_servicesController from "./controllers/admin_servicesController.js";
 
 const router = new Router();
 
@@ -50,6 +53,10 @@ router.post("/payment/deposit", paymentController.payDeposit);
 router.get("/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
 router.post("/payment/monthly-paid/:mID", paymentController.payMonthlyPaid);
 
+// Handle services
+router.get("/services", servicesController.showServices);
+// router.post("/services", servicesController.submitServices);
+
 //----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN
 router.get("/admin-application", admin_applicationController.showApplicationList);
@@ -71,6 +78,7 @@ router.get("/admin-termination/deposit", admin_terminationController.duedateNotP
 router.post("/admin-termination/deposit/user/:uID", admin_terminationController.terminateDeposit);
 router.get("/admin-termination/monthly-paid", admin_terminationController.duedateNotMonthlyPaid);
 router.post("/admin-termination/monthly-paid/:mID", admin_terminationController.terminateMonthlyPaid);
+
 
 // // Handle TOPICS
 // router.get("/topics", topicsController.listTopics);

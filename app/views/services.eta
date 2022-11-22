@@ -1,0 +1,31 @@
+<% layout('./layouts/layout1.eta') %>
+
+<div>
+  <h1>Chart of tenant’s responsibilities</h1>
+  <p>The tenant is responsible for maintaining the condition of the apartment. The cost of repair that is caused by tenant’s carelessness,
+    negligence or lack of maintenance will be charged from the tenant according to the chart of tenant or it is billed as charged.</p>
+  <p>Tankkari owns the right to change prices If necessary.</p>
+  <h2>THE CHART OF TENANT’S RESPONSIBILITIES</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; text-align: center;">Type</th>
+        <th style="border: 1px solid black; text-align: center;">Service</th>
+        <th style="border: 1px solid black; text-align: center;">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(it.category && it.category.length>0) { for(let i = 0; i<it.category.length; i++) {%>
+      <tr>
+        <td style="border: 1px solid black; text-align: left;" rowspan=""><%= it.category[i].category %></td>
+        <td style="border: 1px solid black; text-align: left;"><%= it.category[i].type_request %></td>
+        <td style="border: 1px solid black; text-align: center;"><%= it.category[i].cost %></td>
+      </tr>
+      <% } } else { %>
+      <tr>
+        <td>No data ever existed.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
