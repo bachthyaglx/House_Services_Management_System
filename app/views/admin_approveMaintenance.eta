@@ -1,0 +1,56 @@
+<% layout('./layouts/layout1.eta') %>
+
+<form method="POST" action="/admin-maintenance/<%= it.showMaintenanceRequestUser[0].id %>">
+  <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
+    <tr>
+      <td style="padding-right: 20px;">First name</td>
+      <td><input size="40" type="text" name="firstname" value="<%= it.showMaintenanceRequestUser[0].firstname %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Last name</td>
+      <td><input size="40" type="text" name="lastname" value="<%= it.showMaintenanceRequestUser[0].lastname %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Email</td>
+      <td><input size="40" type="email" name="email" value="<%= it.showMaintenanceRequestUser[0].email %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Apartment</td>
+      <td><input size="40" type="text" name="apartment" value="<%= it.showMaintenanceRequestUser[0].type %>" readonly /></td>
+    </tr>
+    <tr style="padding-right: 20px;">
+      <td>Address</td>
+      <td><input size="40" type="text" name="address" value="<%= it.showMaintenanceRequestUser[0].address %>, <%= it.showMaintenanceRequestUser[0].zipcode %> <%= it.showMaintenanceRequestUser[0].city %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">About</td>
+      <td><input style="color: red;" size="40" type="text" name="about" value="<%= it.showMaintenanceRequestUser[0].type_request %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Date</td>
+      <td><input size="40" type="text" name="about" value="<%= it.showMaintenanceRequestUser[0].date_report.toLocaleDateString('en-GB') %>" readonly /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Resolve</td>
+      <% if(it.showMaintenanceRequestUser[0].resolve == 'No') { %>
+            <td><input style="background-color: red;" size="40" type="text" name="resolve" value="<%= it.showMaintenanceRequestUser[0].resolve %>" readonly /></td>
+        <% } else if(it.showMaintenanceRequestUser[0].resolve == 'Processing') { %>
+            <td><input style="background-color: yellow;" size="40" type="text" name="resolve" value="<%= it.showMaintenanceRequestUser[0].resolve %>" readonly /></td>
+        <% } else if(it.showMaintenanceRequestUser[0].resolve == 'Yes') { %>
+            <td><input style="background-color: green;" size="40" type="text" name="resolve" value="<%= it.showMaintenanceRequestUser[0].resolve %>" readonly /></td>
+        <% }
+      %>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">New status</td>
+      <td>
+        <select name="status_pick">
+          <option value="">---</option>
+          <option value="Processing">Processing</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Update">
+</form>

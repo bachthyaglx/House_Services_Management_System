@@ -13,7 +13,7 @@
 </ul> */ %>
 
 <div>
-  <p>You are ADMIN</p>
+<% if(it.table1.length) { %>
   <table>
     <thead>
       <tr>
@@ -29,24 +29,25 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.table1.length) { for(var i = 0; i< it.table1.length; i++) {%>
-      <tr>
-        <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center; "><a href="/admin-application/user/<%= it.table1[i].id %>"><%= it.table1[i].firstname %></a></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it.table1[i].email %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].type %></td>
-         <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].deposit %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_request.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB') %></td>
-      </tr>
-      <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
-      <% } %>
+      <% for(var i = 0; i< it.table1.length; i++) { %>
+        <tr>
+          <td style="border: 1px solid black; text-align: center; "><a href="/admin-application/user/<%= it.table1[i].id %>"><%= it.table1[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender %></td>
+          <td style="border: 1px solid black;"><%= it.table1[i].email %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].type %></td>
+          <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].deposit %></td>
+          <td style="border: 1px solid black; text-align: center;">€<%= it.table1[i].price %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_request.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].date_rent.toLocaleDateString('en-GB') %></td>
+        </tr>
+        <% } 
+      %>  
     </tbody>
   </table>
+  <% } else { %>
+        <h3 style="color: red;">- No data ever existed.</h3>
+        <h3>- Data will be displayed when at least one user have sent an application already.</h3>
+    <% } 
+%>
 </div>

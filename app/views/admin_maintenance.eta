@@ -1,0 +1,63 @@
+<% layout('./layouts/layout1.eta') %>
+
+<div>
+<% if(it.showMaintenanceRequest && it.showMaintenanceRequest.length>0) { %>
+  <form method="POST" action="/admin-maintenance">
+    <p>Check by status
+      <select name="status">
+        <option value="">---</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Processing">Processing</option>
+      </select>
+      <input type="submit" value="Search" />
+      <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
+    </p>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; text-align: center;">First name</th>
+        <th style="border: 1px solid black; text-align: center;">Last name</th>
+        <th style="border: 1px solid black; text-align: center;">Email</th>
+        <th style="border: 1px solid black; text-align: center;">Apartment</th>
+        <th style="border: 1px solid black; text-align: center;">Address</th>
+        <th style="border: 1px solid black; text-align: center;">About</th>
+        <th style="border: 1px solid black; text-align: center;">Date</th>
+        <th style="border: 1px solid black; text-align: center;">Resolve</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(let i=0; i<it.showMaintenanceRequest.length; i++) { %>
+        <tr>
+          <td style="border: 1px solid black; text-align: center; "><a href="/admin-maintenance/<%= it.showMaintenanceRequest[i].id %>"><%= it.showMaintenanceRequest[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].lastname %></td>
+          <td style="border: 1px solid black; text-align: left;"><%= it.showMaintenanceRequest[i].email %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].type %></td>
+          <td style="border: 1px solid black; text-align: left;"><%= it.showMaintenanceRequest[i].address %>, <%= it.showMaintenanceRequest[i].zipcode %> <%= it.showMaintenanceRequest[i].city %></td>
+          <td style="border: 1px solid black; text-align: left;"><%= it.showMaintenanceRequest[i].type_request %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].date_report.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].resolve %></td>
+        </tr>
+        <% } 
+      %>  
+    </tbody>
+  </table>
+  <% } else { %>
+      <form method="POST" action="/admin-maintenance">
+        <p>Check by status
+          <select name="status">
+            <option value="">---</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Processing">Processing</option>
+          </select>
+          <input type="submit" value="Search" />
+          <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
+        </p>
+      </form>
+      <h3 style="color: red;">- No data ever existed.</h3>
+      <h3>- Data will be displayed when at least one user have contract, paid deposit and sent a maintenance request already.</h3>
+  <% } 
+%>
+</div>

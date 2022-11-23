@@ -1,7 +1,7 @@
 <% layout('./layouts/layout1.eta') %>
 
 <div>
-  <p>You are ADMIN</p>
+<% if(it.length) { %>
   <form method="POST" action="/admin-monthly-paid">
     <p>Check by status
       <select name="monthlyPaidStatus">
@@ -9,7 +9,6 @@
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
-      date <input type="month" name="date"/>
       <input type="submit" value="Search" />
     </p>
   </form>
@@ -28,24 +27,25 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.length) { for(var i = 0; i< it.length; i++) {%>
-      <tr>
-        <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><a href="/admin-monthly-paid/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it[i].type %></td>
-        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].month.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].monthly_paid %></td>
-      </tr>
-      <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
-      <% } %>
+      <% for(var i = 0; i< it.length; i++) { %>
+        <tr>
+          <td style="border: 1px solid black; text-align: center;"><a href="/admin-monthly-paid/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].gender %></td>
+          <td style="border: 1px solid black;"><%= it[i].type %></td>
+          <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
+          <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].month.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].monthly_paid %></td>
+        </tr>
+        <% } 
+      %>
     </tbody>
   </table>
+  <% } else { %>
+    <h3 style="color: red;">- No data ever existed.</h3>
+    <h3>- Data will be displayed when at least one application was approved already.</h3>
+  <% } 
+%>
 </div>

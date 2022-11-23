@@ -1,35 +1,57 @@
 <% layout('./layouts/layout1.eta') %>
 
-<% if (it.checkMaintenence && it.checkMaintenence.length>0) { %>
-  <h3>- You have sent a request for maintenance.</h3>
-  <h3>- We are processing for request..</h3>
-<% } else if(it.checkRent && it.checkRent.length>0) { %>
-  <div>
-    <h1>Request for maintenance</h1>
-    <% if (it.regErrors) { %>
-    <ul>
-      <% Object.keys(it.regErrors).forEach((attribute) => { %>
-      <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
-      <li style="color: red"><%= err %></li>
-      <% }); %>
-      <% }); %>
-    </ul>
-    <% } %>
-    <form method="POST" action="/maintenance">
-      Choose a service<br />
-      <select type="text" name="service">
-      <% if (it.displayListMaintenance && it.displayListMaintenance.length>0) { for(let i=0; i<it.displayListMaintenance.length; i++) {%>
-          <option value="<%=it.displayListMaintenance[i].id %>"><%=it.displayListMaintenance[i].type_request %></option>
-        <% } }
-      %>
-      </select><br /><br />
-      <input type="submit" value="Send request" />
-    </form><br />
-  </div>
- <% } else { %> 
+<% if (it.userMaintenence && it.userMaintenence.length>0) { %>
+    <h4>- Here you can check the status of your maintenance request</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="border: 1px solid black; text-align: center;">First name</th>
+          <th style="border: 1px solid black; text-align: center;">Last name</th>
+          <th style="border: 1px solid black; text-align: center;">Email</th>
+          <th style="border: 1px solid black; text-align: center;">Apartment</th>
+          <th style="border: 1px solid black; text-align: center;">Address</th>
+          <th style="border: 1px solid black; text-align: center;">About</th>
+          <th style="border: 1px solid black; text-align: center;">Date</th>
+          <th style="border: 1px solid black; text-align: center;">Resolve</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td style="border: 1px solid black; text-align: center; "><%= it.userMaintenence[0].firstname %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].lastname %></td>
+            <td style="border: 1px solid black; text-align: left;"><%= it.userMaintenence[0].email %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].type %></td>
+            <td style="border: 1px solid black; text-align: left;"><%= it.userMaintenence[0].address %>, <%= it.userMaintenence[0].zipcode %> <%= it.userMaintenence[0].city %></td>
+            <td style="border: 1px solid black; text-align: left;"><%= it.userMaintenence[0].type_request %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].date_report.toLocaleDateString('en-GB') %></td>
+            <% if(it.userMaintenence[0].resolve=='No') { %>
+                <td style="background-color: red; border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].resolve %></td>
+              <% } else if (it.userMaintenence[0].resolve=='Processing') { %>
+                <td style="background-color: yellow; border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].resolve %></td>
+              <% } else if (it.userMaintenence[0].resolve=='Yes') { %>
+                <td style="background-color: green; border: 1px solid black; text-align: center;"><%= it.userMaintenence[0].resolve %></td>
+              <% }
+            %>
+          </tr>
+      </tbody>
+    </table>
+  <% } else if (!it.userMaintenence && it.checkRent && it.checkRent.length>0) { %>
+    <div>
+      <h1>Request for maintenance</h1>
+      <form method="POST" action="/maintenance">
+        Choose a service<br />
+        <select type="text" name="service">
+        <% if (it.displayListMaintenance && it.displayListMaintenance.length>0) { for(let i=0; i<it.displayListMaintenance.length; i++) {%>
+            <option value="<%=it.displayListMaintenance[i].id %>"><%=it.displayListMaintenance[i].type_request %></option>
+          <% } }
+        %>
+        </select><br /><br />
+        <input type="submit" value="Send request" />
+      </form><br />
+    </div>
+  <% } else { %> 
     <h3 style="color: red;">- You do not have contract yet!</h3>
     <h3>- In order to request a maintenance, you should have a housing contract and paid deposit for it already.</h3>
-    <h3>- Chere it <a href="/application">here</a></h3>
+    <h3>- Check it <a href="/application">here</a></h3>
   <% }
-
 %>

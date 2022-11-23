@@ -24,6 +24,8 @@ const deleteApplication = async (userID) => {
 const deleteRents = async (userID) => {
   await executeQuery(`DELETE FROM monthlypaid WHERE rent_id=(SELECT id FROM rents WHERE user_id=$user_id;);`, {user_id: userID});
   await executeQuery(`ALTER SEQUENCE monthlypaid_id_seq RESTART WITH 1;`);
+  await executeQuery(`DELETE FROM maintenance WHERE rent_id=(SELECT id FROM rents WHERE user_id=$user_id);`, {user_id: userID});
+  await executeQuery(`ALTER SEQUENCE maintenance_id_seq RESTART WITH 1;`);
   await executeQuery(`DELETE FROM rents WHERE user_id = $user_id;`, {user_id: userID});
   await executeQuery(`ALTER SEQUENCE rents_id_seq RESTART WITH 1;`);
 };

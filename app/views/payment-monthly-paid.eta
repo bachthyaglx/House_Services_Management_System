@@ -6,6 +6,7 @@
 %>
 
 <div>
+<% if(it.paymentMonthlyPaid && it.paymentMonthlyPaid.length>0) { %>
   <table>
     <thead>
       <tr>
@@ -21,31 +22,33 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.paymentMonthlyPaid && it.paymentMonthlyPaid.length>0) { for(let i = 0; i< it.paymentMonthlyPaid.length; i++) {%>
-      <tr>
-        <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].firstname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].lastname %></td>
-        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].type %></td>
-        <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].address %>, <%= it.paymentMonthlyPaid[i].zipcode %> <%= it.paymentMonthlyPaid[i].city %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it.paymentMonthlyPaid[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].month.toLocaleDateString('en-GB') %></td>
-        <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].current_date.toLocaleDateString('en-GB') %></td>
-        <td style="text-align: right;"> <% if(it.paymentMonthlyPaid[i].monthly_paid=='No') { %>
-          <form method="POST" action="/payment/monthly-paid/<%= it.paymentMonthlyPaid[i].id %>">
-            <input type="submit" value="Pay it" style="background-color: #EC5151; border: 1px solid black ;">
-          </form>
-          <% } else { %>
-              <div style="color: green; text-align: center;">Paid</div>
-            <% }
-          %>
-        </td>
-      </tr>
-      <% } } else { %>
-        <td>No data ever existed</a></td>
-      <% } %>
+      <% for(let i = 0; i< it.paymentMonthlyPaid.length; i++) { %>
+          <tr>
+            <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].firstname %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].lastname %></td>
+            <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].gender %></td>
+            <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].type %></td>
+            <td style="border: 1px solid black;"><%= it.paymentMonthlyPaid[i].address %>, <%= it.paymentMonthlyPaid[i].zipcode %> <%= it.paymentMonthlyPaid[i].city %></td>
+            <td style="border: 1px solid black; text-align: center;">€<%= it.paymentMonthlyPaid[i].price %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].month.toLocaleDateString('en-GB') %></td>
+            <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].current_date.toLocaleDateString('en-GB') %></td>
+            <td style="text-align: right;"> <% if(it.paymentMonthlyPaid[i].monthly_paid=='No') { %>
+                <form method="POST" action="/payment/monthly-paid/<%= it.paymentMonthlyPaid[i].id %>">
+                  <input type="submit" value="Pay it" style="background-color: #EC5151; border: 1px solid black ;">
+                </form>
+                <% } else { %><div style="color: green; text-align: center;">Paid</div><% }
+              %>
+            </td>
+          </tr>
+        <% } 
+      %>
     </tbody>
   </table>
+  <% } else { %>
+    <h3 style="color: red;">- You do not have contract yet!</h3>
+    <h3>- Data will be displayed when you have contract already, and deposit should be paid.</h3>
+    <h3>- Check it <a href="/application">here</a></h3>
+  <% } 
+%>
 </div>

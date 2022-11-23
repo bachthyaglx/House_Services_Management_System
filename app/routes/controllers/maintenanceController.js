@@ -2,13 +2,13 @@ import * as maintenanceService from "../../services/maintenanceService.js";
 
 const displayListMaintenance = async ({ render, user }) => {
   const displayListMaintenance = await maintenanceService.displayListMaintenance();
-  const checkMaintenence = await maintenanceService.checkMaintenence(user.id);
+  const userMaintenence = await maintenanceService.userMaintenence(user.id);
   const checkRent = await maintenanceService.checkRent(user.id);
 
   render("maintenance.eta", {
     checkRent: checkRent,
     displayListMaintenance: displayListMaintenance,
-    checkMaintenence: checkMaintenence
+    userMaintenence: userMaintenence
   });
 };
 

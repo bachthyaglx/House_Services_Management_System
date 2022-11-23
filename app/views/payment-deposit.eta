@@ -33,9 +33,12 @@
             Are you agree to process deposit payment? <input type="submit" value="Yes">
         </form>
         </div>
-    <% } else {
-            %><p>You paid deposit! Click here to check <a href="/payment/monthly-paid">monthly rent</a> and pay it!</p><%
-        }
-}   else { %>
-<div>You do not have housing contract yet! Check your <a href="/application">housing application!</a></div> <% 
-} %>
+    <% } else { %>
+            <h3 style="color: green;">- You paid deposit!</h3>
+            <h3>- Please check <a href="/payment/monthly-paid">monthly rent</a> !</h3>
+        <% }
+    } else { %>
+        <h3 style="color: red;">- You do not have housing contract yet!<h3>
+        <h3>- Check your <a href="/application">housing application!</a></h3> 
+    <% } 
+%>

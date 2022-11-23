@@ -2,9 +2,9 @@
 
 <% if (it.check_application && it.check_application.length > 0) { %>
     <div>
-        <p>Do you wanna cancel your application?</p>
+        <h3>Do you wanna cancel your application?</h3>
         <form method="POST" action="/termination/application">
-            <input type="submit" value="Cancel" />
+            <input type="submit" value="Yes" />
         </form><br />
     </div>
     <% } else if (it.check_rent && it.check_rent.length>0) { %>

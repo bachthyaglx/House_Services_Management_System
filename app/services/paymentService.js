@@ -76,7 +76,7 @@ const paymentMonthlyPaid = async (userID) => {
 
 const calculate_No_Paid = async (userID) => {
   const result = await executeQuery(
-    `SELECT count(monthly_paid) FROM monthlypaid 
+    `SELECT count(month) FROM monthlypaid 
      WHERE rent_id=(SELECT id FROM rents WHERE user_id=$user_id) AND monthly_paid='No';`,
     {
       user_id: userID,

@@ -1,16 +1,15 @@
 <% layout('./layouts/layout.eta') %>
 
 <div>
-  <h1>Chart of tenant’s responsibilities</h1>
-  <p>The tenant is responsible for maintaining the condition of the apartment. The cost of repair that is caused by tenant’s carelessness,
-    negligence or lack of maintenance will be charged from the tenant according to the chart of tenant or it is billed as charged.</p>
-  <p>Tankkari owns the right to change prices If necessary.</p>
+  <h3>Chart of tenant’s responsibilities</h3>
+  <p>The tenant is responsible for maintaining the condition of the apartment. The cost of repair that is caused by tenant’s carelessness, negligence or lack of maintenance will be charged from the tenant according to the chart of tenant or it is billed as charged.</p>
+  <p>We owns the right to change prices If necessary.</p>
   <table>
     <thead>
       <tr>
         <th style="border: 1px solid black; text-align: center;">Type</th>
         <th style="border: 1px solid black; text-align: center;">Service</th>
-        <th style="border: 1px solid black; text-align: center;">Price</th>
+        <th style="border: 1px solid black; text-align: center;">Price (€)</th>
       </tr>
     </thead>
     <tbody>

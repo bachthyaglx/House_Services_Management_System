@@ -1,15 +1,17 @@
 <% layout('./layouts/layout1.eta') %>
 
 <div>
-  <p>You are ADMIN</p>
+<% if(it.result && it.result.length>0) { %>
   <form method="POST" action="/admin-deposit">
     <p>Paid status
       <select name="statusDeposit">
+        <option value="">---</option>
         <option value="All">All</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
-      <input type="submit" value="Check" />
+      <input type="submit" value="Search" />
+      <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
     </p>
   </form>
   <table>
@@ -26,23 +28,36 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.length) { for(var i = 0; i< it.length; i++) {%>
-      <tr>
-        <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><a href="/admin-application/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
-        <td style="border: 1px solid black;"><%= it[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it[i].type %></td>
-        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it[i].deposit %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].duedate_deposit.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].deposit_paid %></td>
-      </tr>
-      <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
-      <% } %>
+      <% for(let i=0; i<it.result.length; i++) { %>
+        <tr>
+          <td style="border: 1px solid black; text-align: center;"><a href="/admin-application/user/<%= it.result[i].id %>/room/<%= it.result[i].room_id %>"><%= it.result[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.result[i].lastname %></td>
+          <td style="border: 1px solid black;"><%= it.result[i].gender %></td>
+          <td style="border: 1px solid black;"><%= it.result[i].type %></td>
+          <td style="border: 1px solid black;"><%= it.result[i].address %>, <%= it.result[i].zipcode %> <%= it.result[i].city %></td>
+          <td style="border: 1px solid black; text-align: center;">€<%= it.result[i].deposit %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.result[i].duedate_deposit.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it.result[i].deposit_paid %></td>
+        </tr>
+        <% } 
+      %> 
     </tbody>
   </table>
+  <% } else { %>
+      <form method="POST" action="/admin-deposit">
+        <p>Paid status
+          <select name="statusDeposit">
+            <option value="">---</option>
+            <option value="All">All</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <input type="submit" value="Search" />
+          <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
+        </p>
+      </form>
+      <h3 style="color: red;">- No data ever existed.</h3>
+      <h3>- Data will be display when at least one user have contract already.</h3>
+    <% } 
+  %>
 </div>

@@ -1,8 +1,6 @@
 <% layout('./layouts/layout1.eta') %>
 
 <div>
-  <h1>Registration form</h1>
-
   <% if (it.regErrors) { %>
   <ul>
     <% Object.keys(it.regErrors).forEach((attribute) => { %>
@@ -14,23 +12,39 @@
   <% } %>
 
   <form method="POST" action="/auth/register">
-    First name<br />
-    <input type="text" name="firstname" /><br />
-    Last name<br />
-    <input type="text" name="lastname" /><br />
-    Birthdate<br />
-    <input type="date" data-date-format="YYYY MMMM DD" name="birthdate" /><br />
-    Gender<br />
-    <select type="text" name="gender">
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select><br />
-    Email<br />
-    <input type="email" name="email" /><br />
-    Password<br />
-    <input type="password" name="password" /><br /><br />
+    <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
+      <tr>
+        <td style="padding-right: 20px;">First name</td>
+        <td><input type="text" name="firstname" /></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px;">Last name</td>
+        <td><input type="text" name="lastname" /></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px;">Birthdate</td>
+        <td><input type="date" name="birthdate" /></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px;">Gender</td>
+        <td>
+          <select type="text" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </td>
+      </tr>
+      <tr style="padding-right: 20px;">
+        <td>Email</td>
+        <td><input type="email" name="email" /></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px;">Password</td>
+        <td><input type="password" name="password" /></td>
+      </tr>
+    </table>
     <input type="submit" value="Register" />
   </form><br />
 
-  <a href="/login">Already registered? Login here.</a>
+  <h5><a href="/auth/login">Already registered? Login here</a></h5>
 </div>

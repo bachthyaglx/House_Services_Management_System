@@ -6,42 +6,38 @@ const processLogin = async ({ request, response, state, render }) => {
   const body = request.body({ type: "form" });
   const params = await body.value;
 
-  const userFromDatabase = await userService.findUserByEmail(
-    params.get("email"),
-  );
+  const error_mess1 = {
+    error: "Wrong email and/or password",
+  };
+
+  const error_mess2 = {
+    error: "Please enter email and password",
+  };
+
+  const userFromDatabase = await userService.findUserByEmail(params.get("email"));
   if (userFromDatabase.length != 1 || !userFromDatabase) {
-    response.redirect("/auth/login");
+    render("login.eta", error_mess2);
     return;
   }
 
   const user = userFromDatabase[0];
-  const passwordMatches = await bcrypt.compare(
-    params.get("password"),
-    user.password,
-  );
+  await state.session.set("user", user);
 
-  const error_mess = {
-    error: "Wrong email or/and password",
-  };
+  const passwordMatches = await bcrypt.compare(params.get("password"), user.password);
 
   if (!passwordMatches) {
-    render("login.eta", error_mess);
+    render("login.eta", error_mess1);
     return;
-  }
-
-  await state.session.set("user", user);
+  } 
 
   // console.log(cookie.path);
 
   if (!cookie.path && user.email=="admin@admin.com") {
     response.redirect("/admin-application");
-    return;
   } else if (!cookie.path && user.email!="admin@admin.com") {
     response.redirect("/");
-    return;
   } else {
     response.redirect(cookie.path);
-    return;
   }
 };
 

@@ -1,7 +1,7 @@
 <% layout('./layouts/layout1.eta') %>
 
 <div>
-  <p>You are ADMIN</p>
+<% if(it.length) { %>
   <table>
     <thead>
       <tr>
@@ -17,29 +17,30 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.length) { for(var i = 0; i< it.length; i++) {%>
-      <tr>
-        <% /* <th scope="row"><%= (i+1) %></th> */ %>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].firstname %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
-        <td style="border: 1px solid black;"><%= it[i].gender %></td>
-        <td style="border: 1px solid black;"><%= it[i].type %></td>
-        <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
-        <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].datestart.toLocaleDateString('en-GB') %></td>
-        <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_deposit.toLocaleDateString('en-GB') %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
-        <td style="text-align: right;">
-          <form method="POST" action="/admin-termination/deposit/user/<%= it[i].id %>">
-            <input type="submit" value="Terminate" style="background-color: #EC5151; border: 1px solid black ;">
-          </form>
-        </td>
-      </tr>
-      <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
-      <% } %>
+      <% for(var i=0; i<it.length; i++) { %>
+        <tr>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].firstname %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
+          <td style="border: 1px solid black;"><%= it[i].gender %></td>
+          <td style="border: 1px solid black;"><%= it[i].type %></td>
+          <td style="border: 1px solid black;"><%= it[i].address %>, <%= it[i].zipcode %> <%= it[i].city %></td>
+          <td style="border: 1px solid black; text-align: center;">€<%= it[i].price %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].datestart.toLocaleDateString('en-GB') %></td>
+          <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_deposit.toLocaleDateString('en-GB') %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
+          <td style="text-align: right;">
+            <form method="POST" action="/admin-termination/deposit/user/<%= it[i].id %>">
+              <input type="submit" value="Terminate" style="background-color: #EC5151; border: 1px solid black ;">
+            </form>
+          </td>
+        </tr>
+        <% } 
+      %>
     </tbody>
   </table>
+  <% } else { %>
+      <h3 style="color: red;">- No data ever existed.</h3>
+      <h3>- Data will be displayed when at least one user have contract, and not paid deposit by duedate.</h3>
+  <% } 
+%>
 </div>

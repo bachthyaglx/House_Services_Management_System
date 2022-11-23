@@ -1,8 +1,6 @@
 <% layout('./layouts/layout1.eta') %>
 
 <div>
-  <p>You are ADMIN</p>
-
   <form method="POST" action="/admin-application/user/<%= it.table1[0].id %>">
     <label for="userID">User ID</label>
     <input type="text" style="background-color: #E0E0E0" name="userID" value="<%= it.table1[0].id %>" readonly><br><br>
@@ -20,16 +18,15 @@
     <input type="text" style="background-color: #E0E0E0" name="dateRent" value="<%= it.table1[0].date_rent.toLocaleDateString('en-GB') %>" readonly><br><br>
 
     <label for="duedateDeposit">Duedate Deposit (Automatically generated)</label>
-    <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.duedateDeposit %>"> (Automatically generated) <br><br>
+    <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.duedateDeposit %>"><br><br>
 
     <label for="roomID">Possible Room Address</label>
     <select name="roomID">
       <% if(it.table2.length) { for (var i = 0; i < it.table2.length; i++) { %>
-      <option value="<%= it.table2[i].id %>"><%= it.table2[i].address %>, <%= it.table2[i].zipcode %> <%= it.table2[i].city %></option>
+        <option value="<%= it.table2[i].id %>"><%= it.table2[i].address %>, <%= it.table2[i].zipcode %> <%= it.table2[i].city %></option>
       <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
+            <h3 style="color: red;">- No data ever existed.</h3>
+            <h3>- Data will be displayed when at least one user have sent an application already.</h3>
       <% } %>
     </select><br><br>
     <input type="submit" value="Approve">
