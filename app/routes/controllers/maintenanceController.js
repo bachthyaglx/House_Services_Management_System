@@ -4,7 +4,6 @@ const displayListMaintenance = async ({ render, user }) => {
   const displayListMaintenance = await maintenanceService.displayListMaintenance();
   const userMaintenence = await maintenanceService.userMaintenence(user.id);
   const checkRent = await maintenanceService.checkRent(user.id);
-
   render("maintenance.eta", {
     checkRent: checkRent,
     displayListMaintenance: displayListMaintenance,
