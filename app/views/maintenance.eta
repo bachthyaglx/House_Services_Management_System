@@ -1,0 +1,35 @@
+<% layout('./layouts/layout1.eta') %>
+
+<% if (it.checkMaintenence && it.checkMaintenence.length>0) { %>
+  <h3>- You have sent a request for maintenance.</h3>
+  <h3>- We are processing for request..</h3>
+<% } else if(it.checkRent && it.checkRent.length>0) { %>
+  <div>
+    <h1>Request for maintenance</h1>
+    <% if (it.regErrors) { %>
+    <ul>
+      <% Object.keys(it.regErrors).forEach((attribute) => { %>
+      <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
+      <li style="color: red"><%= err %></li>
+      <% }); %>
+      <% }); %>
+    </ul>
+    <% } %>
+    <form method="POST" action="/maintenance">
+      Choose a service<br />
+      <select type="text" name="service">
+      <% if (it.displayListMaintenance && it.displayListMaintenance.length>0) { for(let i=0; i<it.displayListMaintenance.length; i++) {%>
+          <option value="<%=it.displayListMaintenance[i].id %>"><%=it.displayListMaintenance[i].type_request %></option>
+        <% } }
+      %>
+      </select><br /><br />
+      <input type="submit" value="Send request" />
+    </form><br />
+  </div>
+ <% } else { %> 
+    <h3 style="color: red;">- You do not have contract yet!</h3>
+    <h3>- In order to request a maintenance, you should have a housing contract and paid deposit for it already.</h3>
+    <h3>- Chere it <a href="/application">here</a></h3>
+  <% }
+
+%>

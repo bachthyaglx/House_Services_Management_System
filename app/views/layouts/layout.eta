@@ -31,6 +31,9 @@
           <a class="nav-link" aria-current="page" href="/apartments">Apartments</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/services">Services</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/application">Application</a>
         </li>
         <li class="nav-item nav-link dropdown">
@@ -48,7 +51,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/services">Services</a>
+          <a class="nav-link" aria-current="page" href="/maintenance">Maintenance</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/auth/logout">Logout</a>
@@ -63,6 +66,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/admin-monthly-paid">Monthly Paid Checks</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/admin-maintenance">Maintenance Checks</a>
+        </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Termination</button>
           <div class="dropdown-content">
@@ -70,9 +76,6 @@
             <a aria-current="page" href="/admin-termination/deposit">Deposit Paid</a>
             <a aria-current="page" href="/admin-termination/monthly-paid">Monthly Paid</a>
           </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin-services">Service Checks</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/auth/logout">Logout</a>
@@ -83,6 +86,9 @@
         </li>
         <li class="nav-item active">
           <a class="nav-link" aria-current="page" href="/apartments">Apartments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/services">Services</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/application">Application</a>
@@ -102,7 +108,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/services">Services</a>
+          <a class="nav-link" aria-current="page" href="/maintenance">Maintenance</a>
         </li>
         <li class="nav-item">
           <% if (!it.user) {%><a class="nav-link" aria-current="page" href="/auth/register">Register</a><%} %>

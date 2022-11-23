@@ -1,7 +1,7 @@
 <% layout('./layouts/layout1.eta') %>
 
 <% if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication<=2) { %>
-<h3>- You did submit application.</h3>
+<h3 style="color: green;">- You did submit application.</h3>
 <h3>- You can update your application within 2 days since it was sent.</h3>
 <div>
   <form method="POST" action="/application/update">
@@ -29,20 +29,20 @@
   </form>
 </div>
 <% } else if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication>2) { %>
-<h3>- You did submit application.</h3>
-<h3>- After 2 days since your application was submited, you can't modify it.</h3>
-<h3>- We are processing your application..</h3>
+<h3 style="color: green;" >- You did submit application.</h3>
+<h3 style="color: green;">- After 2 days since your application was submited, you can't modify it.</h3>
+<h3 style="color: green;">- We are processing your application..</h3>
 <% } else if (it.check_rent && it.check_rent.length>0 && it.check_rent[0].deposit_paid=='No') { %>
-<h3>- You did submit application.</h3>
-<h3>- Your application has been processed.</h3>
-<h3>- We approved your application.</h3>
+<h3 style="color: green;">- You did submit application.</h3>
+<h3 style="color: green;">- Your application has been processed.</h3>
+<h3 style="color: green;">- We approved your application.</h3>
 <h3>- Please <a href="/payment/deposit">pay deposit</a> then...</h3>
 <% } else if (it.check_monthlyPaid && it.check_monthlyPaid.length>0) { 
   %>
-    <h3>- You did submit application.</h3>
-    <h3>- Your application has been processed.</h3>
-    <h3>- We approved your application.</h3>
-    <h3>- You paid deposit.</h3>
+    <h3 style="color: green;" >- You did submit application.</h3>
+    <h3 style="color: green;" >- Your application has been processed.</h3>
+    <h3 style="color: green;">- We approved your application.</h3>
+    <h3 style="color: green;">- You paid deposit.</h3>
     <h3>- Please check <a href="/payment/monthly-paid">monthly rent(s)</a>.</h3>
   <% 
 } else { %>

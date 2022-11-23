@@ -9,6 +9,7 @@ import * as applicationController from "./controllers/applicationController.js";
 import * as terminationController from "./controllers/terminationController.js";
 import * as paymentController from "./controllers/paymentController.js";
 import * as servicesController from "./controllers/servicesController.js";
+import * as maintenanceController from "./controllers/maintenanceController.js";
 
 import * as admin_applicationController from "./controllers/admin_applicationController.js";
 import * as admin_depositController from "./controllers/admin_depositController.js";
@@ -23,6 +24,9 @@ router.get("/", mainController.showMain);
 
 // Handle apartments
 router.get("/apartments", apartmentsController.showApartments);
+
+// Handle services
+router.get("/services", servicesController.showServices);
 
 //--------------------------------------------USER-------------------------------------------------
 // Handle register
@@ -53,9 +57,9 @@ router.post("/payment/deposit", paymentController.payDeposit);
 router.get("/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
 router.post("/payment/monthly-paid/:mID", paymentController.payMonthlyPaid);
 
-// Handle services
-router.get("/services", servicesController.showServices);
-// router.post("/services", servicesController.submitServices);
+// Handle maintenance
+router.get("/maintenance", maintenanceController.displayListMaintenance);
+router.post("/maintenance", maintenanceController.submitRequestMaintenance);
 
 //----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN

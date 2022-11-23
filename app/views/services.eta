@@ -1,11 +1,10 @@
-<% layout('./layouts/layout1.eta') %>
+<% layout('./layouts/layout.eta') %>
 
 <div>
   <h1>Chart of tenant’s responsibilities</h1>
   <p>The tenant is responsible for maintaining the condition of the apartment. The cost of repair that is caused by tenant’s carelessness,
     negligence or lack of maintenance will be charged from the tenant according to the chart of tenant or it is billed as charged.</p>
   <p>Tankkari owns the right to change prices If necessary.</p>
-  <h2>THE CHART OF TENANT’S RESPONSIBILITIES</h2>
   <table>
     <thead>
       <tr>
@@ -15,11 +14,16 @@
       </tr>
     </thead>
     <tbody>
-      <% if(it.category && it.category.length>0) { for(let i = 0; i<it.category.length; i++) {%>
+      <% if(it.listCategory && it.listCategory.length>0) { for(let i=0; i<it.listCategory.length; i++) {%>
       <tr>
-        <td style="border: 1px solid black; text-align: left;" rowspan=""><%= it.category[i].category %></td>
-        <td style="border: 1px solid black; text-align: left;"><%= it.category[i].type_request %></td>
-        <td style="border: 1px solid black; text-align: center;"><%= it.category[i].cost %></td>
+        <td style="border: 1px solid black; text-align: center;" rowspan="<%= it.countItemsInCategory[i][0].count %>"><%= it.listCategory[i].category %></td>
+        <% for(let j=0; j<it.showItemsInCategory[i].length; j++) { %>
+          <tr>
+            <td style="border: 1px solid black; text-align: left;"><%= it.showItemsInCategory[i][j].type_request %></td>
+            <td style="border: 1px solid black; text-align: center;"><%= it.showItemsInCategory[i][j].cost %></td>
+          </tr>
+           <% };
+        %>
       </tr>
       <% } } else { %>
       <tr>
@@ -29,3 +33,5 @@
     </tbody>
   </table>
 </div>
+
+

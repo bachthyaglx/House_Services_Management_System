@@ -8,10 +8,10 @@
         </form><br />
     </div>
     <% } else if (it.check_rent && it.check_rent.length>0) { %>
-        <div>We passed through your application.</div>
-        <div style="color: green;">You have a contract already.</div>
+        <h3>- We passed through your application.</h3>
+        <h3 style="color: green;">- You have a contract already.</h3>
     <% } else { %>
-        <div>You do not have housing application yet.</div>
-        <div>Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></div>
+        <h3>- You do not have housing application yet.</h3>
+        <h3>- Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></h3>
     <% }
 %>

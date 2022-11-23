@@ -1,11 +1,8 @@
 <% layout('./layouts/layout1.eta') %>
 
-<div>Here you can check your monthly rent.</div></br>
 <% if(it.calculate_No_Paid && it.calculate_No_Paid.length>0 && it.calculate_No_Paid[0].count>0) {%>
     <div>There has total <b style="color: Red;"><%= it.calculate_No_Paid[0].count %></b> months(s) of rent you have not paid yet!</div></br>
-  <% } else if(it.calculate_No_Paid && it.calculate_No_Paid.length>0 && it.calculate_No_Paid[0].count==0) {%>
-    <div style="color: green;">You paid all monthly rent(s).</div></br>
-  <% } 
+  <% }
 %>
 
 <div>
@@ -47,9 +44,7 @@
         </td>
       </tr>
       <% } } else { %>
-      <tr>
-        <td>No data ever existed.</td>
-      </tr>
+        <td>No data ever existed</a></td>
       <% } %>
     </tbody>
   </table>

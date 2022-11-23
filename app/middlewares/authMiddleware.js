@@ -1,4 +1,4 @@
-const restrictedPaths = ["/application", "/termination", "/services", "/payment"];
+const restrictedPaths = ["/application", "/termination", "/maintenance", "/payment"];
 
 let path = "";
 

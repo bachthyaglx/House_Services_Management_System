@@ -1,4 +1,4 @@
-<% layout('./layouts/layout.eta') %>
+<% layout('./layouts/layout1.eta') %>
 
 <% /* <h1>Drill and practice</h1>
 
