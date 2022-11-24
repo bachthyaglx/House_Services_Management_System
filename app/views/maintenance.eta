@@ -35,7 +35,7 @@
           </tr>
       </tbody>
     </table>
-  <% } else if (!it.userMaintenence && !it.userMaintenence.length>0 && it.checkRent && it.checkRent.length>0) { %>
+  <% } else if (it.checkRent && it.checkRent.length>0) { %>
     <div>
       <h1>Request for maintenance</h1>
       <form method="POST" action="/maintenance">
@@ -49,7 +49,7 @@
         <input type="submit" value="Send request" />
       </form><br />
     </div>
-  <% } else if (!it.userMaintenence && !it.userMaintenence.length>0 !it.checkRent && !it.checkRent.length>0) { %> 
+  <% } else { %> 
     <h3 style="color: red;">- You do not have contract yet!</h3>
     <h3>- In order to request a maintenance, you should have a housing contract and paid deposit for it already.</h3>
     <h3>- Check it <a href="/application">here</a></h3>
