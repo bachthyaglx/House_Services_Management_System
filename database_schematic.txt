@@ -62,6 +62,8 @@ CREATE TABLE services (
   cost VARCHAR(255)
 );
 
+CREATE UNIQUE INDEX ON services((lower(type_request)));
+
 CREATE TABLE maintenance (
   id SERIAL PRIMARY KEY,
   rent_id INTEGER REFERENCES rents(id),

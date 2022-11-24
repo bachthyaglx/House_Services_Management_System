@@ -2,10 +2,10 @@ import { Pool } from "../deps.js";
 
 const CONCURRENT_CONNECTIONS = 2;
 const connectionPool = new Pool({
-  hostname: "lucky.db.elephantsql.com",
-  database: "woynhcbg",
-  user: "woynhcbg",
-  password: "C2VrTODhwon9rIAzNuc05r2rYZPZZC8c",
+  hostname: "surus.db.elephantsql.com",
+  database: "fearfmlh",
+  user: "fearfmlh",
+  password: "lLQkayAarza5ymzdoI6Pr6ex504gvUtR",
   port: 5432,
 }, CONCURRENT_CONNECTIONS);
 
