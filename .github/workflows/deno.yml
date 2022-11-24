@@ -19,3 +19,13 @@ jobs:
 
       - name: Run tests
         run: deno test --allow-all
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "e1da9aed-04f3-4ce6-8f67-b59db824e5c2"
+          heroku_app_name: "housing-system"
+          heroku_email: "bachthy94@gmail.com"
