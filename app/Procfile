@@ -1,1 +1,1 @@
-web: deno run --allow-all app.js ${PORT}
+web: deno run --allow-all --unstable --allow-net --allow-env --watch heroku-deploy.js ${PORT}
