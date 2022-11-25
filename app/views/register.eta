@@ -11,7 +11,7 @@
   </ul>
   <% } %>
 
-  <form method="POST" action="/register">
+  <form method="POST" action="/auth/register">
     <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
       <tr>
         <td style="padding-right: 20px;">First name</td>
