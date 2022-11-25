@@ -20,20 +20,21 @@ const submitApplication = async ({ request, response, render, user }) => {
     apartmentData,
     validationRules_application,
   );
+  
+  let today = new Date();
+  today.setMonth(today.getMonth()+1)
+  let today_convert = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
   if (!passes) {
     apartmentData.regErrors = errors;
     render("application.eta", apartmentData);
+  } else if (form_value.get("date_rent")<today_convert) {
+    let error = "Date must be equal or greater than today";
+    render("application.eta", {error});
   } else {
-    const apartmentID = await applicationService.getApartmentID(
-      form_value.get("type_apartment"),
-    );
-    await applicationService.submitApplication(
-      user.id,
-      apartmentID[0].id,
-      form_value.get("date_rent"),
-    );
-    response.redirect("/application");
+    const apartmentID = await applicationService.getApartmentID(form_value.get("type_apartment"));
+    await applicationService.submitApplication(user.id, apartmentID[0].id, form_value.get("date_rent"));
+    response.redirect("/auth/application");
   }
 };
 
@@ -81,25 +82,31 @@ const updateApplication = async ({ request, response, user, render }) => {
     apartmentData1,
     validationRules_application,
   );
+  
+  let today = new Date();
+  today.setMonth(today.getMonth()+1)
+  let today_convert = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
   if (!passes) {
     apartmentData1.validationErrors = errors;
-    render("application.eta", {
-      error: apartmentData1.validationErrors.date_rent.required,
+    render("application-update.eta", {
+      error_date_check: "Date is empty or not correct",
+      check_profile: await userService.showUserProfile(user.id),
+      check_application: await applicationService.userApplication(user.id),
+      apartment_application: await applicationService.apartmentName(user.id),
+    });
+  } else if (form_value.get("date_rent")<today_convert) {
+    let error = "Date must be equal or greater than today";
+    render("application-update.eta", { 
+      error_date_check: error,
       check_profile: await userService.showUserProfile(user.id),
       check_application: await applicationService.userApplication(user.id),
       apartment_application: await applicationService.apartmentName(user.id),
     });
   } else {
-    const apartmentID = await applicationService.getApartmentID(
-      form_value.get("type_apartment"),
-    );
-    await applicationService.updateApplication(
-      apartmentID[0].id,
-      form_value.get("date_rent"),
-      user.id,
-    );
-    response.redirect("/application");
+    const apartmentID = await applicationService.getApartmentID(form_value.get("type_apartment"));
+    await applicationService.updateApplication(apartmentID[0].id, form_value.get("date_rent"), user.id);
+    response.redirect("/auth/application");
   }
 };
 

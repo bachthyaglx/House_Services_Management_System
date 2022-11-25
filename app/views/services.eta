@@ -1,7 +1,7 @@
 <% layout('./layouts/layout.eta') %>
 
 <div>
-  <h3>Chart of tenant’s responsibilities</h3>
+  <h4>Chart of tenant’s responsibilities</h4>
   <p>The tenant is responsible for maintaining the condition of the apartment. The cost of repair that is caused by tenant’s carelessness, negligence or lack of maintenance will be charged from the tenant according to the chart of tenant or it is billed as charged.</p>
   <p>We owns the right to change prices If necessary.</p>
   <table>

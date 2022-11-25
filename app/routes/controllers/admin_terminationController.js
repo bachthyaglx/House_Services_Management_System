@@ -7,7 +7,7 @@ const displayApplicationList = async ({ render }) => {
 
 const deleteApplication = async ({ response, params }) => {
   await admin_terminationService.deleteApplication(params.uID);
-  response.redirect("/admin-termination/application");
+  response.redirect("/auth/admin-termination/application");
 };
 
 const duedateNotPaidDeposit = async ({ render }) => {
@@ -17,7 +17,7 @@ const duedateNotPaidDeposit = async ({ render }) => {
 
 const terminateDeposit = async ({ response, params }) => {
   await admin_terminationService.terminateDeposit(params.uID);
-  response.redirect("/admin-termination/deposit");
+  response.redirect("/auth/admin-termination/deposit");
 };
 
 const duedateNotMonthlyPaid = async ({ render }) => {
@@ -27,7 +27,7 @@ const duedateNotMonthlyPaid = async ({ render }) => {
 
 const terminateMonthlyPaid = async ({ response, params }) => {
   await admin_terminationService.terminateMonthlyPaid(params.rID);
-  response.redirect("/admin-termination/monthly-paid");
+  response.redirect("/auth/admin-termination/monthly-paid");
 };
 
 export { displayApplicationList, deleteApplication, duedateNotPaidDeposit, terminateDeposit, duedateNotMonthlyPaid, terminateMonthlyPaid };

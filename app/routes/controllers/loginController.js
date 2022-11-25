@@ -33,7 +33,7 @@ const processLogin = async ({ request, response, state, render }) => {
   // console.log(cookie.path);
 
   if (!cookie.path && user.email=="admin@admin.com") {
-    response.redirect("/admin-application");
+    response.redirect("/auth/admin-application");
   } else if (!cookie.path && user.email!="admin@admin.com") {
     response.redirect("/");
   } else {

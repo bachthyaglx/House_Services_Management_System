@@ -17,7 +17,7 @@ const submitRequestMaintenance = async ({ response, request, user }) => {
 
   const checkRent = await maintenanceService.checkRent(user.id);
   await maintenanceService.submitRequestMaintenance(checkRent[0].id, params.get("service"));
-  response.redirect("/maintenance");
+  response.redirect("/auth/maintenance");
 };
 
 export { displayListMaintenance, submitRequestMaintenance };

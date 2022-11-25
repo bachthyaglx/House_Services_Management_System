@@ -12,8 +12,7 @@
 <li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
 </ul> */ %>
 
-<div>
-<% if(it.table1.length) { %>
+<% if(it.table1.length && it.table1.length>0) { %>
   <table>
     <thead>
       <tr>
@@ -29,9 +28,9 @@
       </tr>
     </thead>
     <tbody>
-      <% for(var i = 0; i< it.table1.length; i++) { %>
+      <% for(let i=0; i<it.table1.length; i++) { %>
         <tr>
-          <td style="border: 1px solid black; text-align: center; "><a href="/admin-application/user/<%= it.table1[i].id %>"><%= it.table1[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center; "><a href="/auth/admin-application/user/<%= it.table1[i].id %>"><%= it.table1[i].firstname %></a></td>
           <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].lastname %></td>
           <td style="border: 1px solid black; text-align: center;"><%= it.table1[i].gender %></td>
           <td style="border: 1px solid black;"><%= it.table1[i].email %></td>
@@ -46,8 +45,11 @@
     </tbody>
   </table>
   <% } else { %>
-        <h3 style="color: red;">- No data ever existed.</h3>
-        <h3>- Data will be displayed when at least one user have sent an application already.</h3>
+        <h4 style="color: red;">- No data ever existed.</h4>
+        <h4>- Data will be displayed when 
+          <ul>
+            <li>At least one user have submitted an application already</li>
+          </ul>
+        </h4>
     <% } 
 %>
-</div>

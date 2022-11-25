@@ -1,34 +1,37 @@
 <% layout('./layouts/layout1.eta') %>
 
-<div>
-  <form method="POST" action="/admin-application/user/<%= it.table1[0].id %>">
-    <label for="userID">User ID</label>
-    <input type="text" style="background-color: #E0E0E0" name="userID" value="<%= it.table1[0].id %>" readonly><br><br>
 
-    <label for="userID">Firstname</label>
-    <input type="text" style="background-color: #E0E0E0" name="firstname" value="<%= it.table1[0].firstname %>" readonly><br><br>
+<form method="POST" action="/auth/admin-application/user/<%= it.table1[0].id %>">
+  <label for="userID">User ID</label>
+  <input type="text" style="background-color: #E0E0E0" name="userID" value="<%= it.table1[0].id %>" readonly><br><br>
 
-    <label for="userID">Lastname</label>
-    <input type="text" style="background-color: #E0E0E0" name="lastname" value="<%= it.table1[0].lastname %>" readonly><br><br>
+  <label for="userID">Firstname</label>
+  <input type="text" style="background-color: #E0E0E0" name="firstname" value="<%= it.table1[0].firstname %>" readonly><br><br>
 
-    <label for="userID">Gender</label>
-    <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.table1[0].gender %>" readonly><br><br>
+  <label for="userID">Lastname</label>
+  <input type="text" style="background-color: #E0E0E0" name="lastname" value="<%= it.table1[0].lastname %>" readonly><br><br>
 
-    <label for="dateStart">Need Apartment From</label>
-    <input type="text" style="background-color: #E0E0E0" name="dateRent" value="<%= it.table1[0].date_rent.toLocaleDateString('en-GB') %>" readonly><br><br>
+  <label for="userID">Gender</label>
+  <input type="text" style="background-color: #E0E0E0" name="gender" value="<%= it.table1[0].gender %>" readonly><br><br>
 
-    <label for="duedateDeposit">Duedate Deposit (Automatically generated)</label>
-    <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.duedateDeposit %>"><br><br>
+  <label for="dateStart">Need Apartment From</label>
+  <input type="text" style="background-color: #E0E0E0" name="dateRent" value="<%= it.table1[0].date_rent.toLocaleDateString('en-GB') %>" readonly><br><br>
 
-    <label for="roomID">Possible Room Address</label>
-    <select name="roomID">
-      <% if(it.table2.length) { for (var i = 0; i < it.table2.length; i++) { %>
-        <option value="<%= it.table2[i].id %>"><%= it.table2[i].address %>, <%= it.table2[i].zipcode %> <%= it.table2[i].city %></option>
-      <% } } else { %>
-            <h3 style="color: red;">- No data ever existed.</h3>
-            <h3>- Data will be displayed when at least one user have sent an application already.</h3>
-      <% } %>
-    </select><br><br>
-    <input type="submit" value="Approve">
-  </form>
-</div>
+  <label for="duedateDeposit">Duedate Deposit (Automatically generated)</label>
+  <input type="text" style="background-color: #E0E0E0; color:red;" name="duedateDeposit" value="<%= it.duedateDeposit %>"><br><br>
+
+  <label for="roomID">Possible Room Address</label>
+  <select name="roomID">
+    <% if(it.table2.length) { for (var i = 0; i < it.table2.length; i++) { %>
+    <option value="<%= it.table2[i].id %>"><%= it.table2[i].address %>, <%= it.table2[i].zipcode %> <%= it.table2[i].city %></option>
+    <% } } else { %>
+    <h4 style="color: red;">- No data ever existed.</h4>
+    <h4>- Data will be displayed when 
+      <ul>
+        <li>At least one user has submitted an application already</li>
+      </ul>
+    </h4>
+    <% } %>
+  </select><br><br>
+  <input type="submit" value="Approve">
+</form>

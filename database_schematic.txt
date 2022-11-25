@@ -40,8 +40,8 @@ CREATE TABLE application (
 
 CREATE TABLE rents (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
-  room_id INTEGER REFERENCES rooms(id),
+  user_id INTEGER REFERENCES users(id) UNIQUE,
+  room_id INTEGER REFERENCES rooms(id) UNIQUE,
   datestart DATE,
   duedate_deposit DATE,
   deposit_paid VARCHAR(255) DEFAULT 'No'
@@ -57,8 +57,8 @@ CREATE TABLE monthlypaid (
 
 CREATE TABLE services (
   id SERIAL PRIMARY KEY,
-  category VARCHAR(255),
-  type_request VARCHAR(255),
+  category TEXT,
+  type_request TEXT,
   cost VARCHAR(255)
 );
 
@@ -73,7 +73,6 @@ CREATE TABLE maintenance (
   date_report DATE,
   resolve VARCHAR(255) DEFAULT 'No'
 );
-
 
 ----INSERT APARTMENTS-------
 INSERT INTO apartments (type, quantity, deposit, price) VALUES ('2h-shared apartment',5, 250, 280.55);
@@ -159,7 +158,7 @@ INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, 
 --------INSERT ADMIN---------
 INSERT INTO users (email, password, admin) VALUES ('admin@admin.com', '$2a$12$.lOV4EJhJqYWxVR/RSZtk.QapD6f90jC4JkU.L3O4Tokj5SqpjZcq', 'True')
 
----DROP ALL TABLES-----
+-----------DROP ALL TABLES------------
 drop table users cascade;
 drop table apartments cascade;
 drop table rooms cascade;
@@ -168,7 +167,7 @@ drop table rents cascade;
 drop table monthlypaid cascade;
 drop table maintenance cascade;
 
-------RESTART AUTOINCREMENT AFTER DELETE ROWS----
+-----------RESTART AUTOINCREAMENT AFTER DELETE ROWS-----------
 ALTER SEQUENCE product_id_seq RESTART WITH 1;
 
 		  

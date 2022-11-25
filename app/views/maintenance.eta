@@ -38,7 +38,7 @@
   <% } else if (it.checkRent && it.checkRent.length>0) { %>
     <div>
       <h1>Request for maintenance</h1>
-      <form method="POST" action="/maintenance">
+      <form method="POST" action="/auth/maintenance">
         Choose a service<br />
         <select type="text" name="service">
         <% if (it.displayListMaintenance && it.displayListMaintenance.length>0) { for(let i=0; i<it.displayListMaintenance.length; i++) {%>
@@ -50,8 +50,13 @@
       </form><br />
     </div>
   <% } else { %> 
-    <h3 style="color: red;">- You do not have contract yet!</h3>
-    <h3>- In order to request a maintenance, you should have a housing contract and paid deposit for it already.</h3>
-    <h3>- Check it <a href="/application">here</a></h3>
+    <h4 style="color: red;">- You do not have contract yet</h4>
+    <h4>- You are allowed to send a maintenance request for your apartment when
+      <ul>
+        <li>You have a contract already</li>
+        <li>Deposit should be paid</li>
+      </ul>
+    </h4>
+    <h4>- Check your application <a href="/auth/application">here</a> and pay deposit</h4>
   <% }
 %>

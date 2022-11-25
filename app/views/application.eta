@@ -1,54 +1,76 @@
 <% layout('./layouts/layout1.eta') %>
 
 <% if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication<=2) { %>
-<h3 style="color: green;">- You did submit application.</h3>
-<h3>- You can update your application within 2 days since it was sent.</h3>
-<div>
-  <form method="POST" action="/application/update">
-    First name </br>
-    <input type="text" name="firstname" disabled="disabled" value="<%= it.check_profile[0].firstname %>" /></br></br>
-    Last name </br>
-    <input type="text" name="lastname" disabled="disabled" value="<%= it.check_profile[0].lastname %>" /></br></br>
-    Birthdate </br>
-    <input name="birthdate" disabled="disabled" value="<%= it.check_profile[0].birthdate.toLocaleDateString('en-GB') %>" /></br></br>
-    Gender </br>
-    <input type="text" name="gender" disabled="disabled" value="<%= it.check_profile[0].gender %>" /></br></br>
-    Email </br>
-    <input type="email" name="email" disabled="disabled" value="<%= it.check_profile[0].email %>" /></br></br></br>
-    Type of apartment <input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /> - Change another apartment
-    <select type="text" name="type_apartment">
-      <option value="2h-shared apartment">2h-shared apartment</option>
-      <option value="3h-shared apartment">3h-shared apartment</option>
-      <option value="1h-single apartment">1h-single apartment</option>
-      <option value="2h-family apartment">2h-family apartment</option>
-    </select></br></br>
-    Date need apartment <input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"> - Change another date
-    <input type="date" data-date-format="YYYY MMMM DD" name="date_rent" /></br></br>
-    <p><input type="submit" value="Update" /> <% if (it.error) { %>
-    <p style="color: red"><%= it.error %></p><% } %> </p>
-  </form>
-</div>
+<h4 style="color: green;">- You did submit application.</h4>
+<h4>- You have 2 days to modify your application since it is sent already.</h4>
+<h4>- You can cancel your application <a href="/auth/termination/application">here</a></h4>
+
+<form method="POST" action="/auth/application/update">
+  <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
+    <tr>
+      <td style="padding-right: 20px;">First name</td>
+      <td><input type="text" name="firstname" disabled="disabled" value="<%= it.check_profile[0].firstname %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Last name</td>
+      <td><input type="text" name="lastname" disabled="disabled" value="<%= it.check_profile[0].lastname %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Birthdate</td>
+      <td><input name="birthdate" disabled="disabled" value="<%= it.check_profile[0].birthdate.toLocaleDateString('en-GB') %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Gender</td>
+      <td><input type="text" name="gender" disabled="disabled" value="<%= it.check_profile[0].gender %>" /></td>
+    </tr>
+    <tr style="padding-right: 20px;">
+      <td>Email</td>
+      <td><input type="email" name="email" disabled="disabled" value="<%= it.check_profile[0].email %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Apartment</td>
+      <td><input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /></td>
+      <td style="padding-right: 20px;">Choose another apartment</td>
+      <td>
+        <select type="text" name="type_apartment">
+          <option value="2h-shared apartment">2h-shared apartment</option>
+          <option value="3h-shared apartment">3h-shared apartment</option>
+          <option value="1h-single apartment">1h-single apartment</option>
+          <option value="2h-family apartment">2h-family apartment</option>
+        </select>
+      </td>
+    </tr>
+    <tr style="padding-right: 20px;">
+      <td>Date need</td>
+      <td><input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"></td>
+      <td>Change another date</td>
+      <td><input type="date" name="date_rent" /></td>
+    </tr>
+  </table>
+  <input type="submit" value="Update" />
+</form>
+
 <% } else if (it.check_application && it.check_application.length>0 && it.dateSubmitApplication>2) { %>
-<h3 style="color: green;">- You did submit application.</h3>
-<h3 style="color: green;">- After 2 days since your application was submited, you can't modify it.</h3>
-<h3 style="color: green;">- We are processing your application..</h3>
+<h4 style="color: green;">- You did submit application</h4>
+<h4 style="color: green;">- After 2 days since your application was submited, you can't modify it</h4>
+<h4 style="color: green;">- Your application are being processed...</h4>
 <% } else if (it.check_rent && it.check_rent.length>0 && it.check_rent[0].deposit_paid=='No') { %>
-<h3 style="color: green;">- You did submit application.</h3>
-<h3 style="color: green;">- Your application has been processed.</h3>
-<h3 style="color: green;">- We approved your application.</h3>
-<h3>- Please <a href="/payment/deposit">pay deposit</a> then...</h3>
+<h4 style="color: green;">- You did submit application</h4>
+<h4 style="color: green;">- Your application has been processed</h4>
+<h4 style="color: green;">- We approved your application</h4>
+<h4>- Please <a href="/auth/payment/deposit">pay deposit</a> then...</h4>
 <% } else if (it.check_monthlyPaid && it.check_monthlyPaid.length>0) { 
   %>
-    <h3 style="color: green;" >- You did submit application.</h3>
-    <h3 style="color: green;" >- Your application has been processed.</h3>
-    <h3 style="color: green;">- We approved your application.</h3>
-    <h3 style="color: green;">- You paid deposit.</h3>
-    <h3>- Please check <a href="/payment/monthly-paid">monthly rent(s)</a>.</h3>
-  <% 
+<h4 style="color: green;">- You did submit application</h4>
+<h4 style="color: green;">- Your application has been processed</h4>
+<h4 style="color: green;">- We approved your application</h4>
+<h4 style="color: green;">- You paid deposit</h4>
+<h4>- Please check <a href="/auth/payment/monthly-paid">monthly rent(s)</a></h4>
+<% 
 } else { %>
 <div>
   <h1>Application Form</h1>
-  <% if (it.regErrors) { %>
+  <% if(it.regErrors) { %>
   <ul>
     <% Object.keys(it.regErrors).forEach((attribute) => { %>
     <% Object.values(it.regErrors[attribute]).forEach((err) => { %>
@@ -57,18 +79,30 @@
     <% }); %>
   </ul>
   <% } %>
-  <form method="POST" action="/application/submit">
-    Type of apartment<br />
-    <select type="text" name="type_apartment">
-      <option value="2h-shared apartment">2h-shared apartment</option>
-      <option value="3h-shared apartment">3h-shared apartment</option>
-      <option value="1h-single apartment">1h-single apartment</option>
-      <option value="2h-family apartment">2h-family apartment</option>
-    </select><br />
-    Date need apartment<br />
-    <input type="date" data-date-format="YYYY MMMM DD" name="date_rent" /><br /><br />
+  <% if(it.error) { %> 
+      <p style="color: red;"><%= it.error %><p>
+    <% } 
+  %>
+  <form method="POST" action="/auth/application/submit">
+    <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
+      <tr>
+        <td style="padding-right: 20px;">Apartment type</td>
+        <td>
+            <select type="text" name="type_apartment">
+              <option value="2h-shared apartment">2h-shared apartment</option>
+              <option value="3h-shared apartment">3h-shared apartment</option>
+              <option value="1h-single apartment">1h-single apartment</option>
+              <option value="2h-family apartment">2h-family apartment</option>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px;">Date need apartment</td>
+        <td><input type="date" name="date_rent" /></td>
+      </tr>
+    </table>
     <input type="submit" value="Send application" />
-  </form><br />
+  </form>
 </div>
 <%}
 %>

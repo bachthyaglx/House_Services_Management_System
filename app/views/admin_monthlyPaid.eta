@@ -2,7 +2,7 @@
 
 <div>
 <% if(it.length) { %>
-  <form method="POST" action="/admin-monthly-paid">
+  <form method="POST" action="/auth/admin-monthly-paid">
     <p>Check by status
       <select name="monthlyPaidStatus">
         <option value="All">All</option>
@@ -27,9 +27,9 @@
       </tr>
     </thead>
     <tbody>
-      <% for(var i = 0; i< it.length; i++) { %>
+      <% for(let i=0; i<it.length; i++) { %>
         <tr>
-          <td style="border: 1px solid black; text-align: center;"><a href="/admin-monthly-paid/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><a href="/auth/admin-monthly-paid/user/<%= it[i].user_id %>/room/<%= it[i].room_id %>"><%= it[i].firstname %></a></td>
           <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
           <td style="border: 1px solid black; text-align: center;"><%= it[i].gender %></td>
           <td style="border: 1px solid black;"><%= it[i].type %></td>
@@ -44,8 +44,13 @@
     </tbody>
   </table>
   <% } else { %>
-    <h3 style="color: red;">- No data ever existed.</h3>
-    <h3>- Data will be displayed when at least one application was approved already.</h3>
+    <h4 style="color: red;">- No data ever existed.</h4>
+    <h4>- Data will be displayed when 
+      <ul>
+        <li>At least one application is approved already, hence the contract is officially agreed by user</li>
+        <li>The deposit has been paid already</li>
+      </ul>
+    </h4>
   <% } 
 %>
 </div>

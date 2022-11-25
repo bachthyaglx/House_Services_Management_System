@@ -13,9 +13,7 @@ const checkMonthlyPaidStatus = async ({ request, render }) => {
       const result1 = await admin_monthlyPaidService.showMonthlyPaidList();
       render("admin_monthlyPaid.eta", result1);
     } else {
-      const result2 = await admin_monthlyPaidService.checkMonthlyPaidStatus(
-        form_text.get("monthlyPaidStatus"),
-      );
+      const result2 = await admin_monthlyPaidService.checkMonthlyPaidStatus(form_text.get("monthlyPaidStatus"));
       render("admin_monthlyPaid.eta", result2);
     }
   };

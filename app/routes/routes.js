@@ -28,11 +28,11 @@ router.get("/apartments", apartmentsController.showApartments);
 // Handle services
 router.get("/services", servicesController.showServices);
 
-//--------------------------------------------USER-------------------------------------------------
 // Handle register
-router.get("/auth/register", registerController.showRegistrationForm);
-router.post("/auth/register", registerController.registerUser);
+router.get("/register", registerController.showRegistrationForm);
+router.post("/register", registerController.registerUser);
 
+//--------------------------------------------USER-------------------------------------------------
 // Handle login form
 router.get("/auth/login", loginController.showLoginForm);
 router.post("/auth/login", loginController.processLogin);
@@ -41,52 +41,52 @@ router.post("/auth/login", loginController.processLogin);
 router.get("/auth/logout", logoutController.processLogout);
 
 // Handle application
-router.get("/application", applicationController.showApplicationForm);
-router.post("/application/submit", applicationController.submitApplication);
-router.post("/application/update", applicationController.updateApplication);
+router.get("/auth/application", applicationController.showApplicationForm);
+router.post("/auth/application/submit", applicationController.submitApplication);
+router.post("/auth/application/update", applicationController.updateApplication);
 
 // Handle termination
-router.get("/termination/application", terminationController.showTerminationApplication);
-router.post("/termination/application", terminationController.deleteApplication);
-router.get("/termination/rent", terminationController.showTerminationRent);
-router.post("/termination/rent", terminationController.deleteRents);
+router.get("/auth/termination/application", terminationController.showTerminationApplication);
+router.post("/auth/termination/application", terminationController.deleteApplication);
+router.get("/auth/termination/rent", terminationController.showTerminationRent);
+router.post("/auth/termination/rent", terminationController.deleteRents);
 
 // Handle payment
-router.get("/payment/deposit", paymentController.paymentDepositAction);
-router.post("/payment/deposit", paymentController.payDeposit);
-router.get("/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
-router.post("/payment/monthly-paid/:mID", paymentController.payMonthlyPaid);
+router.get("/auth/payment/deposit", paymentController.paymentDepositAction);
+router.post("/auth/payment/deposit", paymentController.payDeposit);
+router.get("/auth/payment/monthly-paid", paymentController.paymentMonthlyPaidAction);
+router.post("/auth/payment/monthly-paid/:mID", paymentController.payMonthlyPaid);
 
 // Handle maintenance
-router.get("/maintenance", maintenanceController.displayListMaintenance);
-router.post("/maintenance", maintenanceController.submitRequestMaintenance);
+router.get("/auth/maintenance", maintenanceController.displayListMaintenance);
+router.post("/auth/maintenance", maintenanceController.submitRequestMaintenance);
 
 //----------------------------------------ADMIN---------------------------------------------------
 // Handle APPLICATION for ADMIN
-router.get("/admin-application", admin_applicationController.showApplicationList);
-router.get("/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
-router.post("/admin-application/user/:uID", admin_applicationController.approveRoom);
+router.get("/auth/admin-application", admin_applicationController.showApplicationList);
+router.get("/auth/admin-application/user/:uID", admin_applicationController.showPossibleRoom);
+router.post("/auth/admin-application/user/:uID", admin_applicationController.approveRoom);
 
 // Handle DEPOSIT CHECKS for ADMIN
-router.get("/admin-deposit", admin_depositController.showDepositList);
-router.post("/admin-deposit", admin_depositController.showDepositStatus);
+router.get("/auth/admin-deposit", admin_depositController.showDepositList);
+router.post("/auth/admin-deposit", admin_depositController.showDepositStatus);
 
 // Handle MONTHLY PAID CHECKS for ADMIN
-router.get("/admin-monthly-paid", admin_monthlyPaidController.showMonthlyPaidList);
-router.post("/admin-monthly-paid", admin_monthlyPaidController.checkMonthlyPaidStatus);
+router.get("/auth/admin-monthly-paid", admin_monthlyPaidController.showMonthlyPaidList);
+router.post("/auth/admin-monthly-paid", admin_monthlyPaidController.checkMonthlyPaidStatus);
 
 // Handle TERMINATION for ADMIN
-router.get("/admin-termination/application", admin_terminationController.displayApplicationList);
-router.post("/admin-termination/application/user/:uID", admin_terminationController.deleteApplication);
-router.get("/admin-termination/deposit", admin_terminationController.duedateNotPaidDeposit);
-router.post("/admin-termination/deposit/user/:uID", admin_terminationController.terminateDeposit);
-router.get("/admin-termination/monthly-paid", admin_terminationController.duedateNotMonthlyPaid);
-router.post("/admin-termination/monthly-paid/:mID", admin_terminationController.terminateMonthlyPaid);
+router.get("/auth/admin-termination/application", admin_terminationController.displayApplicationList);
+router.post("/auth/admin-termination/application/user/:uID", admin_terminationController.deleteApplication);
+router.get("/auth/admin-termination/deposit", admin_terminationController.duedateNotPaidDeposit);
+router.post("/auth/admin-termination/deposit/user/:uID", admin_terminationController.terminateDeposit);
+router.get("/auth/admin-termination/monthly-paid", admin_terminationController.duedateNotMonthlyPaid);
+router.post("/auth/admin-termination/monthly-paid/:mID", admin_terminationController.terminateMonthlyPaid);
 
 // Handle MAINTENANCE CHECKS for ADMIN
-router.get("/admin-maintenance", admin_maintenanceController.showMaintenanceRequest);
-router.post("/admin-maintenance", admin_maintenanceController.searchMaintenanceStatus);
-router.get("/admin-maintenance/:MID", admin_maintenanceController.showMaintenanceRequestUser);
-router.post("/admin-maintenance/:MID", admin_maintenanceController.updateMaintenanceStatus);
+router.get("/auth/admin-maintenance", admin_maintenanceController.showMaintenanceRequest);
+router.post("/auth/admin-maintenance", admin_maintenanceController.searchMaintenanceStatus);
+router.get("/auth/admin-maintenance/:MID", admin_maintenanceController.showMaintenanceRequestUser);
+router.post("/auth/admin-maintenance/:MID", admin_maintenanceController.updateMaintenanceStatus);
 
 export { router };

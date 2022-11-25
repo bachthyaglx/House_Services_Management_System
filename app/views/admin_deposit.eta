@@ -2,7 +2,7 @@
 
 <div>
 <% if(it.result && it.result.length>0) { %>
-  <form method="POST" action="/admin-deposit">
+  <form method="POST" action="/auth/admin-deposit">
     <p>Paid status
       <select name="statusDeposit">
         <option value="">---</option>
@@ -30,7 +30,7 @@
     <tbody>
       <% for(let i=0; i<it.result.length; i++) { %>
         <tr>
-          <td style="border: 1px solid black; text-align: center;"><a href="/admin-application/user/<%= it.result[i].id %>/room/<%= it.result[i].room_id %>"><%= it.result[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center;"><a href="/auth/admin-application/user/<%= it.result[i].id %>/room/<%= it.result[i].room_id %>"><%= it.result[i].firstname %></a></td>
           <td style="border: 1px solid black; text-align: center;"><%= it.result[i].lastname %></td>
           <td style="border: 1px solid black;"><%= it.result[i].gender %></td>
           <td style="border: 1px solid black;"><%= it.result[i].type %></td>
@@ -44,7 +44,7 @@
     </tbody>
   </table>
   <% } else { %>
-      <form method="POST" action="/admin-deposit">
+      <form method="POST" action="/auth/admin-deposit">
         <p>Paid status
           <select name="statusDeposit">
             <option value="">---</option>
@@ -56,8 +56,12 @@
           <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
         </p>
       </form>
-      <h3 style="color: red;">- No data ever existed.</h3>
-      <h3>- Data will be display when at least one user have contract already.</h3>
+      <h4 style="color: red;">- No data ever existed.</h4>
+      <h4>- Data will be display when
+        <ul>
+          <li>At least one application is approved already, hence the contract is officially agreed by user</li>
+        </ul>
+      </h4>
     <% } 
   %>
 </div>

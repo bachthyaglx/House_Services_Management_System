@@ -55,7 +55,7 @@ const approveRoom = async ({ request, response, params }) => {
     format_depositDate(),
     text_form.get("gender"),
   );
-  response.redirect(`/admin-application`);
+  response.redirect(`/auth/admin-application`);
 };
 
 export { approveRoom, showApplicationList, showPossibleRoom };

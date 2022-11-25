@@ -1,0 +1,55 @@
+<% layout('./layouts/layout1.eta') %>
+
+<h4 style="color: green;">- You did submit application.</h4>
+<h4>- You have 2 days to modify your application since it is sent already.</h4>
+<h4>- You can cancel your application <a href="/auth/termination/application">here</a></h4>
+
+<form method="POST" action="/auth/application/update">
+  <table style="border-collapse: separate; border-spacing: 0 25px; font-weight: bold;">
+    <tr>
+      <td style="padding-right: 20px;">First name</td>
+      <td><input type="text" name="firstname" disabled="disabled" value="<%= it.check_profile[0].firstname %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Last name</td>
+      <td><input type="text" name="lastname" disabled="disabled" value="<%= it.check_profile[0].lastname %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Birthdate</td>
+      <td><input name="birthdate" disabled="disabled" value="<%= it.check_profile[0].birthdate.toLocaleDateString('en-GB') %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Gender</td>
+      <td><input type="text" name="gender" disabled="disabled" value="<%= it.check_profile[0].gender %>" /></td>
+    </tr>
+    <tr style="padding-right: 20px;">
+      <td>Email</td>
+      <td><input type="email" name="email" disabled="disabled" value="<%= it.check_profile[0].email %>" /></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px;">Apartment</td>
+      <td><input type="text" disabled="disabled" value="<%= it.apartment_application[0].type %>" /></td>
+      <td style="padding-right: 20px;">Choose another apartment</td>
+      <td>
+        <select type="text" name="type_apartment">
+          <option value="2h-shared apartment">2h-shared apartment</option>
+          <option value="3h-shared apartment">3h-shared apartment</option>
+          <option value="1h-single apartment">1h-single apartment</option>
+          <option value="2h-family apartment">2h-family apartment</option>
+        </select>
+      </td>
+    </tr>
+    <tr style="padding-right: 20px;">
+      <td>Date need</td>
+      <td><input type="text" disabled="disabled" value="<%= it.check_application[0].date_rent.toLocaleDateString('en-GB') %>"></td>
+      <td>Change another date</td>
+      <td><input type="date" name="date_rent" /></td>
+    </tr>
+  </table>
+
+  <% if (it.error_date_check) { %>
+      <p style="color: red"><%= it.error_date_check %></p>
+    <% } 
+  %>
+  <input type="submit" value="Update" />
+</form>

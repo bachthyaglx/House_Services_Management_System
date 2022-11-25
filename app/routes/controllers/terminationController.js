@@ -2,12 +2,12 @@ import * as terminationService from "../../services/terminationService.js";
 
 const deleteApplication = async ({ response, user }) => {
   await terminationService.deleteApplication(user.id);
-  response.redirect("/termination/application");
+  response.redirect("/auth/termination/application");
 };
 
 const deleteRents = async ({ user }) => {
   await terminationService.deleteRents(user.id);
-  response.redirect("/termination/rent");
+  response.redirect("/auth/termination/rent");
 };
 
 const showTerminationApplication = async ({ render, user }) => {

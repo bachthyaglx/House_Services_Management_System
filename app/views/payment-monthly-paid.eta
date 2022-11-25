@@ -34,7 +34,7 @@
             <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
             <td style="border: 1px solid black; text-align: center;"><%= it.paymentMonthlyPaid[i].current_date.toLocaleDateString('en-GB') %></td>
             <td style="text-align: right;"> <% if(it.paymentMonthlyPaid[i].monthly_paid=='No') { %>
-                <form method="POST" action="/payment/monthly-paid/<%= it.paymentMonthlyPaid[i].id %>">
+                <form method="POST" action="/auth/payment/monthly-paid/<%= it.paymentMonthlyPaid[i].id %>">
                   <input type="submit" value="Pay it" style="background-color: #EC5151; border: 1px solid black ;">
                 </form>
                 <% } else { %><div style="color: green; text-align: center;">Paid</div><% }
@@ -46,9 +46,14 @@
     </tbody>
   </table>
   <% } else { %>
-    <h3 style="color: red;">- You do not have contract yet!</h3>
-    <h3>- Data will be displayed when you have contract already, and deposit should be paid.</h3>
-    <h3>- Check it <a href="/application">here</a></h3>
+    <h4 style="color: red;">- You do not have contract yet!</h4>
+    <h4>- Data will be displayed when 
+      <ul>
+        <li>You have contract already</li>
+        <li>Deposit should be paid</li>
+      </ul>  
+    </h4>
+    <h4>- Check your application <a href="/auth/application">here</a> and pay deposit by duedate.</h4>
   <% } 
 %>
 </div>

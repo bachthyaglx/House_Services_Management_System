@@ -1,8 +1,7 @@
 <% layout('./layouts/layout1.eta') %>
 
-<div>
 <% if(it.showMaintenanceRequest && it.showMaintenanceRequest.length>0) { %>
-  <form method="POST" action="/admin-maintenance">
+  <form method="POST" action="/auth/admin-maintenance">
     <p>Check by status
       <select name="status">
         <option value="">---</option>
@@ -30,7 +29,7 @@
     <tbody>
       <% for(let i=0; i<it.showMaintenanceRequest.length; i++) { %>
         <tr>
-          <td style="border: 1px solid black; text-align: center; "><a href="/admin-maintenance/<%= it.showMaintenanceRequest[i].id %>"><%= it.showMaintenanceRequest[i].firstname %></a></td>
+          <td style="border: 1px solid black; text-align: center; "><a href="/auth/admin-maintenance/<%= it.showMaintenanceRequest[i].id %>"><%= it.showMaintenanceRequest[i].firstname %></a></td>
           <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].lastname %></td>
           <td style="border: 1px solid black; text-align: left;"><%= it.showMaintenanceRequest[i].email %></td>
           <td style="border: 1px solid black; text-align: center;"><%= it.showMaintenanceRequest[i].type %></td>
@@ -44,10 +43,11 @@
     </tbody>
   </table>
   <% } else { %>
-      <form method="POST" action="/admin-maintenance">
+      <form method="POST" action="/auth/admin-maintenance">
         <p>Check by status
           <select name="status">
             <option value="">---</option>
+            <option value="Yes">All</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             <option value="Processing">Processing</option>
@@ -56,8 +56,13 @@
           <% if(it.error_mess) { %><div style="color: red;"><%= it.error_mess.error %></div><% } %>
         </p>
       </form>
-      <h3 style="color: red;">- No data ever existed.</h3>
-      <h3>- Data will be displayed when at least one user have contract, paid deposit and sent a maintenance request already.</h3>
+      <h4 style="color: red;">- No data ever existed.</h4>
+      <h4>- Data will be displayed when 
+        <ul>
+          <li>At least one application is approved already, hence the contract is officially agreed by user</li>
+          <li>The user has paid deposit already</li>
+          <li>The user has sent a maintenance request for their apartment</li>
+        </ul>
+      </h4>
   <% } 
 %>
-</div>

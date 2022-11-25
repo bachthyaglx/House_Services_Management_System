@@ -3,7 +3,7 @@
 <% if (it.paymentDeposit && it.paymentDeposit.length>0) { 
     if (it.paymentDeposit[0].deposit_paid=='No') { %>
         <div>
-        <form method="POST" action="/payment/deposit">
+        <form method="POST" action="/auth/payment/deposit">
             <label for="firstname">Firstname</label>
             <input type="text" style="background-color: #E0E0E0" name="firstname" value="<%= it.paymentDeposit[0].firstname %>" readonly><br><br>
 
@@ -34,11 +34,11 @@
         </form>
         </div>
     <% } else { %>
-            <h3 style="color: green;">- You paid deposit!</h3>
-            <h3>- Please check <a href="/payment/monthly-paid">monthly rent</a> !</h3>
+            <h4 style="color: green;">- You paid deposit!</h4>
+            <h4>- Please check <a href="/auth/payment/monthly-paid">monthly rent(s)</a></h4>
         <% }
     } else { %>
-        <h3 style="color: red;">- You do not have housing contract yet!<h3>
-        <h3>- Check your <a href="/application">housing application!</a></h3> 
+        <h4 style="color: red;">- You do not have contract yet!<h4>
+        <h4>- Check your <a href="/auth/application">application</a></h4> 
     <% } 
 %>

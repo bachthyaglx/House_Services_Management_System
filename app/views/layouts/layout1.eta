@@ -12,7 +12,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
 
-  <title>Application</title>
+  <title>House Management System</title>
 </head>
 
 <header>
@@ -35,47 +35,47 @@
           <a class="nav-link" aria-current="page" href="/services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/application">Application</a>
+          <a class="nav-link" aria-current="page" href="/auth/application">Application</a>
         </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Termination</button>
           <div class="dropdown-content">
-            <a aria-current="page" href="/termination/application">Application</a>
-            <a aria-current="page" href="/termination/rent">Rent</a>
+            <a aria-current="page" href="/auth/termination/application">Application</a>
+            <a aria-current="page" href="/auth/termination/rent">Rent</a>
           </div>
         </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Payment</button>
           <div class="dropdown-content">
-            <a aria-current="page" href="/payment/deposit">Deposit</a>
-            <a aria-current="page" href="/payment/monthly-paid">Monthly Rent</a>
+            <a aria-current="page" href="/auth/payment/deposit">Deposit</a>
+            <a aria-current="page" href="/auth/payment/monthly-paid">Monthly Rent</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/maintenance">Maintenance</a>
+          <a class="nav-link" aria-current="page" href="/auth/maintenance">Maintenance</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/auth/logout">Logout</a>
         </li>
         <% } else if (it.user && it.user.email=="admin@admin.com") { %>
         <li class="nav-item active">
-          <a class="nav-link" aria-current="page" href="/admin-application">Application Checks</a>
+          <a class="nav-link" aria-current="page" href="/auth/admin-application">Application Checks</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" aria-current="page" href="/admin-deposit">Deposit Checks</a>
+          <a class="nav-link" aria-current="page" href="/auth/admin-deposit">Deposit Checks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin-monthly-paid">Monthly Paid Checks</a>
+          <a class="nav-link" aria-current="page" href="/auth/admin-monthly-paid">Monthly Paid Checks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin-maintenance">Maintenance Checks</a>
+          <a class="nav-link" aria-current="page" href="/auth/admin-maintenance">Maintenance Checks</a>
         </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Termination</button>
           <div class="dropdown-content">
-            <a aria-current="page" href="/admin-termination/application">Application</a>
-            <a aria-current="page" href="/admin-termination/deposit">Deposit Paid</a>
-            <a aria-current="page" href="/admin-termination/monthly-paid">Monthly Paid</a>
+            <a aria-current="page" href="/auth/admin-termination/application">Application</a>
+            <a aria-current="page" href="/auth/admin-termination/deposit">Deposit Paid</a>
+            <a aria-current="page" href="/auth/admin-termination/monthly-paid">Monthly Paid</a>
           </div>
         </li>
         <li class="nav-item">
@@ -92,24 +92,24 @@
           <a class="nav-link" aria-current="page" href="/services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/application">Application</a>
+          <a class="nav-link" aria-current="page" href="/auth/application">Application</a>
         </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Termination</button>
           <div class="dropdown-content">
-            <a aria-current="page" href="/termination/application">Application</a>
-            <a aria-current="page" href="/termination/rent">Rent</a>
+            <a aria-current="page" href="/auth/termination/application">Application</a>
+            <a aria-current="page" href="/auth/termination/rent">Rent</a>
           </div>
         </li>
         <li class="nav-item nav-link dropdown">
           <button class="dropbtn">Payment</button>
           <div class="dropdown-content">
-            <a aria-current="page" href="/payment/deposit">Deposit</a>
-            <a aria-current="page" href="/payment/monthly-paid">Monthly Rent</a>
+            <a aria-current="page" href="/auth/payment/deposit">Deposit</a>
+            <a aria-current="page" href="/auth/payment/monthly-paid">Monthly Rent</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/maintenance">Maintenance</a>
+          <a class="nav-link" aria-current="page" href="/auth/maintenance">Maintenance</a>
         </li>
         <li class="nav-item">
           <% if (!it.user) {%><a class="nav-link" aria-current="page" href="/auth/register">Register</a><%} %>
@@ -133,24 +133,24 @@
     }
 
     .carousel-item:nth-child(1) {
-      background-image: url('https://wallpaperaccess.com/full/38191.jpg');
+      background-image: url('http://wallup.net/wp-content/uploads/2015/12/210261-digital_art-landscape-China.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center center;
+      background-position: center top -260px;
     }
 
     .carousel-item:nth-child(2) {
-      background-image: url('https://wallpapershome.com/images/wallpapers/road-5120x2880-5k-4k-wallpaper-8k-clouds-sunset-12465.jpg');
+      background-image: url('https://free4kwallpapers.com/uploads/originals/2017/02/09/one-of-the-many-reasons-i-love-vietnamha-giang-province-near-the-chinese-border.-wallpaper_.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center center;
+      background-position: center top -320px;
     }
 
     .carousel-item:nth-child(3) {
-      background-image: url('https://images.nvidia.com/geforce-com/international/images/geforce-rtx-3090-8k-hdr-gaming/watch-dogs-legion-geforce-rtx-comparison-screenshot-001-4k.jpg');
+      background-image: url('https://www.beautiful-views.net/views/cueva-of-los-island-islands-de-verdes-cave.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center center;
+      background-position: center top -260px;
     }
 
     /* Height for devices larger than 576px */
@@ -229,8 +229,8 @@
         <div class="mask">
           <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-white text-center">
-              <p>
-                Cheap
+              <p style="font-size: 80px; font-weight: bold;">
+                
               </p>
             </div>
           </div>
@@ -242,7 +242,9 @@
         <div class="mask">
           <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-white text-center">
-
+              <p style="font-size: 80px; font-weight: bold;">
+                
+              </p>
             </div>
           </div>
         </div>
@@ -253,7 +255,9 @@
         <div class="mask">
           <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-white text-center">
-
+              <p style="font-size: 80px; font-weight: bold;">
+                
+              </p>
             </div>
           </div>
         </div>
@@ -274,51 +278,37 @@
   <!-- Carousel wrapper -->
 </header>
 
-<body>
-  <div class="container" style="padding-top: 25px; padding-bottom: 25px;">
+<body style="background-color: #FFEFD5;">
+  <div class="container" style="background-color: #FFEFD5; padding-top: 25px; padding-bottom: 25px;">
     <%~ it.body %>
   </div>
 </body>
 
-<% /* <footer class="bg-black text-center text-white d-none d-lg-block" style="font-weight: bold; font-size: x-large; background: black; position: fixed; bottom: 0; left: 0; right: 0;">
+<% /* <footer class="bg-black text-center text-white d-none d-lg-block" style="position: fixed; bottom: 0; right:0; left: 0;">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
-    <!-- Section: Form -->
-    <section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <p class="pt-2">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example29" class="form-control" style="border: 2px solid #FFFFFF;" placeholder="Email" />
-              <label class="form-label" for="form5Example29"></label>
-            </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
-              Subscribe
-            </button>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </form>
-    </section>
-    <!-- Section: Form -->
+    <table style="margin-left: auto; margin-right: auto; pading-top: 30px;">
+      <tr>
+        <th style="padding-right: 150px; padding-bottom: 15px; font-size: 25px; font-weight: bold; font-size: x-large;">Housing Management System</th>
+        <th style="padding-left: 150px; padding-bottom: 15px; font-size: 25x; font-weight: bold; font-size: x-large;">Web Software Application Resources</th>
+      </tr>
+      <tr>
+        <td style="padding-left: 46px;">
+          <ul>
+            <li style="text-align: left; padding-bottom: 10px;">67100 Kokkola, Finland</li>
+            <li style="text-align: left; padding-bottom: 10px;">(+358) 0466344276</li>
+            <li style="text-align: left; padding-bottom: 10px;">thy.khuu@centria.fi</li>
+          </ul>
+        </td>
+        <td style="padding-left: 210px;">
+          <ul>
+            <li style="text-align: left; padding-bottom: 10px;"><a href="https://net.centria.fi/en/koulutukset/fundamentals-of-web-development/"><u>Fundamental of Web Development</u></a></li>
+            <li style="text-align: left; padding-bottom: 10px;"><a href="https://fitech101.aalto.fi/web-software-development/"><u>Web Software Development</u></a></li>
+            <li style="text-align: left; padding-bottom: 10px;"><a href="https://fitech.io/en/studies/web-applications/"><u>Web Application</u></a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
   </div>
   <!-- Grid container -->
 </footer> */ %>

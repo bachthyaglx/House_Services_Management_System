@@ -2,17 +2,17 @@
 
 <% if (it.check_rent && it.check_rent.length > 0) { %>
     <% if (it.check_allMonthlyPaid && it.check_allMonthlyPaid.length>0 && it.check_allMonthlyPaid[0].count!=0) { %>
-        <p>There has total <b style="color: red;"><%= it.check_allMonthlyPaid[0].count %></b> monthly rent(s) you have not paid yet.</p>
-        <p>Please pay all <a aria-current="page" href="/payment/monthly-paid">monthly rent(s)</a> before terminating contract!</p>
+        <h4>- There has total <b style="color: red;"><%= it.check_allMonthlyPaid[0].count %></b> monthly rent(s) you have not paid yet.</h4>
+        <h4>- Please pay all <a aria-current="page" href="/auth/payment/monthly-paid">monthly rent(s)</a> before terminating contract!</h4>
         <% } else { %>
-            <h3>Do you want to terminate your housing contract?</h3>
-            <form method="POST" action="/termination/rent">
+            <h4>Do you agree to terminate your contract?</h4>
+            <form method="POST" action="/auth/termination/rent">
                 <input type="submit" value="Terminate" />
             </form><br />
         <%}
     %>
 <% } else { 
-    %><h3>You do not have housing contract yet.</h3>
-      <h3>Wanna find an appartment? Send your application <a aria-current="page" href="/application">here</a></h3>
+    %><h4>- You do not have housing contract yet.</h4>
+      <h4>- Are you looking for an appartment? Send your application <a aria-current="page" href="/auth/application">here</a></h4>
     <% }
 %>

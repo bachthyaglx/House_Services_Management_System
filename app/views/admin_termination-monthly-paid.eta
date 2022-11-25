@@ -1,7 +1,6 @@
 <% layout('./layouts/layout1.eta') %>
 
-<div>
-<% if(it.length) { %>
+<% if(it.length && it.length>0) { %>
   <table>
     <thead>
       <tr>
@@ -17,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-    <% for(var i = 0; i< it.length; i++) { %>
+    <% for(let i=0; i<it.length; i++) { %>
       <tr>
         <td style="border: 1px solid black; text-align: center;"><%= it[i].firstname %></td>
         <td style="border: 1px solid black; text-align: center;"><%= it[i].lastname %></td>
@@ -29,7 +28,7 @@
         <td style="background-color: #EC5151; border: 1px solid black; text-align: center;"><%= it[i].duedate_monthly.toLocaleDateString('en-GB') %></td>
         <td style="border: 1px solid black; text-align: center;"><%= it[i].current_date.toLocaleDateString('en-GB') %></td>
         <td style="text-align: right;">
-          <form method="POST" action="/admin-termination/monthly-paid/<%= it[i].id %>">
+          <form method="POST" action="/auth/admin-termination/monthly-paid/<%= it[i].id %>">
             <input type="submit" value="Terminate" style="background-color: #EC5151; border: 1px solid black ;">
           </form>
         </td>
@@ -39,8 +38,19 @@
     </tbody>
   </table>
   <% } else { %>
-      <h3 style="color: red;">- No data ever existed.</h3>
-      <h3>- Data will be displayed when at least one user have contract, paid deposit for it already, and not paid monthly rent(s) by duedate.</h3>
+      <h4 style="color: red;">- No data ever existed.</h4>
+      <h4>- Data will be displayed when 
+        <ul>
+          <li>At least one user have contract</li>
+          <li>The user have paid their deposit already</li>
+          <li>The user have not paid their monthly rent(s) by duedate</li>
+        </ul>
+      </h4>
+      <h4>- Admin is allowed to
+        <ul>
+          <li>Extend the duedate of payment for their monthly rent(s) by personal agreement</li>
+          <li>Terminate user's contract when the duedate of their payment has gone</li>
+        </ul>
+      </h4> 
   <% } 
 %>
-</div>

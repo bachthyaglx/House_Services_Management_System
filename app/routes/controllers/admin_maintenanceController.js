@@ -16,6 +16,9 @@ const searchMaintenanceStatus = async ({ response, request, render }) => {
   if (params.get("status")=="") {
     render("admin_maintenance.eta", {error_mess: error_mess, showMaintenanceRequest: await admin_maintenanceService.showMaintenanceRequest()});
     return
+  } else if (params.get("status")=="All") {
+    render("admin_maintenance.eta", {showMaintenanceRequest: await admin_maintenanceService.showMaintenanceRequest()});
+    return
   } else {
     render("admin_maintenance.eta", {showMaintenanceRequest: await admin_maintenanceService.searchMaintenanceStatus(params.get("status"))});
     return
@@ -32,7 +35,7 @@ const updateMaintenanceStatus = async ({ render, request, params, response }) =>
   const text = await body.value;
 
   await admin_maintenanceService.updateMaintenanceStatus(text.get("status_pick"), params.MID);
-  response.redirect("/admin-maintenance");
+  response.redirect("/auth/admin-maintenance");
 };
 
 export { showMaintenanceRequest, searchMaintenanceStatus, showMaintenanceRequestUser, updateMaintenanceStatus };

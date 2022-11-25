@@ -29,7 +29,7 @@
           <td style="border: 1px solid black; text-align: center;"><%= it[i].date_request.toLocaleDateString('en-GB') %></td>
           <td style="border: 1px solid black; text-align: center;"><%= it[i].date_rent.toLocaleDateString('en-GB') %></td>
           <td style="text-align: right;">
-            <form method="POST" action="/admin-termination/application/user/<%= it[i].id %>">
+            <form method="POST" action="/auth/admin-termination/application/user/<%= it[i].id %>">
               <input type="submit" value="Delete" style="background-color: #EC5151; border: 1px solid black ;">
             </form>
           </td>
@@ -39,8 +39,12 @@
     </tbody>
   </table>      
   <% } else { %>
-      <h3 style="color: red;">- No data ever existed.</h3>
-      <h3>- Data will be displayed when at least one user have sent their application already.</h3>
+      <h4 style="color: red;">- No data ever existed.</h4>
+      <h4>- Data will be displayed when 
+        <ul>
+          <li>At least one user has submitted their application already.</li>
+        </ul>
+      </h4>
   <% } 
 %>
 </div>

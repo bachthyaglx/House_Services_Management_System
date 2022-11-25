@@ -28,7 +28,7 @@ const paymentMonthlyPaidAction = async ({ render, user }) => {
 const payMonthlyPaid = async({ user, response, params }) => {
 
   await paymentService.payMonthlyPaid(user.id, params.mID);
-  response.redirect("/payment/monthly-paid");
+  response.redirect("/auth/payment/monthly-paid");
 };
 
 export { paymentDepositAction, paymentMonthlyPaidAction, payDeposit, payMonthlyPaid };
