@@ -1,10 +1,7 @@
 import { executeQuery } from "../database/database.js";
 
 const displayListMaintenance = async () => {
-  await executeQuery(
-    `DELETE FROM maintenance WHERE date_report < current_date - interval '3 month';`,
-  );
-  await executeQuery(`ALTER SEQUENCE maintenance_id_seq RESTART WITH 1;`);
+  await executeQuery(`DELETE FROM maintenance WHERE date_report < current_date - interval '3 month';`);
   const result = await executeQuery(`SELECT * FROM services;`);
   return result.rows;
 };
@@ -34,7 +31,7 @@ const checkRent = async (userID) => {
 
 const submitRequestMaintenance = async (rentID, serviceID) => {
   const result = await executeQuery(
-    `INSERT INTO maintenance(rent_id, service_id, date_report) VALUES($rent_id, $service_id, current_date);`,
+    `INSERT INTO maintenance(rent_id, service_id, date_report) VALUES ($rent_id, $service_id, current_date) RETURNING id;`,
     {
       rent_id: rentID,
       service_id: serviceID,
@@ -42,6 +39,7 @@ const submitRequestMaintenance = async (rentID, serviceID) => {
   );
   return result.rows;
 };
+
 
 export {
   checkRent,

@@ -40,8 +40,8 @@ CREATE TABLE application (
 
 CREATE TABLE rents (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) UNIQUE,
-  room_id INTEGER REFERENCES rooms(id) UNIQUE,
+  user_id INTEGER REFERENCES users(id),
+  room_id INTEGER REFERENCES rooms(id),
   datestart DATE,
   duedate_deposit DATE,
   deposit_paid VARCHAR(255) DEFAULT 'No'
@@ -62,23 +62,26 @@ CREATE TABLE services (
   cost VARCHAR(255)
 );
 
-CREATE UNIQUE INDEX ON services((lower(type_request)));
-
+CREATE SEQUENCE seq
+   START 1
+   INCREMENT 1;
+   
 CREATE TABLE maintenance (
-  id SERIAL PRIMARY KEY,
+  id INTEGER DEFAULT nextval('seq'),
   rent_id INTEGER REFERENCES rents(id),
   service_id INTEGER REFERENCES services(id),
   date_report DATE,
   resolve VARCHAR(255) DEFAULT 'No'
 );
 
----------INSERT APARTMENTS---------
+
+----INSERT APARTMENTS-------
 INSERT INTO apartments (type, quantity, deposit, price) VALUES ('2h-shared apartment',5, 250, 280.55);
 INSERT INTO apartments (type, quantity, deposit, price) VALUES ('3h-shared apartment',5, 200, 250.24);
 INSERT INTO apartments (type, quantity, deposit, price) VALUES ('1h-single apartment',4, 300, 350);
 INSERT INTO apartments (type, quantity, deposit, price) VALUES ('2h-family apartment',3, 420, 460);
 
-----------------INSERT ROOMS-----------------
+----INSERT ROOMS-----------
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (1, 1, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 1/1');
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (1, 1, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 1/2');
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (1, 2, 'Long Xuyen', 62000, 'Nguyen Thai Hoc 16 as 2/1');
@@ -112,20 +115,20 @@ INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 1, 'L
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 2, 'Long Xuyen', 62000, 'Yet Kieu 10 as 2');
 INSERT INTO rooms (apartment_id, house, city, zipcode, address) values (4, 3, 'Long Xuyen', 62000, 'Yet Kieu 10 as 3');
 
-------------------------------------------------------INSERT SERVICE-----------------------------------------------------------
-INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Key', '25,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Changing of lock', '155,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'iLOQ', '100,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Incorret key return', '30,00');
+---------INSERT SERVICES-----------------------------------------------------------
+INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Key', '25.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Changing of lock', '155.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'iLOQ', '100.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Keys and locks', 'Incorret key return', '30.00');
 INSERT INTO services (category, type_request, cost) VALUES ('Cleaning and clearing the apartment/room', 'Cleaning', 'as billed');
-INSERT INTO services (category, type_request, cost) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of small items', '50,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of bigger items eg. coach/bed/washing machine', '100,00');
+INSERT INTO services (category, type_request, cost) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of small items', '50.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Cleaning and clearing the apartment/room', 'Clearing of bigger items eg. coach/bed/washing machine', '100.00');
 INSERT INTO services (category, type_request, cost) VALUES ('Repairs', 'Vinyl floor covering', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Repairs', 'Changing floor boards', 'as billed');
-INSERT INTO services (category, type_request, cost) VALUES ('Inner doors in apartment', 'Change of the door frame', '50,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Inner doors in apartment', 'Change of the door panel', '70,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Entrance door', 'Change of the door frame', 'as billed');
-INSERT INTO services (category, type_request, cost) VALUES ('Entrance door', 'Change of the door panel', 'as billed');
+INSERT INTO services (category, type_request, cost) VALUES ('Inner doors in apartment', 'Change of the door frame', '50.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Inner doors in apartment', 'Change of the door panel', '70.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Entrance door', 'Change door frame', 'as billed');
+INSERT INTO services (category, type_request, cost) VALUES ('Entrance door', 'Change door panel', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Windows', 'Renewal of window', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Painting', 'Repair/painting of wall', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Painting', 'Painting of ceiling', 'as billed');
@@ -138,25 +141,25 @@ INSERT INTO services (category, type_request, cost) VALUES ('Fixtures', 'Room ca
 INSERT INTO services (category, type_request, cost) VALUES ('Fixtures', 'Cabinet installation', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Fixtures', 'Renewing of kitchen draw panels', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Fixtures', 'Renewing of kitchen cabinet door', 'as billed');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Dining table and benches', '450,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Bench/table', '100,00/250,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Chair', '70,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Book shelf', '50,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Work desk', '150,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Bed', '250,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Fire alarm', '30,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Ceiling light fixture', '50,00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Dining table and benches', '450.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Bench/table', '100.00/250.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Chair', '70.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Book shelf', '50.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Work desk', '150.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Bed', '250.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Fire alarm', '30.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Furniture in apartments', 'Ceiling light fixture', '50.00');
 INSERT INTO services (category, type_request, cost) VALUES ('Equipment', 'Bathroom mirror cabinet', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Equipment', 'Bathroom mirror cabinet door', 'as billed');
 INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Heater thermostat', 'as billed');
-INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Toilet seat', '420,00');
-INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Toilet seat cover/lid', '50,00');
+INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Toilet seat', '420.00');
+INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Toilet seat cover/lid', '50.00');
 INSERT INTO services (category, type_request, cost) VALUES ('Heating, plumbing, ventilation', 'Toilet cistern', 'as billed');
 
-----------INSERT ADMIN---------
+--------INSERT ADMIN---------
 INSERT INTO users (email, password, admin) VALUES ('admin@admin.com', '$2a$12$.lOV4EJhJqYWxVR/RSZtk.QapD6f90jC4JkU.L3O4Tokj5SqpjZcq', 'True')
 
---------DROP ALL TABLES--------
+---DROP ALL TABLES-----
 drop table users cascade;
 drop table apartments cascade;
 drop table rooms cascade;
@@ -164,3 +167,8 @@ drop table application cascade;
 drop table rents cascade;
 drop table monthlypaid cascade;
 drop table maintenance cascade;
+
+------RESTART AUTOINCREMENT AFTER DELETE ROWS----
+ALTER SEQUENCE product_id_seq RESTART WITH 1;
+
+		  
