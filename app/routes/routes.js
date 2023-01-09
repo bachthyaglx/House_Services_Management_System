@@ -29,8 +29,8 @@ router.get("/apartments", apartmentsController.showApartments);
 router.get("/services", servicesController.showServices);
 
 // Handle register
-router.get("/auth/register", registerController.showRegistrationForm);
-router.post("/auth/register", registerController.registerUser);
+router.get("/register", registerController.showRegistrationForm);
+router.post("/register", registerController.registerUser);
 
 //--------------------------------------------USER-------------------------------------------------
 // Handle login form
