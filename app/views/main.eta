@@ -1,17 +1,5 @@
 <% layout('./layouts/layout.eta') %>
 
-<% /* <h1>Drill and practice</h1>
-
-<p>This is an application where you can create topics and option answers for quizes. Anyone using the application possibly also take quizes, viewing the available topics and option answers for both wrongness and correctness.</p>
-<p>If you haven't used the application before, you can start by <a href="/auth/register" style="color: blue">registering</a>. If you have been here before, just <a href="/auth/login" style="color: blue">log in</a>!</p>
-<p>If you wish to see how such an application could be built, visit the free online <a href="https://wsd.cs.aalto.fi" target="_blank">Web Software Development Course</a> offered by <a href="https://www.aalto.fi/en" target="_blank">Aalto University</a>.</p>
-<p>Statistics</p>
-<ul style="list-style-type:disc">
-    <li>Topics: <%= it.topics ? it.topics : "0" %></li>
-<li>Questions: <%= it.questions ? it.questions : "0" %></li>
-<li>Answers from users: <%= it.userAnswers ? it.userAnswers : "0" %></li>
-</ul> */ %>
-
 <div>
   <p>Our goal is to be your home away from home. We do this by offering furnished apartments in the city centre of Da Nang at an affordable price. The company apartments in Da Nang was founded in 2016 by ABC. The idea to offer fully furnished short term rental apartments came to life after he decided to relocate from Vienna and France. Having been in the luxury hotel and restaurant business for many years, this felt like an exciting adventure. Service and hospitality is our main priority and highest value. We do our best to make sure that you will find it clean and inviting upon your arrival. The company apartments offers your family or company friendly, self catering rental apartments for short or long term stays.</p>
   <p>The website is the portal to help you find and book serviced apartments in the Vietnam. With a wide range of carefully selected apartments we offer a one-stop platform for booking short term stays. For short projects or longer-term assignments, serviced apartments offer a more comfortable and convenient alternative to hotels, by offering (business) travellers independence, privacy, space and a taste of local living that hotels simply cannot match. one-stop-shop. ServicedApartments.nl is founded to meet the growing demand for temporary accommodations. On the platform you will find homes from serviced apartments providers throughout the country. Now that 60+ providers have partnered with us and our apartment database holds over 4000 apartments across the country, we can always find an apartment that matches your specific needs. Let us find the perfect one for you!</p>
